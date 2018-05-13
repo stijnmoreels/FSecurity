@@ -8,7 +8,7 @@ open FsCheck.Xunit
 
 let vulnerableXPath user pass =
     let doc = XmlDocument ()
-    @"<?xml version=""1.0"" encoding=""utf-8""?>
+    @"<?xml version=""1.0"" encoding=""utf-8""?>    
           <Employees>
             <Employee ID=""1"">
                 <FirstName>Arnold</FirstName>

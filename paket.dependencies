@@ -20,6 +20,9 @@ group Build
 
 group Test
   source https://nuget.org/api/v2
-  
-  nuget NUnit ~> 2
-  nuget NUnit.Runners ~> 2
+
+	nuget FsCheck.Xunit
+nuget xunit
+	nuget xunit.abstractions
+nuget xunit.runner.console
+	nuget xunit.runner.visualstudio

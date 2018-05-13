@@ -6,15 +6,15 @@ owners
 authors 
     Stijn Moreels
 projectUrl
-    https://github.com/stijnmoreels/FSec/stijnmoreels/FSec
+    https://github.com/stijnmoreels/FSec
 iconUrl
-    https://raw.githubusercontent.com/stijnmoreels/FSec/stijnmoreels/FSec/master/docs/files/img/logo.png
+    https://raw.githubusercontent.com/stijnmoreels/FSec/master/docs/files/img/logo.png
 licenseUrl
-    https://github.com/stijnmoreels/FSec/stijnmoreels/FSec/blob/master/LICENSE.txt
+    https://github.com/stijnmoreels/FSec/blob/master/LICENSE.txt
 requireLicenseAcceptance
     false
 copyright
-    Copyright 2017
+    Copyright 2018
 tags
     fsharp security testing tool automation tests ci owasp
 summary

@@ -5,6 +5,7 @@
 #r @"packages/build/FAKE/tools/FakeLib.dll"
 open Fake
 open Fake.Git
+open Fake.Testing
 open Fake.AssemblyInfoFile
 open Fake.ReleaseNotesHelper
 open Fake.UserInputHelper
@@ -145,11 +146,11 @@ Target "Build" (fun _ ->
 
 Target "RunTests" (fun _ ->
     !! testAssemblies
-    |> NUnit (fun p ->
+    |> xUnit2 (fun p ->
         { p with
-            DisableShadowCopy = true
+            ShadowCopy = false
             TimeOut = TimeSpan.FromMinutes 20.
-            OutputFile = "TestResults.xml" })
+            XmlOutputPath = Some "TestResults.xml" })
 )
 
 

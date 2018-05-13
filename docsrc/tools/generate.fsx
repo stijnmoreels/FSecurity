@@ -13,7 +13,7 @@ let referenceBinaries = []
 // Web site location for the generated documentation
 let website = "/FSec"
 
-let githubLink = "https://github.com/stijnmoreels/FSec/stijnmoreels/FSec"
+let githubLink = "https://github.com/stijnmoreels/FSec"
 
 // Specify more information about your project
 let info =

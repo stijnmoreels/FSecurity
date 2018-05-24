@@ -92,10 +92,6 @@ module FSec =
               "'))) or 1=1 or ((('1'='1"
               "))) or 1=1 or (((\"1\"=\"1" ]
 
-    let zipBomb = ()
-
-    let virusFile = ()
-
     type Metric =
         | MB = 1048576
         | GB = 1073741824

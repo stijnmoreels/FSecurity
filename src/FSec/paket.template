@@ -20,6 +20,6 @@ tags
 summary
     FSec is a tool for automatically running security tests for .NET programs
 description
-    FSec is a tool for automatically running security tests for .NET programs. The tool provides some basic security testing functionality to discover vulnerabilities.
+    FSec is a tool for automatically running security tests for .NET programs. The tool provides some basic security testing functionality to discover vulnerabilities in an application, including: XSS, XML Bomb, XPath injection, SQL injection, URL tampering, URL bogus, ...
 
 

@@ -4,16 +4,9 @@
 #I "../../bin"
 
 (**
-Introducing your project
+Introducing to FSec
 ========================
 
-Say more
+TBD
 
-*)
-#r "FSec.dll"
-open FSec
-
-Library.hello 0
-(**
-Some more info
 *)

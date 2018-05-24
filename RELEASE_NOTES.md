@@ -1,3 +1,3 @@
-#### 1.0.2-beta - Februari 2018
+#### 1.0.3-beta - Februari 2018
 
 Initial release testing

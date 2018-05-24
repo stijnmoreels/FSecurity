@@ -11,7 +11,6 @@ NUGET
     NETStandard.Library (2.0.3) - restriction: && (>= net45) (< net452)
       Microsoft.NETCore.Platforms (>= 1.1)
       System.Runtime.InteropServices.RuntimeInformation (>= 4.3) - restriction: || (&& (>= net45) (< netstandard1.0)) (&& (>= net45) (< netstandard1.3)) (&& (>= net45) (>= uap10.0)) (&& (>= net46) (< netstandard1.4))
-    SQLProvider (1.1.42)
     System.Runtime.InteropServices.RuntimeInformation (4.3) - restriction: || (&& (>= net45) (< net452) (< netstandard1.3)) (&& (>= net45) (< netstandard1.0)) (&& (>= net45) (< netstandard1.3) (>= wpa81)) (&& (>= net45) (>= uap10.0)) (&& (< net452) (>= net46) (< netstandard1.4))
     xunit (2.3.1)
       xunit.analyzers (>= 0.7)

@@ -7,7 +7,14 @@
 FSec
 ======================
 
-Documentation
+**FSec** is a testing library to simplifying Security Tests for .NET programs.
+The `FSec` module exposes all kinds of different `Gen<'a>` implementations (See: [FsCheck](https://fscheck.github.io/FsCheck/index.html) for more infor about generators) 
+that the developer can use to discover possible security issues with the application.
+
+Examples of exposed generators are:
+- `FSec.xssInject` returns a generator that for all different kinds of XSS payloads
+- `FSec.xpathInject` returns a generator for all different kinds of XPath injection
+- `FSec.xmlBomb` returns a generator that makes all different kinds of XML payload that uses the XRE (External Reference Entity) functionality to exploit missue of XML parsers.
 
 <div class="row">
   <div class="span1"></div>
@@ -20,28 +27,8 @@ Documentation
   <div class="span1"></div>
 </div>
 
-Example
--------
-
-This example demonstrates using a function defined in this sample library.
-
-*)
-#r "FSec.dll"
-open FSec
-
-printfn "hello = %i" <| Library.hello 0
-
-(**
-Some more info
-
 Samples & documentation
 -----------------------
-
-The library comes with comprehensible documentation. 
-It can include tutorials automatically generated from `*.fsx` files in [the content folder][content]. 
-The API reference is automatically generated from Markdown comments in the library implementation.
-
- * [Tutorial](tutorial.html) contains a further explanation of this sample library.
 
  * [API Reference](reference/index.html) contains automatically generated documentation for all types, modules
    and functions in the library. This includes additional brief samples on using most of the
@@ -59,9 +46,9 @@ The library is available under Public Domain license, which allows modification 
 redistribution for both commercial and non-commercial purposes. For more information see the 
 [License file][license] in the GitHub repository. 
 
-  [content]: https://github.com/fsprojects/FSec/tree/master/docs/content
-  [gh]: https://github.com/fsprojects/FSec
-  [issues]: https://github.com/fsprojects/FSec/issues
-  [readme]: https://github.com/fsprojects/FSec/blob/master/README.md
-  [license]: https://github.com/fsprojects/FSec/blob/master/LICENSE.txt
+  [content]: https://github.com/stijnmoreels/FSec/tree/master/docs/content
+  [gh]: https://github.com/stijnmoreels/FSec
+  [issues]: https://github.com/stijnmoreels/FSec/issues
+  [readme]: https://github.com/stijnmoreels/FSec/blob/master/README.md
+  [license]: https://github.com/stijnmoreels/FSec/blob/master/LICENSE.txt
 *)

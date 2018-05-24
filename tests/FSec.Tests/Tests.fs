@@ -1,42 +1,94 @@
 module FSec.Tests
 
+open System
+open System.IO
+open System.Threading
 open System.Xml
-open FSec
+open System.Xml.Schema
 open FsCheck
 open FsCheck.Xunit
-
-
-let vulnerableXPath user pass =
-    let doc = XmlDocument ()
-    @"<?xml version=""1.0"" encoding=""utf-8""?>    
-          <Employees>
-            <Employee ID=""1"">
-                <FirstName>Arnold</FirstName>
-                <LastName>Baker</LastName>
-                <UserName>ABaker</UserName>
-                <Password>SoSecret</Password>
-                <Type>Admin</Type>
-            </Employee>
-            <Employee ID=""2"">
-                <FirstName>Peter</FirstName>
-                <LastName>Pan</LastName>
-                <UserName>PPan</UserName>
-                <Password>NotTelling</Password>
-                <Type>User</Type>
-                </Employee>
-           </Employees>"
-    |> doc.LoadXml
-    sprintf "//Employee[UserName/text()='%s' and Password/text()='%s']" user pass
-    |> fun x -> 
-        try 
-            if doc.SelectSingleNode x = null then false
-            else true
-        with | ex -> true
+open FSecurity
 
 [<Property>]
 let ``XPath input injection`` () =
-    FSec.xpathInput
+    FSec.xpathInject
     |> Gen.two
+    |> Gen.zip (Gen.elements 
+        [ Vulnerable, XPath.vulnerable
+          Prevented, XPath.prevented ])
     |> Arb.fromGen
-    |> Prop.forAll <| fun (u, p) -> 
-        vulnerableXPath u p
+    |> Prop.forAll <| fun ((exp, sut), (user, pass)) -> 
+        exp = sut user pass
+
+[<Property>]
+let ``XSS input injection`` () =
+    FSec.xssInject
+    |> Gen.zip (Gen.elements 
+        [ true, HTML.vulnerable
+          false, HTML.prevented ])
+    |> Arb.fromGen
+    |> Prop.forAll <| fun ((exp, sut), x) ->
+        sut x |> Option.exists (fun y -> y.Contains x)
+              |> (=) exp
+
+[<Property>]
+let ``SQL input injection`` () =
+    FSec.sqlInject
+    |> Gen.zip (Gen.elements
+        [ Vulnerable, SQL.vulnerable
+          Prevented, SQL.prevented ])
+    |> Arb.fromGen
+    |> Prop.forAll <| fun ((exp, sut), x) ->
+        exp = sut x
+
+[<Property(MaxTest=1)>]
+let ``XML bomb injection timeout`` () = 
+    FSec.xmlBomb
+    |> Arb.fromGen
+    |> Prop.forAll <| fun x ->
+        let ss = XmlReaderSettings () in
+            ss.DtdProcessing <- DtdProcessing.Parse;
+            ss.ValidationFlags <- XmlSchemaValidationFlags.None;
+            ss.ValidationType <- ValidationType.None;
+            ss.Async <- true
+        use r = XmlReader.Create (new StringReader (x), ss)
+        use cts = new CancellationTokenSource () in
+            cts.CancelAfter 50
+
+        try let a = r.ReadAsync () |> Async.AwaitTask
+            while Async.RunSynchronously (a, cancellationToken=cts.Token) do ()
+            false
+        with | :? OperationCanceledException -> true
+
+[<Property>]
+let ``XML malicious generation`` () =
+    FSec.xmlMalicious
+    |> Arb.fromGen
+    |> Prop.forAll <| fun xml ->
+        let doc = XmlDocument () in
+            doc.LoadXml xml
+     
+let stubQueryParams =
+    [ "category", Arb.generate<string>
+      "style", Arb.generate<string>
+      "size", Arb.generate<string> ]
+    |> Map.ofList
+
+[<Property>]
+let ``URL tampered generation`` () =
+    stubQueryParams
+    |> FSec.urlTampered "http://example.com"
+    |> Arb.fromGen
+    |> Prop.forAll <| fun url ->
+        url.Split '&' 
+        |> Array.length
+        |> (<=) 3;
+
+[<Property>]
+let ``URL bogus query parameter generation`` () =
+    stubQueryParams
+    |> FSec.urlBogus "http://example.com"
+    |> Arb.fromGen
+    |> Prop.forAll <| fun url ->
+        url.Split '&'
+        |> (not << Array.isEmpty)

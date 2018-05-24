@@ -1,5 +1,4 @@
 FSharp.Core
-group Test
 FsCheck.Xunit
 FsCheck
 xunit

@@ -8,7 +8,11 @@ source https://nuget.org/api/v2
 # To increase the minimum assumed F# version to F# 4.1, change to 
 #     nuget FSharp.Core ~> 4.1.0 redirects: force
 
-nuget FSharp.Core ~> 4.0.0.1 redirects: force
+nuget FSharp.Core ~> 4.1.0 redirects: force
+nuget FsCheck.Xunit
+nuget xunit
+nuget xunit.runner.console
+nuget xunit.runner.visualstudio
 
 group Build
   source https://nuget.org/api/v2
@@ -18,11 +22,4 @@ group Build
 
   github fsharp/FAKE modules/Octokit/Octokit.fsx
 
-group Test
-  source https://nuget.org/api/v2
-
-	nuget FsCheck.Xunit
-nuget xunit
-	nuget xunit.abstractions
-nuget xunit.runner.console
-	nuget xunit.runner.visualstudio
+  

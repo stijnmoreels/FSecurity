@@ -12,20 +12,10 @@ The `FSec` module exposes all kinds of different `Gen<'a>` implementations (See:
 that the developer can use to discover possible security issues with the application.
 
 Examples of exposed generators are:
-- `FSec.xssInject` returns a generator that for all different kinds of XSS payloads
-- `FSec.xpathInject` returns a generator for all different kinds of XPath injection
-- `FSec.xmlBomb` returns a generator that makes all different kinds of XML payload that uses the XRE (External Reference Entity) functionality to exploit missue of XML parsers.
 
-<div class="row">
-  <div class="span1"></div>
-  <div class="span6">
-    <div class="well well-small" id="nuget">
-      The FSec library can be <a href="https://nuget.org/packages/FSec">installed from NuGet</a>:
-      <pre>PM> Install-Package FSec</pre>
-    </div>
-  </div>
-  <div class="span1"></div>
-</div>
+ * `FSec.xssInject` returns a generator that for all different kinds of XSS payloads
+ * `FSec.xpathInject` returns a generator for all different kinds of XPath injection
+ * `FSec.xmlBomb` returns a generator that makes all different kinds of XML payload that uses the XRE (External Reference Entity) functionality to exploit missue of XML parsers.
 
 Samples & documentation
 -----------------------

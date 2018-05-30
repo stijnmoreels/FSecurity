@@ -1,9 +1,14 @@
 namespace FSecurity
 
+type Metric = MB | GB
+
 /// Module that holds the security testing functionality
 module FSec = 
-    open FsCheck
+    open System
     open System.IO
+    open System.Collections.Generic
+    open FsCheck
+    open ICSharpCode.SharpZipLib.Zip
   
     /// XPath input generator that provides malformed XPath inputs that can be used to discover XPath vulnerabilities.
     /// XPath is a "simple" language to locate information in an XML document. 
@@ -21,29 +26,6 @@ module FSec =
               "a%' or '1' = '1"
               "' or '1' = '1"
               "'a or 1=1 or 'a'='a" ]
-
-    /// XML Bomb input generator: An XML bomb is a message composed and sent with the intent of overloading an XML parser (typically HTTP server). 
-    /// It is block of XML that is both well-formed and valid according to the rules of an XML schema. 
-    /// It is a type of XML Denial of Service (DoS) attack. (more info: https://en.wikipedia.org/wiki/Billion_laughs)
-    ///
-    /// _Severity_: Critical
-    /// _Vulnerability Indicators_: timeoutv
-    [<CompiledName("XmlBomb")>]
-    let xmlBomb =
-        Gen.elements
-            [ """<?xml version="1.0"?>
-            <!DOCTYPE lolz [
-                <!ENTITY lol "lol">
-                <!ENTITY lol2 "&lol;&lol;&lol;&lol;&lol;&lol;&lol;&lol;&lol;&lol;">
-                <!ENTITY lol3 "&lol2;&lol2;&lol2;&lol2;&lol2;&lol2;&lol2;&lol2;&lol2;&lol2;">
-                <!ENTITY lol4 "&lol3;&lol3;&lol3;&lol3;&lol3;&lol3;&lol3;&lol3;&lol3;&lol3;">
-                <!ENTITY lol5 "&lol4;&lol4;&lol4;&lol4;&lol4;&lol4;&lol4;&lol4;&lol4;&lol4;">
-                <!ENTITY lol6 "&lol5;&lol5;&lol5;&lol5;&lol5;&lol5;&lol5;&lol5;&lol5;&lol5;">
-                <!ENTITY lol7 "&lol6;&lol6;&lol6;&lol6;&lol6;&lol6;&lol6;&lol6;&lol6;&lol6;">
-                <!ENTITY lol8 "&lol7;&lol7;&lol7;&lol7;&lol7;&lol7;&lol7;&lol7;&lol7;&lol7;">
-                <!ENTITY lol9 "&lol8;&lol8;&lol8;&lol8;&lol8;&lol8;&lol8;&lol8;&lol8;&lol8;">
-            ]>
-            <lolz>&lol9;</lolz>""" ]
 
     /// XSS (Cross Site Scripting) input generator that provides malformed inputs that can be used to discover XSS vulnerabilities.
     /// Cross-Site Scripting (XSS) attacks are a type of injection, in which malicious scripts are injected into otherwise benign 
@@ -92,21 +74,97 @@ module FSec =
               "'))) or 1=1 or ((('1'='1"
               "))) or 1=1 or (((\"1\"=\"1" ]
 
-    type Metric =
-        | MB = 1048576
-        | GB = 1073741824
+    let private guid () = Guid.NewGuid().ToString()
+    let private (</>) x y = Path.Combine (x, y)
 
     /// Creates a file for a given size stored at a given directory.
     /// ## Parameters
     /// - `dir` - Location of where the file should be stored
     /// - `x` - Value to define the file size (in MB or GB)
     /// - `m` - Metric to define the Unit of the file size
-    let fileOfSize (dir : DirectoryInfo) x (m : Metric) =
-        let path = Path.Combine (dir.FullName, string (System.Guid.NewGuid()) + ".test")
+    let fileOfSize x (m : Metric) (dir : DirectoryInfo) =
+        let size = match m with MB -> 1048576L | GB -> 1073741824L
+        let path = dir.FullName </> guid() + ".test"
         use fs = File.Create path
-        fs.Seek (x * int64 m, SeekOrigin.Begin) |> ignore
+        fs.Seek (int64 x * size, SeekOrigin.Begin) |> ignore
         fs.WriteByte 0uy
-        path
+        FileInfo path
+
+    /// Creates a zip file bomb having a depth and width representing the different levels the zip bomb should have.
+    /// ## Parameters
+    /// - `depth` - Represent the depth of the zip bomb: how many levels should the zip bomb have?
+    /// - `width` - Represent the width of the zip bomb: how many files should there be on each depth-level?
+    /// - `start` - Represent the start file of the zip bomb. This file is copied over and over to create the zip bomb.
+    let zipBombDepthWidth depth width (start : FileInfo) =
+        let mkFileName ext = guid() + ext
+        let zipFiles xs =
+            let fileName = start.Directory.FullName </> mkFileName ".zip"
+            use zip = new ZipOutputStream (File.Create fileName)
+            for fi in xs do
+                using (File.Open (fi, FileMode.Open)) (fun src ->
+                zip.PutNextEntry (Path.GetFileName fi |> ZipEntry)
+                src.CopyTo zip
+                zip.CloseEntry ())
+                File.Delete fi
+            fileName
+
+        let copyFileN n src =
+            let xs = List.init n (fun _ -> mkFileName ".zip")
+            for des in xs do File.Copy (src, des)
+            File.Delete src; xs
+
+        let rec mkBomb depth width bomb =
+            if depth = 0 then bomb else
+            copyFileN width bomb
+            |> zipFiles
+            |> mkBomb (depth - 1) width
+
+        zipFiles [start.FullName]
+        |> mkBomb depth width
+
+    /// Illegal file name generator to validate the file uploading mechanism.
+    /// Generate file names with semicolons, reserved names, percent sign, ampersand, ...
+    let fileIllegalNames =
+        Gen.elements 
+            [ "a:b.txt"     // Colon not allowed on most OSes
+              "a;b.txt"     // Semicolon deprecated on most OSes
+              "123456789012345678901234567890123456789012345678900123456.txt" // > 64 characters doesn't work on older file systems
+              "File."       // Windows may discard final period
+              "CON"         // Reserved name in Windows
+              "a/b.txt"     // does this create a file named b.txt?
+              "a\\b.txt"    // again, what does this do?
+              "a&b.txt"     // ampersand can be interpreted by OS
+              "a\%b.txt"    // percent is variable marker in Windows
+              String.replicate 255 "A" + ".txt" ]
+
+    /// Eicar virus represented as a stream containing the virus content.
+    /// For more info about the Eicar virus: http://www.eicar.org/86-0-Intended-use.html
+    let eicarVirus = (fun () ->
+        let eicar = "X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*"
+        new MemoryStream (System.Text.Encoding.UTF8.GetBytes eicar) :> Stream) ()
+
+    /// XML Bomb input generator: An XML bomb is a message composed and sent with the intent of overloading an XML parser (typically HTTP server). 
+    /// It is block of XML that is both well-formed and valid according to the rules of an XML schema. 
+    /// It is a type of XML Denial of Service (DoS) attack. (more info: https://en.wikipedia.org/wiki/Billion_laughs)
+    ///
+    /// _Severity_: Critical
+    /// _Vulnerability Indicators_: timeout
+    [<CompiledName("XmlBomb")>]
+    let xmlBomb =
+        let xml =  
+            """<?xml version="1.0"?>
+               <!DOCTYPE root [
+               <!ELEMENT root (#PCDATA)>
+               <!ENTITY  ha0 "Ha !">"""
+        let xs l = 
+            [1..l]
+            |> List.map (fun i ->
+                sprintf "<!ENTITY ha%i \"&ha%i;&ha%i;\" >" i (i-1) (i-1))
+            |> List.reduce (+)
+
+        Gen.choose (30, 100)
+        |> Gen.map (fun l ->
+            sprintf "%s%s]><root>&ha%i;</root>" xml (xs l) l)
 
     /// Malicious XML generator: generates a XML structure with a specified depth and tag length to detect failures in naive XML parsing implementations.
     /// ## Parameters
@@ -148,7 +206,7 @@ module FSec =
         |> Gen.zip (Gen.choose (1, 100))
         >>= fun (tagLen, depth) -> xmlMaliciousDepthTagLen tagLen depth
 
-    /// Generates an url with hidden specified query parameters: admin=true, debug=true.
+    /// Generates an url with hidden specified query parameters: `admin=true`, `debug=true`.
     /// ## Parameters
     /// - `baseUrl` - The base URL to add the generated query parameters
     let urlHiddenAdmin baseUrl =
@@ -179,6 +237,12 @@ module FSec =
         |> List.map (fun a -> a, xssInject)
         |> Map.ofList
         |> urlTampered baseUrl
+    
+    /// Generates an url with injected JavaScript for the given query parameters.
+    /// ## Parameters
+    /// - `baseUrl` - The base URL to add the injection
+    /// - `args` - List containing all the query parameter names
+    let UrlInject (baseUrl, args) = urlInject baseUrl args
 
     /// Generates an url with an additional "bogus" query parameters added to the specified base url.
     /// ## Parameters
@@ -201,3 +265,13 @@ module FSec =
                    |> Map.ofList
                    |> appendMap args)
         bogus >>= urlTampered baseUrl
+
+    /// Generates an url with an additional "bogus" query parameters added to the specified base url.
+    /// ## Parameters
+    /// - `baseUrl` - The base URL to add the generated query parsameters
+    /// - `args` - Map containing a query parameter names and their generator for its value
+    let UrlBogus (baseUrl, args : IDictionary<string, Gen<_>>) =
+        (args :> seq<_>)
+        |> Seq.map (|KeyValue|)
+        |> Map.ofSeq
+        |> urlBogus baseUrl

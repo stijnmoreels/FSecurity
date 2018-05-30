@@ -10,6 +10,8 @@ source https://nuget.org/api/v2
 
 nuget FSharp.Core ~> 4.1.0 redirects: force
 nuget FsCheck.Xunit
+nuget SharpZipLib
+nuget Unquote
 nuget xunit
 nuget xunit.runner.console
 nuget xunit.runner.visualstudio

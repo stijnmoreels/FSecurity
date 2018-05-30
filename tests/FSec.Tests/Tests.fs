@@ -7,7 +7,9 @@ open System.Xml
 open System.Xml.Schema
 open FsCheck
 open FsCheck.Xunit
+open Swensen.Unquote
 open FSecurity
+open ICSharpCode.SharpZipLib.Zip
 
 [<Property>]
 let ``XPath input injection`` () =
@@ -18,7 +20,7 @@ let ``XPath input injection`` () =
           Prevented, XPath.prevented ])
     |> Arb.fromGen
     |> Prop.forAll <| fun ((exp, sut), (user, pass)) -> 
-        exp = sut user pass
+        exp =! sut user pass
 
 [<Property>]
 let ``XSS input injection`` () =
@@ -29,7 +31,7 @@ let ``XSS input injection`` () =
     |> Arb.fromGen
     |> Prop.forAll <| fun ((exp, sut), x) ->
         sut x |> Option.exists (fun y -> y.Contains x)
-              |> (=) exp
+              |> (=!) exp
 
 [<Property>]
 let ``SQL input injection`` () =
@@ -39,7 +41,7 @@ let ``SQL input injection`` () =
           Prevented, SQL.prevented ])
     |> Arb.fromGen
     |> Prop.forAll <| fun ((exp, sut), x) ->
-        exp = sut x
+        exp =! sut x
 
 [<Property(MaxTest=1)>]
 let ``XML bomb injection timeout`` () = 
@@ -82,7 +84,7 @@ let ``URL tampered generation`` () =
     |> Prop.forAll <| fun url ->
         url.Split '&' 
         |> Array.length
-        |> (<=) 3;
+        |> (<=!) 3;
 
 [<Property>]
 let ``URL bogus query parameter generation`` () =
@@ -92,3 +94,23 @@ let ``URL bogus query parameter generation`` () =
     |> Prop.forAll <| fun url ->
         url.Split '&'
         |> (not << Array.isEmpty)
+
+[<Property>]
+let ``File creation`` () =
+    Environment.CurrentDirectory
+    |> DirectoryInfo
+    |> FSec.fileOfSize 1 MB
+    |> fun file ->
+        file.Length =! int64 (1024 * 1024)
+
+[<Property(MaxTest=1)>]
+let ``Zip Bomb`` () =
+    Environment.CurrentDirectory
+    |> DirectoryInfo
+    |> FSec.fileOfSize 1 MB
+    |> FSec.zipBombDepthWidth 1 2
+    |> fun path ->
+        use zip = new ZipFile (path)
+        [ for z in zip -> z :?> ZipEntry ]
+        |> List.forall (fun e -> e.Name.EndsWith ".zip") 
+        .&. (zip.Count =! 2L)

@@ -101,7 +101,7 @@ let ``File creation`` () =
     |> DirectoryInfo
     |> FSec.fileOfSize 1 MB
     |> fun file ->
-        file.Length =! int64 (1024 * 1024)
+        file.Length =! (int64 (1024 * 1024) + 1L)
 
 [<Property(MaxTest=1)>]
 let ``Zip Bomb`` () =

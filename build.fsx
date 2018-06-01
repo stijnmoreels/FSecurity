@@ -124,7 +124,7 @@ let vsProjProps =
 #if MONO
     [ ("DefineConstants","MONO"); ("Configuration", configuration) ]
 #else
-    [ ("Configuration", configuration); ("Platform", "Any CPU") ]
+    [ ("Configuration", configuration); ("Platform", "Any CPU"); ("Verbosity", "Minimal") ]
 #endif
 
 Target "Clean" (fun _ ->

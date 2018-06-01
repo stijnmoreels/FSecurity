@@ -45,23 +45,6 @@
 </div>
 
 <!-- Render nested types and modules, if there are any -->
-  <h2>Nested types and modules</h2>
-  <div>
-      <table class="table table-bordered type-list">
-    <thead>
-      <tr><td>Type</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-        <tr>
-          <td class="type-name">
-            <a href="fsecurity-fsec-metric.html">Metric</a>
-          </td>
-          <td class="xmldoc"></td>
-        </tr>
-    </tbody>
-  </table>
-
-  </div>
 
   <h3>Functions and values</h3>
   <table class="table table-bordered member-list">
@@ -73,14 +56,56 @@
         <td class="member-name">
 
           <code onmouseout="hideTip(event, '1', 1)" onmouseover="showTip(event, '1', 1)">
-            fileOfSize dir x m
+            eicarVirus 
           </code>
           <div class="tip" id="1">
-            <strong>Signature:</strong> dir:DirectoryInfo -&gt; x:int64 -&gt; m:Metric -&gt; string<br />
+            <strong>Signature:</strong> Stream<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSec/FSec.fs#L104-104" class="github-link">
+            <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSec/FSec.fs#L142-142" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Eicar virus represented as a stream containing the virus content.
+For more info about the Eicar virus: <a href="http://www.eicar.org/86-0-Intended-use.html">http://www.eicar.org/86-0-Intended-use.html</a></p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '2', 2)" onmouseover="showTip(event, '2', 2)">
+            fileIllegalNames 
+          </code>
+          <div class="tip" id="2">
+            <strong>Signature:</strong> Gen&lt;string&gt;<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSec/FSec.fs#L127-127" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Illegal file name generator to validate the file uploading mechanism.
+Generate file names with semicolons, reserved names, percent sign, ampersand, ...</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '3', 3)" onmouseover="showTip(event, '3', 3)">
+            fileOfSize x m dir
+          </code>
+          <div class="tip" id="3">
+            <strong>Signature:</strong> x:int -&gt; m:Metric -&gt; dir:DirectoryInfo -&gt; FileInfo<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSec/FSec.fs#L85-85" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -98,15 +123,15 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '2', 2)" onmouseover="showTip(event, '2', 2)">
+          <code onmouseout="hideTip(event, '4', 4)" onmouseover="showTip(event, '4', 4)">
             sqlInject 
           </code>
-          <div class="tip" id="2">
+          <div class="tip" id="4">
             <strong>Signature:</strong> Gen&lt;string&gt;<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSec/FSec.fs#L69-69" class="github-link">
+            <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSec/FSec.fs#L51-51" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -124,15 +149,15 @@ execute administration operations on the database etc. (more info: <a href="http
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '3', 3)" onmouseover="showTip(event, '3', 3)">
+          <code onmouseout="hideTip(event, '5', 5)" onmouseover="showTip(event, '5', 5)">
             urlBogus baseUrl args
           </code>
-          <div class="tip" id="3">
+          <div class="tip" id="5">
             <strong>Signature:</strong> baseUrl:string -&gt; args:Map&lt;string,Gen&lt;&#39;a&gt;&gt; -&gt; Gen&lt;string&gt;<br />
                           <strong>Type parameters:</strong> 'a          </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSec/FSec.fs#L187-187" class="github-link">
+            <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSec/FSec.fs#L251-251" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -149,19 +174,44 @@ execute administration operations on the database etc. (more info: <a href="http
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '4', 4)" onmouseover="showTip(event, '4', 4)">
+          <code onmouseout="hideTip(event, '6', 6)" onmouseover="showTip(event, '6', 6)">
+            UrlBogus (baseUrl, args)
+          </code>
+          <div class="tip" id="6">
+            <strong>Signature:</strong> (baseUrl:string * args:IDictionary&lt;string,Gen&lt;&#39;?7194&gt;&gt;) -&gt; Gen&lt;string&gt;<br />
+                          <strong>Type parameters:</strong> '?7194          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSec/FSec.fs#L273-273" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Generates an url with an additional "bogus" query parameters added to the specified base url.</p>
+<h2>Parameters</h2>
+<ul>
+<li><code>baseUrl</code> - The base URL to add the generated query parsameters</li>
+<li><code>args</code> - Map containing a query parameter names and their generator for its value</li>
+</ul>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '7', 7)" onmouseover="showTip(event, '7', 7)">
             urlHiddenAdmin baseUrl
           </code>
-          <div class="tip" id="4">
+          <div class="tip" id="7">
             <strong>Signature:</strong> baseUrl:string -&gt; Gen&lt;string&gt;<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSec/FSec.fs#L154-154" class="github-link">
+            <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSec/FSec.fs#L212-212" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Generates an url with hidden specified query parameters: admin=true, debug=true.</p>
+          <p>Generates an url with hidden specified query parameters: <code>admin=true</code>, <code>debug=true</code>.</p>
 <h2>Parameters</h2>
 <ul>
 <li><code>baseUrl</code> - The base URL to add the generated query parameters</li>
@@ -173,15 +223,15 @@ execute administration operations on the database etc. (more info: <a href="http
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '5', 5)" onmouseover="showTip(event, '5', 5)">
+          <code onmouseout="hideTip(event, '8', 8)" onmouseover="showTip(event, '8', 8)">
             urlInject baseUrl args
           </code>
-          <div class="tip" id="5">
+          <div class="tip" id="8">
             <strong>Signature:</strong> baseUrl:string -&gt; args:string list -&gt; Gen&lt;string&gt;<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSec/FSec.fs#L177-177" class="github-link">
+            <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSec/FSec.fs#L235-235" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -198,15 +248,40 @@ execute administration operations on the database etc. (more info: <a href="http
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '6', 6)" onmouseover="showTip(event, '6', 6)">
-            urlTampered baseUrl args
+          <code onmouseout="hideTip(event, '9', 9)" onmouseover="showTip(event, '9', 9)">
+            UrlInject (baseUrl, args)
           </code>
-          <div class="tip" id="6">
-            <strong>Signature:</strong> baseUrl:string -&gt; args:Map&lt;string,Gen&lt;&#39;?7172&gt;&gt; -&gt; Gen&lt;string&gt;<br />
-                          <strong>Type parameters:</strong> '?7172          </div>
+          <div class="tip" id="9">
+            <strong>Signature:</strong> (baseUrl:string * args:string list) -&gt; Gen&lt;string&gt;<br />
+                      </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSec/FSec.fs#L162-162" class="github-link">
+            <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSec/FSec.fs#L245-245" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Generates an url with injected JavaScript for the given query parameters.</p>
+<h2>Parameters</h2>
+<ul>
+<li><code>baseUrl</code> - The base URL to add the injection</li>
+<li><code>args</code> - List containing all the query parameter names</li>
+</ul>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '10', 10)" onmouseover="showTip(event, '10', 10)">
+            urlTampered baseUrl args
+          </code>
+          <div class="tip" id="10">
+            <strong>Signature:</strong> baseUrl:string -&gt; args:Map&lt;string,Gen&lt;&#39;?7188&gt;&gt; -&gt; Gen&lt;string&gt;<br />
+                          <strong>Type parameters:</strong> '?7188          </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSec/FSec.fs#L220-220" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -223,15 +298,15 @@ execute administration operations on the database etc. (more info: <a href="http
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '7', 7)" onmouseover="showTip(event, '7', 7)">
+          <code onmouseout="hideTip(event, '11', 11)" onmouseover="showTip(event, '11', 11)">
             xmlBomb 
           </code>
-          <div class="tip" id="7">
+          <div class="tip" id="11">
             <strong>Signature:</strong> Gen&lt;string&gt;<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSec/FSec.fs#L32-32" class="github-link">
+            <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSec/FSec.fs#L153-153" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -239,7 +314,7 @@ execute administration operations on the database etc. (more info: <a href="http
 It is block of XML that is both well-formed and valid according to the rules of an XML schema.
 It is a type of XML Denial of Service (DoS) attack. (more info: <a href="https://en.wikipedia.org/wiki/Billion_laughs)">https://en.wikipedia.org/wiki/Billion_laughs)</a></p>
 <p><em>Severity</em>: Critical
-<em>Vulnerability Indicators</em>: timeoutv</p>
+<em>Vulnerability Indicators</em>: timeout</p>
 
 
               <p>CompiledName: <code>XmlBomb</code></p>
@@ -248,15 +323,15 @@ It is a type of XML Denial of Service (DoS) attack. (more info: <a href="https:/
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '8', 8)" onmouseover="showTip(event, '8', 8)">
+          <code onmouseout="hideTip(event, '12', 12)" onmouseover="showTip(event, '12', 12)">
             xmlMalicious 
           </code>
-          <div class="tip" id="8">
+          <div class="tip" id="12">
             <strong>Signature:</strong> Gen&lt;string&gt;<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSec/FSec.fs#L146-146" class="github-link">
+            <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSec/FSec.fs#L204-204" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -270,15 +345,15 @@ With this generator you can detect failures in naive XML parsers.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '9', 9)" onmouseover="showTip(event, '9', 9)">
+          <code onmouseout="hideTip(event, '13', 13)" onmouseover="showTip(event, '13', 13)">
             xmlMaliciousDepthTagLen depth tagLen
           </code>
-          <div class="tip" id="9">
+          <div class="tip" id="13">
             <strong>Signature:</strong> depth:int -&gt; tagLen:int -&gt; Gen&lt;string&gt;<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSec/FSec.fs#L115-115" class="github-link">
+            <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSec/FSec.fs#L173-173" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -295,15 +370,15 @@ With this generator you can detect failures in naive XML parsers.</p>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '10', 10)" onmouseover="showTip(event, '10', 10)">
+          <code onmouseout="hideTip(event, '14', 14)" onmouseover="showTip(event, '14', 14)">
             xpathInject 
           </code>
-          <div class="tip" id="10">
+          <div class="tip" id="14">
             <strong>Signature:</strong> Gen&lt;string&gt;<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSec/FSec.fs#L18-18" class="github-link">
+            <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSec/FSec.fs#L23-23" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -323,15 +398,15 @@ an attacker can find out how the XML data is structured, or access data that he 
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '11', 11)" onmouseover="showTip(event, '11', 11)">
+          <code onmouseout="hideTip(event, '15', 15)" onmouseover="showTip(event, '15', 15)">
             xssInject 
           </code>
-          <div class="tip" id="11">
+          <div class="tip" id="15">
             <strong>Signature:</strong> Gen&lt;string&gt;<br />
                       </div>
         </td>
         <td class="xmldoc">
-            <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSec/FSec.fs#L55-55" class="github-link">
+            <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSec/FSec.fs#L37-37" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -343,6 +418,32 @@ and trusted web sites. (more info: <a href="https://www.owasp.org/index.php/Cros
 
 
               <p>CompiledName: <code>XssInject</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '16', 16)" onmouseover="showTip(event, '16', 16)">
+            zipBombDepthWidth depth width start
+          </code>
+          <div class="tip" id="16">
+            <strong>Signature:</strong> depth:int -&gt; width:int -&gt; start:FileInfo -&gt; string<br />
+                      </div>
+        </td>
+        <td class="xmldoc">
+            <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSec/FSec.fs#L98-98" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Creates a zip file bomb having a depth and width representing the different levels the zip bomb should have.</p>
+<h2>Parameters</h2>
+<ul>
+<li><code>depth</code> - Represent the depth of the zip bomb: how many levels should the zip bomb have?</li>
+<li><code>width</code> - Represent the width of the zip bomb: how many files should there be on each depth-level?</li>
+<li><code>start</code> - Represent the start file of the zip bomb. This file is copied over and over to create the zip bomb.</li>
+</ul>
+
+
         </td>
       </tr>
     </tbody>

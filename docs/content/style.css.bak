@@ -89,6 +89,16 @@ pre {
     word-wrap: inherit;
 }
 
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  color: #efefef;
+  text-align: center;
+}
+
 /* Format the heading - nicer spacing etc. */
 .masthead {
   overflow: hidden;

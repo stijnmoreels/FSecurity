@@ -10,6 +10,9 @@ module FSec =
     open System.Collections.Generic
     open FsCheck
     open ICSharpCode.SharpZipLib.Zip
+    open System.Resources
+    open System.Reflection
+    open System.Net
   
     /// XPath input generator that provides malformed XPath inputs that can be used to discover XPath vulnerabilities.
     /// XPath is a "simple" language to locate information in an XML document. 
@@ -117,6 +120,14 @@ module FSec =
             [ "%1B%5B%32%4A"
               "%0AUser admin logged in"
               """<script src="http://attacker.example.org/xss_exploit.js"/>""" ]
+
+    /// John the Ripper dictionary generator
+    /// Generates weak passwords used for a dictionary attack.
+    let dicAttack =
+        new ResourceManager ("Resources", Assembly.GetExecutingAssembly ())
+        |> fun resources -> resources.GetString "john"
+        |> fun dic -> dic.Split '\n'
+        |> Seq.ofArray
 
     let private guid () = Guid.NewGuid().ToString()
     let private (</>) x y = Path.Combine (x, y)
@@ -316,3 +327,25 @@ module FSec =
         |> Seq.map (|KeyValue|)
         |> Map.ofSeq
         |> urlBogus baseUrl
+
+    /// Sends out a several HTTP requests in parallel to a specified url and request options,
+    /// to verify if the targetted endpoint is vulnerable for DOS attacks.
+    /// ## Parameters
+    /// - `url` - The targetted endpoint to where the HTTP request should be send to
+    /// - `setRequest` - A required function to set the HTTP request options. TIP: partial POST requests are especially a good way to check for DOS vulnerabilities.
+    /// - `n` - The amount of HTTP requests to send out in parallel.
+    [<CompiledName("HttpDos")>]
+    let httpDos url setRequest n =
+        let send = async {
+            let req = HttpWebRequest.CreateHttp (url : Uri)
+            let req = setRequest req : HttpWebRequest
+            try let! _ = req.AsyncGetResponse ()
+                ()
+            with _ -> () }
+
+        List.replicate n send
+        |> Async.Parallel
+        |> Async.Ignore
+        |> Async.Start
+
+

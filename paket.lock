@@ -6,13 +6,17 @@ NUGET
     FsCheck.Xunit (2.10.10)
       FsCheck (2.10.10) - restriction: >= net452
       xunit.extensibility.execution (>= 2.2 < 3.0) - restriction: >= net452
+    FSharp.Collections.ParallelSeq (1.1.2)
+      FSharp.Core (>= 4.0.0.1)
+      System.ValueTuple (>= 4.3.1)
     FSharp.Core (4.1.18) - redirects: force
-    Microsoft.NETCore.Platforms (2.0.2) - restriction: || (&& (>= net45) (< net452) (< netstandard1.3)) (&& (>= net45) (>= netcoreapp2.0)) (&& (>= net45) (< netstandard1.0)) (&& (>= net45) (< netstandard1.3) (>= wpa81)) (&& (>= net45) (< portable-net45+win8+wpa81)) (&& (>= net45) (>= uap10.0)) (&& (>= net45) (>= wp8)) (&& (< net452) (>= net46) (< netstandard1.4)) (&& (< net452) (>= net461))
+    Microsoft.NETCore.Platforms (2.0.2) - restriction: || (&& (>= net45) (< net452) (< netstandard1.3)) (&& (>= net45) (>= netcoreapp2.0)) (&& (>= net45) (< netstandard1.0)) (&& (>= net45) (< netstandard1.3) (>= wpa81)) (&& (>= net45) (< netstandard1.5) (>= uap10.0)) (&& (>= net45) (< portable-net45+win8+wpa81)) (&& (>= net45) (>= uap10.1)) (&& (>= net45) (>= wp8)) (&& (< net452) (>= net46) (< netstandard1.4)) (&& (< net452) (>= net461))
     NETStandard.Library (2.0.3) - restriction: && (>= net45) (< net452)
       Microsoft.NETCore.Platforms (>= 1.1)
-      System.Runtime.InteropServices.RuntimeInformation (>= 4.3) - restriction: || (&& (>= net45) (< netstandard1.0)) (&& (>= net45) (< netstandard1.3)) (&& (>= net45) (>= uap10.0)) (&& (>= net46) (< netstandard1.4))
+      System.Runtime.InteropServices.RuntimeInformation (>= 4.3) - restriction: || (&& (>= net45) (< netstandard1.0)) (&& (>= net45) (< netstandard1.3)) (&& (>= net45) (< netstandard1.5) (>= uap10.0)) (&& (>= net46) (< netstandard1.4))
     SharpZipLib (0.86)
-    System.Runtime.InteropServices.RuntimeInformation (4.3) - restriction: || (&& (>= net45) (< net452) (< netstandard1.3)) (&& (>= net45) (< netstandard1.0)) (&& (>= net45) (< netstandard1.3) (>= wpa81)) (&& (>= net45) (>= uap10.0)) (&& (< net452) (>= net46) (< netstandard1.4))
+    System.Runtime.InteropServices.RuntimeInformation (4.3) - restriction: || (&& (>= net45) (< net452) (< netstandard1.3)) (&& (>= net45) (< netstandard1.0)) (&& (>= net45) (< netstandard1.3) (>= wpa81)) (&& (>= net45) (< netstandard1.5) (>= uap10.0)) (&& (< net452) (>= net46) (< netstandard1.4))
+    System.ValueTuple (4.5)
     Unquote (3.2)
     xunit (2.3.1)
       xunit.analyzers (>= 0.7)

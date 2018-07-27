@@ -96,7 +96,7 @@ let ``URL bogus query parameter generation`` () =
         |> (not << Array.isEmpty)
 
 [<Property>]
-let ``File creation`` () =
+let ``creates file of 1 MB`` () =
     Environment.CurrentDirectory
     |> DirectoryInfo
     |> FSec.fileOfSize 1 MB
@@ -104,7 +104,7 @@ let ``File creation`` () =
         file.Length =! (int64 (1024 * 1024) + 1L)
 
 [<Property(MaxTest=1)>]
-let ``Zip Bomb`` () =
+let ``can create zip bomb`` () =
     Environment.CurrentDirectory
     |> DirectoryInfo
     |> FSec.fileOfSize 1 MB
@@ -114,3 +114,12 @@ let ``Zip Bomb`` () =
         [ for z in zip -> z :?> ZipEntry ]
         |> List.forall (fun e -> e.Name.EndsWith ".zip") 
         .&. (zip.Count =! 2L)
+
+[<Property>]
+let ``week passwords will be found in dictionary attack`` () =
+    [ "qwerty"; "password" ]
+    |> Gen.elements
+    |> Arb.fromGen
+    |> Prop.forAll <| fun x -> 
+        Seq.contains x FSec.dicAttack
+    

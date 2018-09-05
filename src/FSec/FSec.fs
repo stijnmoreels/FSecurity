@@ -14,7 +14,7 @@ module FSec =
     open System.Reflection
     open System.Net
   
-    let csvInject =
+    let private csvInject =
         Gen.elements
             [ "=cmd|' /C calc'!A0" ]
 
@@ -326,15 +326,6 @@ module FSec =
     /// ## Parameters
     /// - `doc` - XML document to inject the generated values.
     /// - `gvalues` - XPath/Generator map to identify each node to inject with a generated value.
-    /// ## Example
-    /// ```fsharp
-    /// let xpath = "/Person/Age"
-    /// let doc = XmlDocument ()
-    /// doc.LoadXml "<Person><Age/></Person>"
-    /// [ xpath, Arb.generate<PositiveInt> |> Gen.map (fun p -> p.Get) ]
-    /// |> Map.ofList
-    /// |> FSec.xmlMaliciousInject doc
-    /// ```
     [<CompiledName("XmlMaliciousInject")>]
     let xmlMaliciousInject (doc : XmlDocument) gvalues =
         Map.fold (fun (gmal : Gen<_>) k gvalue ->

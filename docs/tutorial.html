@@ -45,6 +45,20 @@ In Stress Testing you most likly are testing the application in adnormal conditi
 <p>The package <code>FSec</code> consists most of all of input generators. These inputs can be used to send to any kind of system you want to test. Whether it's a function, or a file, web call...because it only consists of these generators, its applicable in many domains.</p>
 <p>For this example, lets think of a many occuring problem: XSS. If an input field is vulnerable to XSS, it allows you to input not ony text but whole HTML code, and therefore, JavaScript. When this input is shown on any page, the JavaScript would run meaning it's vulnerable to XSS.
 The <code>FSec</code> package has a generator for this: <code>FSec.xssInject</code> which generates different kinds of XSS inputs that you can use in your test.</p>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l">1: </span>
+<span class="l">2: </span>
+<span class="l">3: </span>
+<span class="l">4: </span>
+<span class="l">5: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="i">FSec</span><span class="o">.</span><span class="i">xssInject</span>
+<span class="o">|&gt;</span> <span class="i">Arb</span><span class="o">.</span><span class="i">fromGen</span>
+<span class="o">|&gt;</span> <span class="i">Prop</span><span class="o">.</span><span class="i">forAll</span> <span class="o">&lt;|</span> <span class="k">fun</span> <span class="i">x</span> <span class="k">-&gt;</span> 
+    <span class="i">Html</span><span class="o">.</span><span class="i">login</span> <span class="s">&quot;admin&quot;</span> <span class="i">x</span>
+    <span class="o">|&gt;</span> <span class="i">String</span><span class="o">.</span><span class="i">contains</span> <span class="i">x</span>
+</code></pre></td>
+</tr>
+</table>
 
 
         </div>

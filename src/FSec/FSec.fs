@@ -337,8 +337,7 @@ module FSec =
     /// ```
     [<CompiledName("XmlMaliciousInject")>]
     let xmlMaliciousInject (doc : XmlDocument) gvalues =
-        Gen.constant doc, gvalues
-        ||> Map.fold (fun (gmal : Gen<_>) k gvalue ->
+        Map.fold (fun (gmal : Gen<_>) k gvalue ->
             let nodes = 
                 doc.SelectNodes k
                 |> fun xs -> 
@@ -354,7 +353,7 @@ module FSec =
                         n.InnerXml <- v.ToString ()) 
                     mal)
 
-            gmal >>= setGenValuesInDoc)
+            gmal >>= setGenValuesInDoc) (Gen.constant doc) gvalues
 #endif        
 
     /// Generates an url with hidden specified query parameters: `admin=true`, `debug=true`.

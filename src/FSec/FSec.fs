@@ -14,6 +14,10 @@ module FSec =
     open System.Reflection
     open System.Net
   
+    let csvInject =
+        Gen.elements
+            [ "=cmd|' /C calc'!A0" ]
+
     /// XPath input generator that provides malformed XPath inputs that can be used to discover XPath vulnerabilities.
     /// XPath is a "simple" language to locate information in an XML document. 
     /// Similar to SQL Injection, XPath Injection attacks occur when an application uses user-supplied information 
@@ -123,11 +127,17 @@ module FSec =
 
     /// John the Ripper dictionary generator
     /// Generates weak passwords used for a dictionary attack.
-    let dicAttack =
+    [<CompiledName("DicAttackSeq")>]
+    let dicAttackSeq =
         new ResourceManager ("Resources", Assembly.GetExecutingAssembly ())
         |> fun resources -> resources.GetString "john"
         |> fun dic -> dic.Split '\n'
         |> Seq.ofArray
+
+    /// John the Ripper dictionary generator
+    /// Generates weak passwords used for a dictionary attack.
+    [<CompiledName("DicAttack")>]
+    let dicAttack = Gen.elements dicAttackSeq
 
     let private guid () = Guid.NewGuid().ToString()
     let private (</>) x y = Path.Combine (x, y)
@@ -195,6 +205,55 @@ module FSec =
               "a\%b.txt"    // percent is variable marker in Windows
               String.replicate 255 "A" + ".txt" ]
 
+    /// Directory path generator for a Path Traversal attack.
+    /// By using a dot '.' slash '/' '\' commbination (both encoded and un-endcoded),
+    /// the input attacker will try to access files/directories outside the expected folder.
+    [<CompiledName("PathDirTraversal")>]
+    let pathDirTraversal =
+        let genPathSymb unencoded encoded l =
+            Gen.frequency
+                [ 4, Gen.constant unencoded
+                  1, Gen.constant encoded ]
+            |> Gen.listOfLength l
+
+        let dots = genPathSymb ".." "%252e%252e"
+        let forwardSlash = genPathSymb "/" "%2f"
+        let backwardSlash = genPathSymb "\\" "%5c"
+
+        let dotsSepBy sep =
+            Gen.choose (1, 10)
+            >>= fun l -> Gen.zip (dots l) (sep l)
+            |> Gen.map (fun (xs, ys) ->
+                List.zip xs ys
+                |> List.fold (fun acc (x, y) -> 
+                    acc + sprintf "%s%s" x y) String.Empty)
+
+        Gen.oneof 
+            [ dotsSepBy forwardSlash
+              dotsSepBy backwardSlash ]
+        
+    /// Fixed file(s) path generator for a Path Traversal attack.
+    /// By using a dot '.' slash '/' '\' commbination (both encoded and un-endcoded),
+    /// the input attacker will try to access files/directories outside the expected folder.
+    /// ## Parameters
+    /// - `files` - List of file names that gets appended after the path traversal generation.
+    [<CompiledName("PathFixedFileTraversal")>]
+    let pathFixedFileTraversal files =
+        Gen.elements files
+        |> Gen.zip pathDirTraversal
+        |> Gen.map (fun (dir, file) -> dir + file)
+
+    /// Random file(s) path generator for a Path Traversal attack.
+    /// By using a dot '.' slash '/' '\' commbination (both encoded and un-endcoded),
+    /// the input attacker will try to access files/directories outside the expected folder.
+    /// ## Parameters
+    /// - `ext` - File extension to use to append to the generated path traversal.
+    [<CompiledName("PathFileTraversal")>]
+    let pathFileTraversal ext =
+        gen { return Guid.NewGuid().ToString() + ext }
+        |> Gen.zip pathDirTraversal
+        |> Gen.map (fun (dir, file) -> dir + file)
+
     /// Eicar virus represented as a stream containing the virus content.
     /// For more info about the Eicar virus: http://www.eicar.org/86-0-Intended-use.html
     [<CompiledName("EicarVirus")>]
@@ -235,7 +294,7 @@ module FSec =
             [1..l]
             |> Seq.fold (fun acc x -> sprintf "%s a%i=\"%i\"" acc x x) ""
             |> Gen.constant
-            |> Gen.listOfLength depth;
+            |> Gen.listOfLength depth
 
         let randomTag = 
             Gen.elements [ 'a'..'z' ]
@@ -258,6 +317,45 @@ module FSec =
         Gen.choose (100, 1000) 
         |> Gen.zip (Gen.choose (1, 100))
         >>= fun (tagLen, depth) -> xmlMaliciousDepthTagLen tagLen depth
+
+#if !NETSTANDARD2_0
+    
+    open System.Xml
+
+    /// Alters the specified `XmlDocument` with a XPath identified value generator map for each matched XPath expression.
+    /// ## Parameters
+    /// - `doc` - XML document to inject the generated values.
+    /// - `gvalues` - XPath/Generator map to identify each node to inject with a generated value.
+    /// ## Example
+    /// ```fsharp
+    /// let xpath = "/Person/Age"
+    /// let doc = XmlDocument ()
+    /// doc.LoadXml "<Person><Age/></Person>"
+    /// [ xpath, Arb.generate<PositiveInt> |> Gen.map (fun p -> p.Get) ]
+    /// |> Map.ofList
+    /// |> FSec.xmlMaliciousInject doc
+    /// ```
+    [<CompiledName("XmlMaliciousInject")>]
+    let xmlMaliciousInject (doc : XmlDocument) gvalues =
+        Gen.constant doc, gvalues
+        ||> Map.fold (fun (gmal : Gen<_>) k gvalue ->
+            let nodes = 
+                doc.SelectNodes k
+                |> fun xs -> 
+                    if xs = null then Seq.empty 
+                    else Seq.cast<XmlNode> xs
+
+            let setGenValuesInDoc mal =
+                gvalue
+                |> Gen.listOfLength (Seq.length nodes)
+                |> Gen.map (fun vs ->
+                    Seq.zip nodes vs
+                    |> Seq.iter (fun (n, v) -> 
+                        n.InnerXml <- v.ToString ()) 
+                    mal)
+
+            gmal >>= setGenValuesInDoc)
+#endif        
 
     /// Generates an url with hidden specified query parameters: `admin=true`, `debug=true`.
     /// ## Parameters

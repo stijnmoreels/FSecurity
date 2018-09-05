@@ -10,6 +10,8 @@ open FsCheck.Xunit
 open Swensen.Unquote
 open FSecurity
 open ICSharpCode.SharpZipLib.Zip
+open System.Text.RegularExpressions
+open System.Net
 
 [<Property>]
 let ``XPath input injection`` () =
@@ -70,6 +72,20 @@ let ``XML malicious generation`` () =
         let doc = XmlDocument () in
             doc.LoadXml xml
      
+[<Property>]
+let ``XML malicious injection`` () =
+    let xpath = "/Person/Age"
+    let doc = XmlDocument ()
+    doc.LoadXml "<Person><Age/></Person>"
+
+    [ xpath, Arb.generate<PositiveInt> |> Gen.map (fun p -> p.Get) ]
+    |> Map.ofList
+    |> FSec.xmlMaliciousInject doc
+    |> Arb.fromGen
+    |> Prop.forAll <| fun mal ->
+        mal.SelectSingleNode xpath
+        |> fun n -> n <> null .&. (int n.InnerText > 0)
+
 let stubQueryParams =
     [ "category", Arb.generate<string>
       "style", Arb.generate<string>
@@ -86,14 +102,20 @@ let ``URL tampered generation`` () =
         |> Array.length
         |> (<=!) 3;
 
+module String = let contains x (s : string) = s.Contains x
+module Regex = let isMatch p x = Regex.IsMatch (x, p)
+
 [<Property>]
 let ``URL bogus query parameter generation`` () =
     stubQueryParams
     |> FSec.urlBogus "http://example.com"
     |> Arb.fromGen
     |> Prop.forAll <| fun url ->
-        url.Split '&'
-        |> (not << Array.isEmpty)
+        let qs = url.Split '&'
+        [ "category"; "style"; "size" ] 
+        |> List.forall (fun x ->
+            Array.exists (String.contains x) qs)
+        .&. (qs.Length > 3)
 
 [<Property>]
 let ``creates file of 1 MB`` () =
@@ -102,6 +124,32 @@ let ``creates file of 1 MB`` () =
     |> FSec.fileOfSize 1 MB
     |> fun file ->
         file.Length =! (int64 (1024 * 1024) + 1L)
+
+let regexTraversal = "^[(..|%252e%252e)|(\/|%2f)|(\\|%5c)]+"
+
+[<Property>]
+let ``creates path dir traversal`` () =
+    FSec.pathDirTraversal
+    |> Arb.fromGen
+    |> Prop.forAll <| 
+        Regex.isMatch regexTraversal
+    
+let (|Guid|) (g : Guid) = g.ToString()
+
+[<Property>]
+let ``creates path fixed file traversal`` (Guid name) =
+    FSec.pathFixedFileTraversal [name]
+    |> Arb.fromGen
+    |> Prop.forAll <| fun x ->
+        Regex.isMatch regexTraversal x
+        .&. String.contains name x
+
+[<Property>]
+let ``create path random file traversal`` () =
+    FSec.pathFileTraversal ".txt"
+    |> Arb.fromGen
+    |> Prop.forAll <|
+        Regex.isMatch (regexTraversal + "(.+).txt$")
 
 [<Property(MaxTest=1)>]
 let ``can create zip bomb`` () =
@@ -121,5 +169,5 @@ let ``week passwords will be found in dictionary attack`` () =
     |> Gen.elements
     |> Arb.fromGen
     |> Prop.forAll <| fun x -> 
-        Seq.contains x FSec.dicAttack
+        Seq.contains x FSec.dicAttackSeq
     

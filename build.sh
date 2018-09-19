@@ -71,7 +71,13 @@ fi
 
 run $PAKET_EXE restore
 
-[ ! -e build.fsx ] && run $PAKET_EXE update
-[ ! -e build.fsx ] && run $FAKE_EXE init.fsx
-run $FAKE_EXE "$@" $FSIARGS $FSIARGS2 build.fsx
+TOOL_PATH=$(realpath .fake)
+FAKE="$TOOL_PATH"/fake
+
+if ! [ -e "$FAKE" ]
+then
+  dotnet tool install fake-cli --tool-path "$TOOL_PATH"
+fi
+
+FAKE_DETAILED_ERRORS=true "$FAKE" build -t "$@"
 

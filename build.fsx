@@ -32,6 +32,7 @@ let gitName = "FSec"
 let buildDir = System.IO.Path.GetFullPath "bin"
 let testDir = System.IO.Path.GetFullPath "tests"
 let docsDir = System.IO.Path.GetFullPath "docs"
+let docsrcDir = System.IO.Path.GetFullPath "docsrc"
 let website = "/" + gitName
 let gitRaw = Environment.environVarOrDefault "gitRaw" "https://raw.githubusercontent.com/stijnmoreels/FSec/stijnmoreels"
 let release = ReleaseNotes.load  "RELEASE_NOTES.md"
@@ -106,7 +107,7 @@ Target.create "GenerateDocs" <| fun _ ->
     let outputContent = output @@ "content"
     let outputReference = output @@ "reference"
     let files = docsDir @@ "files"
-    let templates = docsDir @@ "tools/templates"
+    let templates = docsrcDir @@ "tools/templates"
     let formatting = System.IO.Path.GetFullPath "packages/build/FSharp.Formatting.CommandTool"
     let docTemplate = formatting @@ "templates/docpage.cshtml"
 
@@ -163,7 +164,7 @@ Target.create "ReleaseDocs" <| fun _ ->
 
     let workingDir = ""
     Git.Repository.cloneSingleBranch
-        workingDir (gitHome + "/" + gitName + ".git") "git-pages" tempDocsDir
+        workingDir ("https://github.com/stijnmoreels/FSec.git") "gh-pages" tempDocsDir
 
     let overwrite = true
     Shell.copyRecursive "docs/output" tempDocsDir overwrite 
@@ -197,6 +198,7 @@ Target.create "All" ignore
 
 "CleanDocs"
 ==> "GenerateDocs"
+==> "ReleaseDocs"
 
 "Push"
 ==> "Release"

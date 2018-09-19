@@ -163,7 +163,7 @@ let ``can create zip bomb`` () =
         |> List.forall (fun e -> e.Name.EndsWith ".zip") 
         .&. (zip.Count =! 2L)
 
-[<Property>]
+
 let ``week passwords will be found in dictionary attack`` () =
     [ "qwerty"; "password" ]
     |> Gen.elements

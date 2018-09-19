@@ -11,4 +11,8 @@ if errorlevel 1 (
   exit /b %errorlevel%
 )
 
+if NOT EXIST .fake (
+  dotnet tool install fake-cli --tool-path .fake
+)
+
 .fake\fake.exe run build.fsx %*

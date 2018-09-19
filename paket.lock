@@ -3,7 +3,7 @@ NUGET
   remote: https://www.nuget.org/api/v2
     Argu (5.1)
       FSharp.Core (>= 4.0.0.1)
-    dotnet-fake (5.6.1) - clitool: true
+    fake-cli (5.6.1) - clitool: true
     FsCheck (2.11) - restriction: >= net452
       FSharp.Core (>= 4.0.0.1)
     FsCheck.Xunit (2.11)

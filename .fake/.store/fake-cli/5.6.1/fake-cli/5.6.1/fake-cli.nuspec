@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>fake-cli</id>
+    <version>5.6.1</version>
+    <authors>Steffen Forkmann,Mauricio Scheffer,Colin Bull,Matthias Dittrich</authors>
+    <owners>Steffen Forkmann,Mauricio Scheffer,Colin Bull,Matthias Dittrich</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/fsharp/FAKE/blob/d86e9b5b8e7ebbb5a3d81c08d2e59518cf9d6da9/License.txt</licenseUrl>
+    <projectUrl>https://github.com/fsharp/Fake</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/fsharp/FAKE/fee4f05a2ee3c646979bf753f3b1f02d927bfde9/help/content/pics/logo.png</iconUrl>
+    <description>FAKE - F# Make - is a build automation tool for .NET. Tasks and dependencies are specified in a DSL which is integrated in F#.</description>
+    <releaseNotes>BUGFIX: dotnet restore with configfile did not work - https://github.com/fsharp/FAKE/issues/2082
+BUGFIX: Fake cache was broken - https://github.com/fsharp/FAKE/issues/2083
+DOCS: various improvements in the documentation - https://github.com/fsharp/FAKE/pull/2081</releaseNotes>
+    <tags>build fake f#</tags>
+    <packageTypes>
+      <packageType name="DotnetTool" />
+    </packageTypes>
+    <dependencies>
+      <group targetFramework=".NETCoreApp2.1" />
+    </dependencies>
+  </metadata>
+</package>

@@ -45,9 +45,7 @@ let versionSuffix =
     else "-beta" + buildVersion
 let nugetVersion = release.NugetVersion + versionSuffix
 
-BuildServer.install [
-    AppVeyor.Installer
-]
+BuildServer.install [ AppVeyor.Installer ]
 
 Target.create "BuildVersion" <| fun _ ->
     Shell.Exec("appveyor", sprintf "UpdateBuild -Version \"%s\"" nugetVersion) |> ignore

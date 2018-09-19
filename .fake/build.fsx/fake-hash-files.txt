@@ -1,0 +1,2 @@
+scriptpath:///build.fsx
+scriptpath:///.fake/build.fsx/intellisense.fsx

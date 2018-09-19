@@ -12,7 +12,7 @@ if errorlevel 1 (
 )
 
 if NOT EXIST .fake (
-  dotnet tool install fake-cli --tool-path .fake
+  dotnet tool install fake-cli --tool-path .fake --version 5.0.0
 )
 
 .fake\fake.exe run build.fsx %*

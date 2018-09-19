@@ -11,4 +11,5 @@ if errorlevel 1 (
   exit /b %errorlevel%
 )
 
-.fake\fake.exe run build.fsx %*
+dotnet restore build.proj
+dotnet fake run build.fsx %*

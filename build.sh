@@ -71,7 +71,27 @@ fi
 
 run $PAKET_EXE restore
 
-[ ! -e build.fsx ] && run $PAKET_EXE update
-[ ! -e build.fsx ] && run $FAKE_EXE init.fsx
-run $FAKE_EXE "$@" $FSIARGS $FSIARGS2 build.fsx
+# liberated from https://stackoverflow.com/a/18443300/433393
+realpath() {
+  OURPWD=$PWD
+  cd "$(dirname "$1")"
+  LINK=$(readlink "$(basename "$1")")
+  while [ "$LINK" ]; do
+    cd "$(dirname "$LINK")"
+    LINK=$(readlink "$(basename "$1")")
+  done
+  REALPATH="$PWD/$(basename "$1")"
+  cd "$OURPWD"
+  echo "$REALPATH"
+}
+
+TOOL_PATH=$(realpath .fake)
+FAKE="$TOOL_PATH"/fake
+
+if ! [ -e "$FAKE" ]
+then
+  dotnet tool install fake-cli --tool-path "$TOOL_PATH"
+fi
+
+FAKE_DETAILED_ERRORS=true "$FAKE" build -t "$@"
 

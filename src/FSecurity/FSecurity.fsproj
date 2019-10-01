@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AssemblyName>FSecurity</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="paket.references" />
+    <Compile Include="AssemblyInfo.fs" />
+    <EmbeddedResource Include="Resources\xss.fuzz.txt" />
+    <EmbeddedResource Include="Resources\dir.traversal.fuzz.txt" />
+    <EmbeddedResource Include="Resources\content-type.txt" />
+    <EmbeddedResource Include="Resources\sql.txt" />
+    <EmbeddedResource Include="Resources\Unix-Attacks.fuzzdb.txt" />
+    <EmbeddedResource Include="Resources\Windows-Attacks.fuzzdb.txt" />
+    <EmbeddedResource Include="Resources\big-list-of-naughty-strings.txt" />
+    <EmbeddedResource Include="Resources\json.fuzz.txt" />
+    <EmbeddedResource Include="Resources\john.txt" />
+    <EmbeddedResource Include="Resources\xml.fuzz.doc.txt" />
+    <EmbeddedResource Include="Resources\xml.fuzz.elem+attr.txt" />
+    <EmbeddedResource Include="Resources\xml.fuzz.xxe.txt" />
+    <Compile Include="Fuzz.fs" />
+    <Compile Include="FSec.fs" />
+    <Compile Include="Api.fs" />
+    <Compile Include="Types.fs" />
+  </ItemGroup>
+  <Import Project="..\..\.paket\Paket.Restore.targets" />
+</Project>

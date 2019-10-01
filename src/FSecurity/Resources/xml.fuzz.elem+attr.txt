@@ -1,0 +1,44 @@
+﻿null
+*
+%
+@
+$
+-
++
+;
+:
+0
+-1
+1
+0.1
+0.9
+true
+false
+1.7976931348623157e+308
+5e-324
+0.00005
+5e-10
+&apos;XoiZR
+&quot;XoiZR
+&lt;Tnn96&gt;
+&lt;?Tnn96 ?&gt;
+&lt;? Tnn96 ?&gt;
+&lt;% Tnn96 %&gt;
+&lt;%= Tnn96 %&gt;
+[Tnn96]
+(Tnn96)
+{Tnn96}
+{{Tnn96}}
+{= Tnn96}
+{{= Tnn96}}
+' or '1'='1
+' or ''='
+x' or 1=1 or 'x'='y
+/
+//
+//*
+*/*
+@*
+count(/child::node())
+x' or name()='username' or 'x'='y
+

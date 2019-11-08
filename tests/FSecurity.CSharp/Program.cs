@@ -9,19 +9,19 @@ namespace FSecurity.CSharp
 {
     class Program
     {
-        public static async Task Main(string[] args)
+        public static void Main(string[] args)
         {
             var baseRequest = 
                 Request.Endpoint(HttpMethod.Get, "http://something")
                        .WithHeader("x-api-key", "asldfkjasldfkj")
                        .WithRoute("/something");
 
-            await Api.PassThru
+            Api.PassThru
                      .Should(NotHaveLeakageHeaders)
                      .ScanAsync(baseRequest);
 
-            IEnumerable<Vulnerability> scanAsync =
-                await Api.Inject(Fuzz.Naughty)
+            var scanAsync =
+                Api.Inject(Fuzz.Naughty)
                          .Into((value, req) => req.WithHeader("Header", value))
                          .Should(res => res.StatusCode == HttpStatusCode.Accepted
                                      ? (true, Vulnerability.Create(""))

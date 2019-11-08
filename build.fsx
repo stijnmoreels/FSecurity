@@ -23,8 +23,8 @@ let project =
       Description = 
         [ "FSec is a tool for automatically running security tests for .NET programs. "
           "The tool provides some basic security testing functionality to discover vulnerabilities." ]
-      GitHubUrl = "https://github.com/stijnmoreels/FSec"
-      NuGetUrl = "http://nuget.org/packages/FSec"
+      GitHubUrl = "https://github.com/stijnmoreels/FSecurity"
+      NuGetUrl = "http://nuget.org/packages/FSecurity"
       Authors = [ "Stijn Moreels" ] }
 
 let solution = project.Name + ".sln"

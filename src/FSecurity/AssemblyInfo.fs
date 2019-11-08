@@ -7,8 +7,8 @@ open System.Runtime.InteropServices
 [<assembly: AssemblyDescriptionAttribute("FSecuriy is a tool for automatically running security tests for .NET programs")>]
 [<assembly: GuidAttribute("871111ca-f7e3-48c5-95b1-6eec4c289948")>]
 [<assembly: AssemblyProductAttribute("FSecurity")>]
-[<assembly: AssemblyVersionAttribute("1.0.7")>]
-[<assembly: AssemblyFileVersionAttribute("1.0.7")>]
+[<assembly: AssemblyVersionAttribute("2.0.0")>]
+[<assembly: AssemblyFileVersionAttribute("2.0.0")>]
 do ()
 
 module internal AssemblyVersionInformation =
@@ -16,5 +16,5 @@ module internal AssemblyVersionInformation =
     let [<Literal>] AssemblyDescription = "FSecuriy is a tool for automatically running security tests for .NET programs"
     let [<Literal>] Guid = "871111ca-f7e3-48c5-95b1-6eec4c289948"
     let [<Literal>] AssemblyProduct = "FSecurity"
-    let [<Literal>] AssemblyVersion = "1.0.7"
-    let [<Literal>] AssemblyFileVersion = "1.0.7"
+    let [<Literal>] AssemblyVersion = "2.0.0"
+    let [<Literal>] AssemblyFileVersion = "2.0.0"

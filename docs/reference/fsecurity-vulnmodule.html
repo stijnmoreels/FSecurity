@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Vuln - FSecurity</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+    <meta name="author" content="Stijn Moreels"/>
+
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet"/>
+
+    <link type="text/css" rel="stylesheet" href="/FSecurity/content/style.css" />
+    <script type="text/javascript" src="/FSecurity/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="https://github.com/stijnmoreels/FSec">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="/FSecurity/index.html">FSecurity</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>Vuln</h1>
+<p>
+  <span>Namespace: FSecurity</span><br />
+  </p>
+<div class="xmldoc">
+<p>Operations on the vulnerability type.</p>
+
+</div>
+
+<!-- Render nested types and modules, if there are any -->
+
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '95', 95)" onmouseover="showTip(event, '95', 95)">
+            create(desc)
+          </code>
+          <div class="tip" id="95">
+            <strong>Signature:</strong> desc:string -&gt; Vulnerability<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L111-111" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Creates a vulnerability with only a description.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '96', 96)" onmouseover="showTip(event, '96', 96)">
+            csrf response payloads
+          </code>
+          <div class="tip" id="96">
+            <strong>Signature:</strong> response:(type) -&gt; payloads:seq&lt;string&gt; -&gt; Vulnerability<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L139-139" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Creates a vulnerability (Medium) with a short Cross-site request forgery description.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '97', 97)" onmouseover="showTip(event, '97', 97)">
+            dos response payloads
+          </code>
+          <div class="tip" id="97">
+            <strong>Signature:</strong> response:(type) -&gt; payloads:seq&lt;string&gt; -&gt; Vulnerability<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L131-131" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Creates a vulnerability (Info) with a short rate-limit description.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '98', 98)" onmouseover="showTip(event, '98', 98)">
+            high desc response payloads
+          </code>
+          <div class="tip" id="98">
+            <strong>Signature:</strong> desc:string -&gt; response:(type) -&gt; payloads:seq&lt;string&gt; -&gt; Vulnerability<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L125-125" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Creates a vulnerability with a High severity.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '99', 99)" onmouseover="showTip(event, '99', 99)">
+            idor response payloads
+          </code>
+          <div class="tip" id="99">
+            <strong>Signature:</strong> response:(type) -&gt; payloads:seq&lt;string&gt; -&gt; Vulnerability<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L135-135" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Creates a vulnerability (Medium) with a short insecure direct object reference description.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '100', 100)" onmouseover="showTip(event, '100', 100)">
+            info desc response payloads
+          </code>
+          <div class="tip" id="100">
+            <strong>Signature:</strong> desc:string -&gt; response:(type) -&gt; payloads:seq&lt;string&gt; -&gt; Vulnerability<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L121-121" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Creates a vulnerability with a Info severity.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '101', 101)" onmouseover="showTip(event, '101', 101)">
+            leakage response payloads
+          </code>
+          <div class="tip" id="101">
+            <strong>Signature:</strong> response:(type) -&gt; payloads:seq&lt;string&gt; -&gt; Vulnerability<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L141-141" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Creates a vulnerability (Info) with a info leakakge description.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '102', 102)" onmouseover="showTip(event, '102', 102)">
+            medium desc response payloads
+          </code>
+          <div class="tip" id="102">
+            <strong>Signature:</strong> desc:string -&gt; response:(type) -&gt; payloads:seq&lt;string&gt; -&gt; Vulnerability<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L123-123" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Creates a vulnerability with a Medium severity.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '103', 103)" onmouseover="showTip(event, '103', 103)">
+            openRedirect response payloads
+          </code>
+          <div class="tip" id="103">
+            <strong>Signature:</strong> response:(type) -&gt; payloads:seq&lt;string&gt; -&gt; Vulnerability<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L137-137" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Creates a vulnerability (Medium) with a short open redirection description.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '104', 104)" onmouseover="showTip(event, '104', 104)">
+            payloads ps vuln
+          </code>
+          <div class="tip" id="104">
+            <strong>Signature:</strong> ps:seq&lt;string&gt; -&gt; vuln:Vulnerability -&gt; Vulnerability<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L117-117" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Sets the payloads that triggered this vulnerability.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '105', 105)" onmouseover="showTip(event, '105', 105)">
+            privilEscal response payloads
+          </code>
+          <div class="tip" id="105">
+            <strong>Signature:</strong> response:(type) -&gt; payloads:seq&lt;string&gt; -&gt; Vulnerability<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L133-133" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Creates a vulnerability (High) with a short privilege escalation description.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '106', 106)" onmouseover="showTip(event, '106', 106)">
+            response txt vuln
+          </code>
+          <div class="tip" id="106">
+            <strong>Signature:</strong> txt:string -&gt; vuln:Vulnerability -&gt; Vulnerability<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L115-115" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Sets the response content of the vulnerability.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '107', 107)" onmouseover="showTip(event, '107', 107)">
+            severity s vuln
+          </code>
+          <div class="tip" id="107">
+            <strong>Signature:</strong> s:Severity -&gt; vuln:Vulnerability -&gt; Vulnerability<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L119-119" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Sets the severity of this vulnerability.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '108', 108)" onmouseover="showTip(event, '108', 108)">
+            sql response payloads
+          </code>
+          <div class="tip" id="108">
+            <strong>Signature:</strong> response:(type) -&gt; payloads:seq&lt;string&gt; -&gt; Vulnerability<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L129-129" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Creates a vulnerability (High) with a short SQL description.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '109', 109)" onmouseover="showTip(event, '109', 109)">
+            summary txt vuln
+          </code>
+          <div class="tip" id="109">
+            <strong>Signature:</strong> txt:string -&gt; vuln:Vulnerability -&gt; Vulnerability<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L113-113" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Sets the summary of the vulnerability.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '110', 110)" onmouseover="showTip(event, '110', 110)">
+            xss response payloads
+          </code>
+          <div class="tip" id="110">
+            <strong>Signature:</strong> response:(type) -&gt; payloads:seq&lt;string&gt; -&gt; Vulnerability<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L127-127" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Creates a vulnerability (Medium) with a short XSS description.</p>
+
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <img src="/FSecurity/img/logo.png" alt="F# Project" style="width:150px;margin:10px" />  
+          <ul class="nav nav-list" id="menu" style="margin-top: 20px;">
+            <li class="nav-header">FSecurity</li>
+            <li><a href="/FSecurity/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="http://nuget.org/packages/FSec">Get Library via NuGet</a></li>
+            <li><a href="https://github.com/stijnmoreels/FSec">Source Code on GitHub</a></li>
+            <li><a href="/FSecurity/license.html">License</a></li>
+            <li><a href="/FSecurity/release-notes.html">Release Notes</a></li>
+            
+            <li class="nav-header">Getting started</li>
+            <li><a href="/FSecurity/tutorial.html">Introduction</a></li>
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="/FSecurity/reference/index.html">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="https://github.com/stijnmoreels/FSec"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"/></a>
+  </body>
+  </html>

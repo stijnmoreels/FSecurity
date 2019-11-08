@@ -189,12 +189,17 @@ let api_tests =
       let req =
         req |> Req.routes [ "monitor"; "relatedmessages" ]
       
-      let resp4XX payload (Response res) = async {
+      let resp4XX payload (res : Response) = async {
         if res.StatusCode = HttpStatusCode.BadRequest
            || res.StatusCode = HttpStatusCode.NotFound
            || res.StatusCode = HttpStatusCode.NoContent then return None
-        else let! v = Vulnerability.fromRespContent res "Possible problem JSON -> XML deserialization" Medium payload
+        else let v = Vuln.medium "Possible problem JSON -> XML deserialization" res payload
              return Some v }
+
+      let have payload res =
+        if Res.allow [ HttpStatusCode.BadRequest; HttpStatusCode.NotFound; HttpStatusCode.NoContent ] res
+        then None
+        else Some <| Vuln.medium "Possible problem" res payload
 
       let! vulnerabilities = 
         Api.inject Fuzz.alphanum_special

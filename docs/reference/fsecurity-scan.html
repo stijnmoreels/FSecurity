@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>Naughty - FSecurity</title>
+    <title>Scan - FSecurity</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content=""/>
     <meta name="author" content="Stijn Moreels"/>
@@ -35,90 +35,79 @@
 
 
 
-<h1>Naughty</h1>
+<h1>Scan</h1>
 <p>
 
     <span>Namespace: FSecurity</span><br />
     </p>
 <div class="xmldoc">
-<p>Represents a naugthy string containging all sorts of unexpected charaters.</p>
+<p>Represents a API scan.</p>
 
 </div>
-  <h3>Union Cases</h3>
+  <h3>Record Fields</h3>
   <table class="table table-bordered member-list">
     <thead>
-      <tr><td>Union Case</td><td>Description</td></tr>
+      <tr><td>Record Field</td><td>Description</td></tr>
     </thead>
     <tbody>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '131', 131)" onmouseover="showTip(event, '131', 131)">
-            Naughty(string)
+          <code onmouseout="hideTip(event, '136', 136)" onmouseover="showTip(event, '136', 136)">
+            AttackSurface
           </code>
-          <div class="tip" id="131">
-            <strong>Signature:</strong> string<br />
+          <div class="tip" id="136">
+            <strong>Signature:</strong> (Payload -&gt; Request -&gt; Request) list<br />
                                   </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Types.fs#L28-28" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L238-238" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
+          <p>Gets a series of injector functions that together forms the attack surface of the HTTP request.</p>
+
+
         </td>
       </tr>
-    </tbody>
-  </table>
-  <h3>Instance members</h3>
-  <table class="table table-bordered member-list">
-    <thead>
-      <tr><td>Instance member</td><td>Description</td></tr>
-    </thead>
-    <tbody>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '132', 132)" onmouseover="showTip(event, '132', 132)">
-            x.Get
+          <code onmouseout="hideTip(event, '137', 137)" onmouseover="showTip(event, '137', 137)">
+            Payloads
           </code>
-          <div class="tip" id="132">
-            <strong>Signature:</strong> string<br />
+          <div class="tip" id="137">
+            <strong>Signature:</strong> seq&lt;Payload&gt; * int<br />
                                   </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Types.fs#L29-29" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L240-240" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
-              <p>CompiledName: <code>get_Get</code></p>
+          <p>Gets a series of payloads to inject into the request; together with a maximum value indicator of how many payloads to use in a test scan.</p>
+
+
         </td>
       </tr>
-    </tbody>
-  </table>
-  <h3>Static members</h3>
-  <table class="table table-bordered member-list">
-    <thead>
-      <tr><td>Static member</td><td>Description</td></tr>
-    </thead>
-    <tbody>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '133', 133)" onmouseover="showTip(event, '133', 133)">
-            Naughty.op_Explicit(arg1)
+          <code onmouseout="hideTip(event, '138', 138)" onmouseover="showTip(event, '138', 138)">
+            Validation
           </code>
-          <div class="tip" id="133">
-            <strong>Signature:</strong> Naughty -&gt; string<br />
+          <div class="tip" id="138">
+            <strong>Signature:</strong> (Payload list -&gt; Response -&gt; Async&lt;Vulnerability array&gt;) list<br />
                                   </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Types.fs#L31-31" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L242-242" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
+          <p>Gets a series of validation functions to determine wheter a response for a set of payloads is considered vulnerable for a security issue.</p>
+
+
         </td>
       </tr>
     </tbody>

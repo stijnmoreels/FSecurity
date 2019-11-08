@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>FSec - FSecurity</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+    <meta name="author" content="Stijn Moreels"/>
+
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet"/>
+
+    <link type="text/css" rel="stylesheet" href="/FSecurity/content/style.css" />
+    <script type="text/javascript" src="/FSecurity/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="https://github.com/stijnmoreels/FSec">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="/FSecurity/index.html">FSecurity</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+
+
+<h1>FSec</h1>
+<p>
+  <span>Namespace: FSecurity</span><br />
+  </p>
+<div class="xmldoc">
+<p>Module that holds the security testing functionality.</p>
+
+</div>
+
+<!-- Render nested types and modules, if there are any -->
+
+  <h3>Functions and values</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Function or value</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '15', 15)" onmouseover="showTip(event, '15', 15)">
+            alphabet
+          </code>
+          <div class="tip" id="15">
+            <strong>Signature:</strong> (type)<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;Alphabet&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L22-22" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Gets a generated list of strings which only contain charaters from the alphabet.</p>
+
+
+              <p>CompiledName: <code>Alphabet</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '16', 16)" onmouseover="showTip(event, '16', 16)">
+            alphanum
+          </code>
+          <div class="tip" id="16">
+            <strong>Signature:</strong> (type)<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;Alphanum&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L26-26" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Gets a generated list of alphanumerical values.</p>
+
+
+              <p>CompiledName: <code>Alphanum</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '17', 17)" onmouseover="showTip(event, '17', 17)">
+            alphanum_special
+          </code>
+          <div class="tip" id="17">
+            <strong>Signature:</strong> (type)<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;AlphanumSpecial&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L30-30" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Gets a generated list of alphanumerical values and special charaters.</p>
+
+
+              <p>CompiledName: <code>AlphanumSpecial</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '18', 18)" onmouseover="showTip(event, '18', 18)">
+            case(inputs)
+          </code>
+          <div class="tip" id="18">
+            <strong>Signature:</strong> inputs:seq&lt;string&gt; -&gt; (type)<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L37-37" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Gets a generated set of fuzzed versions of a given set of input strings.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '19', 19)" onmouseover="showTip(event, '19', 19)">
+            contentType
+          </code>
+          <div class="tip" id="19">
+            <strong>Signature:</strong> (type)<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;ContentType&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L34-34" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Gets a generated set of content-type values.</p>
+
+
+              <p>CompiledName: <code>ContentType</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '20', 20)" onmouseover="showTip(event, '20', 20)">
+            csvInject
+          </code>
+          <div class="tip" id="20">
+            <strong>Signature:</strong> (type)<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;CsvInject&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L46-46" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Injection string for CSV files</p>
+
+
+              <p>CompiledName: <code>CsvInject</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '21', 21)" onmouseover="showTip(event, '21', 21)">
+            eicar
+          </code>
+          <div class="tip" id="21">
+            <strong>Signature:</strong> string<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;Eicar&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L259-259" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Eicar virus represented as a string containing the virus content.
+For more info about the Eicar virus: <a href="http://www.eicar.org/86-0-Intended-use.html">http://www.eicar.org/86-0-Intended-use.html</a></p>
+
+
+              <p>CompiledName: <code>Eicar</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '22', 22)" onmouseover="showTip(event, '22', 22)">
+            fileIllegalNames
+          </code>
+          <div class="tip" id="22">
+            <strong>Signature:</strong> (type)<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;FileIllegalNames&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L194-194" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Illegal file name generator to validate the file uploading mechanism.
+Generate file names with semicolons, reserved names, percent sign, ampersand, ...</p>
+
+
+              <p>CompiledName: <code>FileIllegalNames</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '23', 23)" onmouseover="showTip(event, '23', 23)">
+            fileOfSize x m dir
+          </code>
+          <div class="tip" id="23">
+            <strong>Signature:</strong> x:int -&gt; m:Metric -&gt; dir:(type) -&gt; (type)<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;FileOfSize&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L150-150" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Creates a file for a given size stored at a given directory.</p>
+<h2>Parameters</h2>
+<ul>
+<li><code>dir</code> - Location of where the file should be stored</li>
+<li><code>x</code> - Value to define the file size (in MB or GB)</li>
+<li><code>m</code> - Metric to define the Unit of the file size</li>
+</ul>
+
+
+              <p>CompiledName: <code>FileOfSize</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '24', 24)" onmouseover="showTip(event, '24', 24)">
+            httpDos url setRequest n
+          </code>
+          <div class="tip" id="24">
+            <strong>Signature:</strong> url:(type) -&gt; setRequest:((type) -&gt; (type)) -&gt; n:int -&gt; unit<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;HttpDos&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L450-450" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Sends out a several HTTP requests in parallel to a specified url and request options,
+to verify if the targetted endpoint is vulnerable for DOS attacks.</p>
+<h2>Parameters</h2>
+<ul>
+<li><code>url</code> - The targetted endpoint to where the HTTP request should be send to</li>
+<li><code>setRequest</code> - A required function to set the HTTP request options. TIP: partial POST requests are especially a good way to check for DOS vulnerabilities.</li>
+<li><code>n</code> - The amount of HTTP requests to send out in parallel.</li>
+</ul>
+
+
+              <p>CompiledName: <code>HttpDos</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '25', 25)" onmouseover="showTip(event, '25', 25)">
+            httpMethod
+          </code>
+          <div class="tip" id="25">
+            <strong>Signature:</strong> (type)<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;HttpMethod&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L441-441" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Generates a HTTP method.</p>
+
+
+              <p>CompiledName: <code>HttpMethod</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '26', 26)" onmouseover="showTip(event, '26', 26)">
+            json
+          </code>
+          <div class="tip" id="26">
+            <strong>Signature:</strong> (type)<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;Json&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L364-364" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Generates a fuzzed JSON value with malicious inputs.</p>
+
+
+              <p>CompiledName: <code>Json</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '27', 27)" onmouseover="showTip(event, '27', 27)">
+            ldapInject
+          </code>
+          <div class="tip" id="27">
+            <strong>Signature:</strong> (type)<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;LdapInject&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L98-98" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>LDAP input generator that provides LDAP injection strings.
+When receiving an "unusable" response from the SUT, it may be vulnerable for LDAP injection.
+An "unusable" response could be a random user record, list of users, ...
+LDAP is a lightweight system to manage credentials and authenticating users.
+When a application is vulnerable to LDAP injection, a malicious user may can query
+sensitive data from other or even modify/delete it entirely.</p>
+<p><em>Severity</em>: Critical <br/>
+<em>Vulnerability Indicators</em>: unusable responses</p>
+
+
+              <p>CompiledName: <code>LdapInject</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '28', 28)" onmouseover="showTip(event, '28', 28)">
+            ldapWithNormalInject(x)
+          </code>
+          <div class="tip" id="28">
+            <strong>Signature:</strong> x:string -&gt; (type)<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;LdapWithNormalInject&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L113-113" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>LDAP input generator with a specified 'normal input' that provides LDAP injection strings.
+The 'normal input' should be something legitimate.
+When receiving an "unusable" response from the SUT, it may be vulnerable for LDAP injection.
+An "unusable" response could be a random user record, list of users, ...
+LDAP is a lightweight system to manage credentials and authenticating users.
+When a application is vulnerable to LDAP injection, a malicious user may can query
+sensitive data from other or even modify/delete it entirely.</p>
+<p><em>Severity</em>: Critical <br/>
+<em>Vulnerability Indicators</em>: unusable responses</p>
+
+
+              <p>CompiledName: <code>LdapWithNormalInject</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '29', 29)" onmouseover="showTip(event, '29', 29)">
+            logInject
+          </code>
+          <div class="tip" id="29">
+            <strong>Signature:</strong> (type)<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;LogInject&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L125-125" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Log input generator to test log injection vulnerability. Inputs that are most-likely be logged can be vulnerable for injection.
+This generator will give you injection strings that will try to inject layout with xterm, XSS injection and add additional lines in a xterm environment
+with the text 'User admin logged in'.</p>
+
+
+              <p>CompiledName: <code>LogInject</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '30', 30)" onmouseover="showTip(event, '30', 30)">
+            naugthy
+          </code>
+          <div class="tip" id="30">
+            <strong>Signature:</strong> (type)<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;Naughty&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L368-368" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Generates a string that contains all sorts of big naughty strings. (See <code>Fuzz.naughty</code>).</p>
+
+
+              <p>CompiledName: <code>Naughty</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '31', 31)" onmouseover="showTip(event, '31', 31)">
+            pathDirTraversal
+          </code>
+          <div class="tip" id="31">
+            <strong>Signature:</strong> (type)<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;PathDirTraversal&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L211-211" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Directory path generator for a Path Traversal attack.
+By using a dot '.' slash '/' '\' commbination (both encoded and un-endcoded),
+the input attacker will try to access files/directories outside the expected folder.</p>
+
+
+              <p>CompiledName: <code>PathDirTraversal</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '32', 32)" onmouseover="showTip(event, '32', 32)">
+            pathFileTraversal(ext)
+          </code>
+          <div class="tip" id="32">
+            <strong>Signature:</strong> ext:string -&gt; (type)<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;PathFileTraversal&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L251-251" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Random file(s) path generator for a Path Traversal attack.
+By using a dot '.' slash '/' '\' commbination (both encoded and un-endcoded),
+the input attacker will try to access files/directories outside the expected folder.</p>
+<h2>Parameters</h2>
+<ul>
+<li><code>ext</code> - File extension to use to append to the generated path traversal.</li>
+</ul>
+
+
+              <p>CompiledName: <code>PathFileTraversal</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '33', 33)" onmouseover="showTip(event, '33', 33)">
+            pathFixedFileTraversal(files)
+          </code>
+          <div class="tip" id="33">
+            <strong>Signature:</strong> files:seq&lt;string&gt; -&gt; (type)<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;PathFixedFileTraversal&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L240-240" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Fixed file(s) path generator for a Path Traversal attack.
+By using a dot '.' slash '/' '\' commbination (both encoded and un-endcoded),
+the input attacker will try to access files/directories outside the expected folder.</p>
+<h2>Parameters</h2>
+<ul>
+<li><code>files</code> - List of file names that gets appended after the path traversal generation.</li>
+</ul>
+
+
+              <p>CompiledName: <code>PathFixedFileTraversal</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '34', 34)" onmouseover="showTip(event, '34', 34)">
+            sqlInject
+          </code>
+          <div class="tip" id="34">
+            <strong>Signature:</strong> (type)<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;SqlInject&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L86-86" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>SQL input generator that provides malformed inputs that can be used to discover SQL vulnerabilities.
+A SQL injection attack consists of insertion or "injection" of a SQL query via the input data from the client to the application.
+A successful SQL injection exploit can read sensitive data from the database, modify database data,
+execute administration operations on the database etc. (more info: <a href="https://www.owasp.org/index.php/SQL_Injection)
+&lt;br/&gt;
+_Severity_:">https://www.owasp.org/index.php/SQL_Injection)
+<br/>
+_Severity_:</a> Critical <br/>
+<em>Vulnerability Indicators</em>: incorrect/invalid syntax, syntax error, runtime errors, invalid SQL statement, conversion failed, SQLite exception, cannot open database, System.Data.SqlException, ...</p>
+
+
+              <p>CompiledName: <code>SqlInject</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '35', 35)" onmouseover="showTip(event, '35', 35)">
+            unix
+          </code>
+          <div class="tip" id="35">
+            <strong>Signature:</strong> (type)<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;Unix&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L469-469" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Gets a wide sample of malicious input for unix-like targets</p>
+
+
+              <p>CompiledName: <code>Unix</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '36', 36)" onmouseover="showTip(event, '36', 36)">
+            urlBogus baseUrl args
+          </code>
+          <div class="tip" id="36">
+            <strong>Signature:</strong> baseUrl:string -&gt; args:Map&lt;string,(type)&gt; -&gt; (type)<br />
+                          <strong>Type parameters:</strong> 'a                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;UrlBogus&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L410-410" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Generates an url with an additional "bogus" query parameters added to the specified base url.</p>
+<h2>Parameters</h2>
+<ul>
+<li><code>baseUrl</code> - The base URL to add the generated query parsameters</li>
+<li><code>args</code> - Map containing a query parameter names and their generator for its value</li>
+</ul>
+
+
+              <p>CompiledName: <code>UrlBogus</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '37', 37)" onmouseover="showTip(event, '37', 37)">
+            urlBogusDict baseUrl args
+          </code>
+          <div class="tip" id="37">
+            <strong>Signature:</strong> baseUrl:string -&gt; args:(type) -&gt; (type)<br />
+                          <strong>Type parameters:</strong> '?8556                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;UrlBogus&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L433-433" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Generates an url with an additional "bogus" query parameters added to the specified base url.</p>
+<h2>Parameters</h2>
+<ul>
+<li><code>baseUrl</code> - The base URL to add the generated query parsameters</li>
+<li><code>args</code> - Map containing a query parameter names and their generator for its value</li>
+</ul>
+
+
+              <p>CompiledName: <code>UrlBogus</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '38', 38)" onmouseover="showTip(event, '38', 38)">
+            urlHiddenAdmin(baseUrl)
+          </code>
+          <div class="tip" id="38">
+            <strong>Signature:</strong> baseUrl:string -&gt; (type)<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;UrlHiddenAdmin&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L374-374" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Generates an url with hidden specified query parameters: <code>admin=true</code>, <code>debug=true</code>.</p>
+<h2>Parameters</h2>
+<ul>
+<li><code>baseUrl</code> - The base URL to add the generated query parameters</li>
+</ul>
+
+
+              <p>CompiledName: <code>UrlHiddenAdmin</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '39', 39)" onmouseover="showTip(event, '39', 39)">
+            urlInject baseUrl args
+          </code>
+          <div class="tip" id="39">
+            <strong>Signature:</strong> baseUrl:string -&gt; args:string list -&gt; (type)<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;UrlInject&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L399-399" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Generates an url with injected JavaScript for the given query parameters.</p>
+<h2>Parameters</h2>
+<ul>
+<li><code>baseUrl</code> - The base URL to add the injection</li>
+<li><code>args</code> - List containing all the query parameter names</li>
+</ul>
+
+
+              <p>CompiledName: <code>UrlInject</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '40', 40)" onmouseover="showTip(event, '40', 40)">
+            urlTampered baseUrl args
+          </code>
+          <div class="tip" id="40">
+            <strong>Signature:</strong> baseUrl:string -&gt; args:Map&lt;string,(type)&gt; -&gt; (type)<br />
+                          <strong>Type parameters:</strong> '?8551                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;UrlTampered&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L383-383" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Generates an url with a specified number of query parameters each with its own generator.</p>
+<h2>Parameters</h2>
+<ul>
+<li><code>baseUrl</code> - The base URL to add the generated query parameters</li>
+<li><code>args</code> - Map containing a query parameter names and their generator for its value</li>
+</ul>
+
+
+              <p>CompiledName: <code>UrlTampered</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '41', 41)" onmouseover="showTip(event, '41', 41)">
+            windows
+          </code>
+          <div class="tip" id="41">
+            <strong>Signature:</strong> (type)<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;Windows&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L465-465" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Gets a wide sample of malicious input for windows targets</p>
+
+
+              <p>CompiledName: <code>Windows</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '42', 42)" onmouseover="showTip(event, '42', 42)">
+            xmlBomb
+          </code>
+          <div class="tip" id="42">
+            <strong>Signature:</strong> (type)<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;XmlBomb&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L286-286" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>XML Bomb input generator: An XML bomb is a message composed and sent with the intent of overloading an XML parser (typically HTTP server).
+It is block of XML that is both well-formed and valid according to the rules of an XML schema.
+It is a type of XML Denial of Service (DoS) attack. (more info: <a href="https://en.wikipedia.org/wiki/Billion_laughs)">https://en.wikipedia.org/wiki/Billion_laughs)</a></p>
+<p><em>Severity</em>: Critical
+<em>Vulnerability Indicators</em>: timeout</p>
+
+
+              <p>CompiledName: <code>XmlBomb</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '43', 43)" onmouseover="showTip(event, '43', 43)">
+            xmlDoc
+          </code>
+          <div class="tip" id="43">
+            <strong>Signature:</strong> (type)<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;XmlFuzz&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L269-269" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Fuzz an entire XML document with malicious input.</p>
+
+
+              <p>CompiledName: <code>XmlFuzz</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '44', 44)" onmouseover="showTip(event, '44', 44)">
+            xmlElemAttr
+          </code>
+          <div class="tip" id="44">
+            <strong>Signature:</strong> (type)<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;XmlElementAndAttribute&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L273-273" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Fuzz XML elements and attributes with malicious input.</p>
+
+
+              <p>CompiledName: <code>XmlElementAndAttribute</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '45', 45)" onmouseover="showTip(event, '45', 45)">
+            xmlMalicious
+          </code>
+          <div class="tip" id="45">
+            <strong>Signature:</strong> (type)<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;XmlMalicious&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L331-331" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Malicious XML generator: generates a XML structure with a depth of 1-100, a tag length of 100-1000 and a attribute count of 100-100.
+With this generator you can detect failures in naive XML parsers.</p>
+
+
+              <p>CompiledName: <code>XmlMalicious</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '46', 46)" onmouseover="showTip(event, '46', 46)">
+            xmlMaliciousDepthTagLen depth tagLen
+          </code>
+          <div class="tip" id="46">
+            <strong>Signature:</strong> depth:int -&gt; tagLen:int -&gt; (type)<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;XmlMaliciousDepthTagLen&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L307-307" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Malicious XML generator: generates a XML structure with a specified depth and tag length to detect failures in naive XML parsing implementations.</p>
+<h2>Parameters</h2>
+<ul>
+<li><code>depth</code> - Defines the depth of the XML document</li>
+<li><code>tagLen</code> - Defines the length of the tag names</li>
+</ul>
+
+
+              <p>CompiledName: <code>XmlMaliciousDepthTagLen</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '47', 47)" onmouseover="showTip(event, '47', 47)">
+            xmlMaliciousInject doc gvalues
+          </code>
+          <div class="tip" id="47">
+            <strong>Signature:</strong> doc:(type) -&gt; gvalues:Map&lt;string,(type)&gt; -&gt; (type)<br />
+                          <strong>Type parameters:</strong> '?8546                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;XmlMaliciousInject&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L343-343" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Alters the specified <code>XmlDocument</code> with a XPath identified value generator map for each matched XPath expression.</p>
+<h2>Parameters</h2>
+<ul>
+<li><code>doc</code> - XML document to inject the generated values.</li>
+<li><code>gvalues</code> - XPath/Generator map to identify each node to inject with a generated value.</li>
+</ul>
+
+
+              <p>CompiledName: <code>XmlMaliciousInject</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '48', 48)" onmouseover="showTip(event, '48', 48)">
+            xmlXxe
+          </code>
+          <div class="tip" id="48">
+            <strong>Signature:</strong> (type)<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;XmlXxe&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L277-277" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Fuzz external entity processing (XXE) inputs for XML injection.</p>
+
+
+              <p>CompiledName: <code>XmlXxe</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '49', 49)" onmouseover="showTip(event, '49', 49)">
+            xpathInject
+          </code>
+          <div class="tip" id="49">
+            <strong>Signature:</strong> (type)<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;XPathInject&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L58-58" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>XPath input generator that provides malformed XPath inputs that can be used to discover XPath vulnerabilities.
+XPath is a "simple" language to locate information in an XML document.
+Similar to SQL Injection, XPath Injection attacks occur when an application uses user-supplied information
+to construct an XPath query for XML data. By sending intentionally malformed information into the application,
+an attacker can find out how the XML data is structured, or access data that he may not normally have access to.
+(more info: <a href="https://www.owasp.org/index.php/XPATH_Injection)">https://www.owasp.org/index.php/XPATH_Injection)</a></p>
+<p><em>Severity</em>: Critical <br/>
+<em>Vulnerability Indicators</em>: incorrect/invalid syntax, syntax error, runtime errors, XPathException, System.Xml.XPath</p>
+
+
+              <p>CompiledName: <code>XPathInject</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '50', 50)" onmouseover="showTip(event, '50', 50)">
+            xssInject
+          </code>
+          <div class="tip" id="50">
+            <strong>Signature:</strong> (type)<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;XssInject&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L72-72" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>XSS (Cross Site Scripting) input generator that provides malformed inputs that can be used to discover XSS vulnerabilities.
+Cross-Site Scripting (XSS) attacks are a type of injection, in which malicious scripts are injected into otherwise benign
+and trusted web sites. (more info: <a href="https://www.owasp.org/index.php/Cross-site_Scripting_(XSS))">https://www.owasp.org/index.php/Cross-site_Scripting_(XSS))</a></p>
+<p><em>Severity</em>: Critical <br/>
+<em>Vulnerability Indicators</em>: payload exists in response</p>
+
+
+              <p>CompiledName: <code>XssInject</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '51', 51)" onmouseover="showTip(event, '51', 51)">
+            zipBombDepthWidth depth width start
+          </code>
+          <div class="tip" id="51">
+            <strong>Signature:</strong> depth:int -&gt; width:int -&gt; start:(type) -&gt; string<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;ZipBombDepthWidth&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/FSec.fs#L164-164" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Creates a zip file bomb having a depth and width representing the different levels the zip bomb should have.</p>
+<h2>Parameters</h2>
+<ul>
+<li><code>depth</code> - Represent the depth of the zip bomb: how many levels should the zip bomb have?</li>
+<li><code>width</code> - Represent the width of the zip bomb: how many files should there be on each depth-level?</li>
+<li><code>start</code> - Represent the start file of the zip bomb. This file is copied over and over to create the zip bomb.</li>
+</ul>
+
+
+              <p>CompiledName: <code>ZipBombDepthWidth</code></p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <img src="/FSecurity/img/logo.png" alt="F# Project" style="width:150px;margin:10px" />  
+          <ul class="nav nav-list" id="menu" style="margin-top: 20px;">
+            <li class="nav-header">FSecurity</li>
+            <li><a href="/FSecurity/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="http://nuget.org/packages/FSec">Get Library via NuGet</a></li>
+            <li><a href="https://github.com/stijnmoreels/FSec">Source Code on GitHub</a></li>
+            <li><a href="/FSecurity/license.html">License</a></li>
+            <li><a href="/FSecurity/release-notes.html">Release Notes</a></li>
+            
+            <li class="nav-header">Getting started</li>
+            <li><a href="/FSecurity/tutorial.html">Introduction</a></li>
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="/FSecurity/reference/index.html">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="https://github.com/stijnmoreels/FSec"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"/></a>
+  </body>
+  </html>

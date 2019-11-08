@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>Naughty - FSecurity</title>
+    <title>Async - FSecurity</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content=""/>
     <meta name="author" content="Stijn Moreels"/>
@@ -35,90 +35,62 @@
 
 
 
-<h1>Naughty</h1>
+<h1>Async</h1>
 <p>
-
-    <span>Namespace: FSecurity</span><br />
-    </p>
+  <span>Namespace: FSecurity</span><br />
+  </p>
 <div class="xmldoc">
-<p>Represents a naugthy string containging all sorts of unexpected charaters.</p>
-
 </div>
-  <h3>Union Cases</h3>
+
+<!-- Render nested types and modules, if there are any -->
+
+  <h3>Functions and values</h3>
   <table class="table table-bordered member-list">
     <thead>
-      <tr><td>Union Case</td><td>Description</td></tr>
+      <tr><td>Function or value</td><td>Description</td></tr>
     </thead>
     <tbody>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '131', 131)" onmouseover="showTip(event, '131', 131)">
-            Naughty(string)
+          <code onmouseout="hideTip(event, '13', 13)" onmouseover="showTip(event, '13', 13)">
+            ParallelCatchWithThrottle(...)
           </code>
-          <div class="tip" id="131">
-            <strong>Signature:</strong> string<br />
-                                  </div>
+          <div class="tip" id="13">
+            <strong>Signature:</strong> throttle:int -&gt; computations:seq&lt;Async&lt;&#39;?8467&gt;&gt; -&gt; Async&lt;Choice&lt;&#39;?8467,exn&gt; []&gt;<br />
+                          <strong>Type parameters:</strong> '?8467                      </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Types.fs#L28-28" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L354-354" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
+          <p>Creates an asynchronous computation that executes all the given asynchronous computations, initially queueing each as work items and using a fork/join pattern.
+This function doesn't throw exceptions, but instead returns an array of Choices.
+The paralelism is throttled, so that at most <code>throttle</code> computations run at one time.</p>
+
+
         </td>
       </tr>
-    </tbody>
-  </table>
-  <h3>Instance members</h3>
-  <table class="table table-bordered member-list">
-    <thead>
-      <tr><td>Instance member</td><td>Description</td></tr>
-    </thead>
-    <tbody>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '132', 132)" onmouseover="showTip(event, '132', 132)">
-            x.Get
+          <code onmouseout="hideTip(event, '14', 14)" onmouseover="showTip(event, '14', 14)">
+            ParallelWithThrottle(...)
           </code>
-          <div class="tip" id="132">
-            <strong>Signature:</strong> string<br />
-                                  </div>
+          <div class="tip" id="14">
+            <strong>Signature:</strong> throttle:int -&gt; computations:seq&lt;Async&lt;&#39;?8469&gt;&gt; -&gt; Async&lt;&#39;?8469 []&gt;<br />
+                          <strong>Type parameters:</strong> '?8469                      </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Types.fs#L29-29" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L359-359" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
-              <p>CompiledName: <code>get_Get</code></p>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <h3>Static members</h3>
-  <table class="table table-bordered member-list">
-    <thead>
-      <tr><td>Static member</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="member-name">
+          <p>Creates an asynchronous computation that executes all the given asynchronous computations, initially queueing each as work items and using a fork/join pattern.
+The paralelism is throttled, so that at most <code>throttle</code> computations run at one time.</p>
 
-          <code onmouseout="hideTip(event, '133', 133)" onmouseover="showTip(event, '133', 133)">
-            Naughty.op_Explicit(arg1)
-          </code>
-          <div class="tip" id="133">
-            <strong>Signature:</strong> Naughty -&gt; string<br />
-                                  </div>
-        </td>
-        <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Types.fs#L31-31" class="github-link">
-              <img src="../content/img/github.png" class="normal" />
-              <img src="../content/img/github-blue.png" class="hover" />
-            </a>
-          
+
         </td>
       </tr>
     </tbody>

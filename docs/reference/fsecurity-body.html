@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>Naughty - FSecurity</title>
+    <title>Body - FSecurity</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content=""/>
     <meta name="author" content="Stijn Moreels"/>
@@ -35,90 +35,79 @@
 
 
 
-<h1>Naughty</h1>
+<h1>Body</h1>
 <p>
 
     <span>Namespace: FSecurity</span><br />
     </p>
 <div class="xmldoc">
-<p>Represents a naugthy string containging all sorts of unexpected charaters.</p>
+<p>Represents a HTTP request body.</p>
 
 </div>
-  <h3>Union Cases</h3>
+  <h3>Record Fields</h3>
   <table class="table table-bordered member-list">
     <thead>
-      <tr><td>Union Case</td><td>Description</td></tr>
+      <tr><td>Record Field</td><td>Description</td></tr>
     </thead>
     <tbody>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '131', 131)" onmouseover="showTip(event, '131', 131)">
-            Naughty(string)
+          <code onmouseout="hideTip(event, '120', 120)" onmouseover="showTip(event, '120', 120)">
+            Content
           </code>
-          <div class="tip" id="131">
+          <div class="tip" id="120">
             <strong>Signature:</strong> string<br />
                                   </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Types.fs#L28-28" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L179-179" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
+          <p>Gets the raw content of the request.</p>
+
+
         </td>
       </tr>
-    </tbody>
-  </table>
-  <h3>Instance members</h3>
-  <table class="table table-bordered member-list">
-    <thead>
-      <tr><td>Instance member</td><td>Description</td></tr>
-    </thead>
-    <tbody>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '132', 132)" onmouseover="showTip(event, '132', 132)">
-            x.Get
+          <code onmouseout="hideTip(event, '121', 121)" onmouseover="showTip(event, '121', 121)">
+            ContentType
           </code>
-          <div class="tip" id="132">
+          <div class="tip" id="121">
             <strong>Signature:</strong> string<br />
                                   </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Types.fs#L29-29" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L181-181" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
-              <p>CompiledName: <code>get_Get</code></p>
+          <p>Gets the type of the request content.</p>
+
+
         </td>
       </tr>
-    </tbody>
-  </table>
-  <h3>Static members</h3>
-  <table class="table table-bordered member-list">
-    <thead>
-      <tr><td>Static member</td><td>Description</td></tr>
-    </thead>
-    <tbody>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '133', 133)" onmouseover="showTip(event, '133', 133)">
-            Naughty.op_Explicit(arg1)
+          <code onmouseout="hideTip(event, '122', 122)" onmouseover="showTip(event, '122', 122)">
+            Replacements
           </code>
-          <div class="tip" id="133">
-            <strong>Signature:</strong> Naughty -&gt; string<br />
+          <div class="tip" id="122">
+            <strong>Signature:</strong> (string -&gt; string) list<br />
                                   </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Types.fs#L31-31" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L183-183" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          
+          <p>Gets the replacement functions to inject payloads into the request content.</p>
+
+
         </td>
       </tr>
     </tbody>

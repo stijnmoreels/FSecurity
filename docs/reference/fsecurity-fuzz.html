@@ -55,11 +55,36 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '36', 36)" onmouseover="showTip(event, '36', 36)">
+          <code onmouseout="hideTip(event, '52', 52)" onmouseover="showTip(event, '52', 52)">
+            alphabet
+          </code>
+          <div class="tip" id="52">
+            <strong>Signature:</strong> seq&lt;string&gt;<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;Alphabet&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L26-26" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Gets the alhpabethical charaters of a-z and A-Z.</p>
+
+
+              <p>CompiledName: <code>Alphabet</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '53', 53)" onmouseover="showTip(event, '53', 53)">
             alphanum
           </code>
-          <div class="tip" id="36">
-            <strong>Signature:</strong> string []<br />
+          <div class="tip" id="53">
+            <strong>Signature:</strong> seq&lt;string&gt;<br />
                                     <span>
             <strong>Attributes:</strong><br />
 [&lt;CompiledName(&quot;Alphanum&quot;)&gt;]<br />
@@ -67,7 +92,7 @@
           </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L20-20" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L32-32" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -80,35 +105,60 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '37', 37)" onmouseover="showTip(event, '37', 37)">
-            alphanum_extra
+          <code onmouseout="hideTip(event, '54', 54)" onmouseover="showTip(event, '54', 54)">
+            alphanum_special
           </code>
-          <div class="tip" id="37">
-            <strong>Signature:</strong> string []<br />
+          <div class="tip" id="54">
+            <strong>Signature:</strong> seq&lt;string&gt;<br />
                                     <span>
             <strong>Attributes:</strong><br />
-[&lt;CompiledName(&quot;AlphanumExtra&quot;)&gt;]<br />
+[&lt;CompiledName(&quot;AlphanumSpecial&quot;)&gt;]<br />
           </span>
           </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L28-28" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L43-43" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Gets the alphanumerical series of a-b, A-Z, 0-9, and all special charathers.</p>
+          <p>Gets the alphanumerical series of a-b, A-Z, 0-9, and all special charaters.</p>
 
 
-              <p>CompiledName: <code>AlphanumExtra</code></p>
+              <p>CompiledName: <code>AlphanumSpecial</code></p>
         </td>
       </tr>
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '38', 38)" onmouseover="showTip(event, '38', 38)">
+          <code onmouseout="hideTip(event, '55', 55)" onmouseover="showTip(event, '55', 55)">
+            case(str)
+          </code>
+          <div class="tip" id="55">
+            <strong>Signature:</strong> str:string -&gt; string []<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;Case&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L112-112" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Fuzz the case of a given string. (ex. '.php' becomes '.PhP').</p>
+
+
+              <p>CompiledName: <code>Case</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '56', 56)" onmouseover="showTip(event, '56', 56)">
             contentType
           </code>
-          <div class="tip" id="38">
+          <div class="tip" id="56">
             <strong>Signature:</strong> seq&lt;string&gt;<br />
                                     <span>
             <strong>Attributes:</strong><br />
@@ -117,7 +167,7 @@
           </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L43-43" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L61-61" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -130,10 +180,86 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '39', 39)" onmouseover="showTip(event, '39', 39)">
+          <code onmouseout="hideTip(event, '57', 57)" onmouseover="showTip(event, '57', 57)">
+            dirTraversal(fileName)
+          </code>
+          <div class="tip" id="57">
+            <strong>Signature:</strong> fileName:string -&gt; seq&lt;string&gt;<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;DirTraversal&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L106-106" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Gets a directory traversal path for a given file name. (ex. 'file.txt' becomes '../../file.txt')
+847 attack vectors, 8 levels of recursion (Unix-like, Windows)</p>
+
+
+              <p>CompiledName: <code>DirTraversal</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '58', 58)" onmouseover="showTip(event, '58', 58)">
+            encoding(str)
+          </code>
+          <div class="tip" id="58">
+            <strong>Signature:</strong> str:string -&gt; string []<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;Encoding&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L141-141" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Fuzz the encoding of a given string considering the default UTF-8 as current encoding.</p>
+
+
+              <p>CompiledName: <code>Encoding</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '59', 59)" onmouseover="showTip(event, '59', 59)">
+            encodingFrom current str
+          </code>
+          <div class="tip" id="59">
+            <strong>Signature:</strong> current:(type) -&gt; str:string -&gt; string []<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;Encoding&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L131-131" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Fuzz the encoding of the given string and its current encoding.</p>
+
+
+              <p>CompiledName: <code>Encoding</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '60', 60)" onmouseover="showTip(event, '60', 60)">
             httpLeakageHeaders
           </code>
-          <div class="tip" id="39">
+          <div class="tip" id="60">
             <strong>Signature:</strong> string []<br />
                                     <span>
             <strong>Attributes:</strong><br />
@@ -142,7 +268,7 @@
           </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L34-34" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L48-48" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -155,10 +281,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '40', 40)" onmouseover="showTip(event, '40', 40)">
+          <code onmouseout="hideTip(event, '61', 61)" onmouseover="showTip(event, '61', 61)">
             httpMethods
           </code>
-          <div class="tip" id="40">
+          <div class="tip" id="61">
             <strong>Signature:</strong> (type) []<br />
                                     <span>
             <strong>Attributes:</strong><br />
@@ -167,7 +293,7 @@
           </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L38-38" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L56-56" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -180,10 +306,35 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '41', 41)" onmouseover="showTip(event, '41', 41)">
+          <code onmouseout="hideTip(event, '62', 62)" onmouseover="showTip(event, '62', 62)">
+            httpProtectHeaders
+          </code>
+          <div class="tip" id="62">
+            <strong>Signature:</strong> string list<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;HttpProtectHeaders&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L52-52" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Gets HTTP headers that protect against some browser injection security issues.</p>
+
+
+              <p>CompiledName: <code>HttpProtectHeaders</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '63', 63)" onmouseover="showTip(event, '63', 63)">
             johnTheRipper
           </code>
-          <div class="tip" id="41">
+          <div class="tip" id="63">
             <strong>Signature:</strong> seq&lt;string&gt;<br />
                                     <span>
             <strong>Attributes:</strong><br />
@@ -192,7 +343,7 @@
           </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L47-47" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L65-65" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -205,10 +356,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '42', 42)" onmouseover="showTip(event, '42', 42)">
+          <code onmouseout="hideTip(event, '64', 64)" onmouseover="showTip(event, '64', 64)">
             json
           </code>
-          <div class="tip" id="42">
+          <div class="tip" id="64">
             <strong>Signature:</strong> seq&lt;string&gt;<br />
                                     <span>
             <strong>Attributes:</strong><br />
@@ -217,7 +368,7 @@
           </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L63-63" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L85-85" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -230,10 +381,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '43', 43)" onmouseover="showTip(event, '43', 43)">
+          <code onmouseout="hideTip(event, '65', 65)" onmouseover="showTip(event, '65', 65)">
             naughty
           </code>
-          <div class="tip" id="43">
+          <div class="tip" id="65">
             <strong>Signature:</strong> seq&lt;string&gt;<br />
                                     <span>
             <strong>Attributes:</strong><br />
@@ -242,7 +393,7 @@
           </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L67-67" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L89-89" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -255,10 +406,60 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '44', 44)" onmouseover="showTip(event, '44', 44)">
+          <code onmouseout="hideTip(event, '66', 66)" onmouseover="showTip(event, '66', 66)">
+            numbers min max
+          </code>
+          <div class="tip" id="66">
+            <strong>Signature:</strong> min:int -&gt; max:int -&gt; seq&lt;string&gt;<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;Numbers&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L21-21" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Gets the all the numbers from a minimum to a maximum value inclusive.</p>
+
+
+              <p>CompiledName: <code>Numbers</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '67', 67)" onmouseover="showTip(event, '67', 67)">
+            specials
+          </code>
+          <div class="tip" id="67">
+            <strong>Signature:</strong> seq&lt;string&gt;<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;Specials&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L38-38" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Gets a series of special charaters (ex. '!', '%', ...)</p>
+
+
+              <p>CompiledName: <code>Specials</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '68', 68)" onmouseover="showTip(event, '68', 68)">
             sql
           </code>
-          <div class="tip" id="44">
+          <div class="tip" id="68">
             <strong>Signature:</strong> seq&lt;string&gt;<br />
                                     <span>
             <strong>Attributes:</strong><br />
@@ -267,7 +468,7 @@
           </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L79-79" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L101-101" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -280,10 +481,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '45', 45)" onmouseover="showTip(event, '45', 45)">
+          <code onmouseout="hideTip(event, '69', 69)" onmouseover="showTip(event, '69', 69)">
             unix
           </code>
-          <div class="tip" id="45">
+          <div class="tip" id="69">
             <strong>Signature:</strong> seq&lt;string&gt;<br />
                                     <span>
             <strong>Attributes:</strong><br />
@@ -292,7 +493,7 @@
           </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L75-75" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L97-97" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -305,10 +506,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '46', 46)" onmouseover="showTip(event, '46', 46)">
+          <code onmouseout="hideTip(event, '70', 70)" onmouseover="showTip(event, '70', 70)">
             windows
           </code>
-          <div class="tip" id="46">
+          <div class="tip" id="70">
             <strong>Signature:</strong> seq&lt;string&gt;<br />
                                     <span>
             <strong>Attributes:</strong><br />
@@ -317,7 +518,7 @@
           </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L71-71" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L93-93" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -330,10 +531,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '47', 47)" onmouseover="showTip(event, '47', 47)">
+          <code onmouseout="hideTip(event, '71', 71)" onmouseover="showTip(event, '71', 71)">
             xmlDoc
           </code>
-          <div class="tip" id="47">
+          <div class="tip" id="71">
             <strong>Signature:</strong> seq&lt;string&gt;<br />
                                     <span>
             <strong>Attributes:</strong><br />
@@ -342,7 +543,7 @@
           </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L51-51" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L73-73" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -355,10 +556,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '48', 48)" onmouseover="showTip(event, '48', 48)">
+          <code onmouseout="hideTip(event, '72', 72)" onmouseover="showTip(event, '72', 72)">
             xmlElemAttr
           </code>
-          <div class="tip" id="48">
+          <div class="tip" id="72">
             <strong>Signature:</strong> seq&lt;string&gt;<br />
                                     <span>
             <strong>Attributes:</strong><br />
@@ -367,7 +568,7 @@
           </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L55-55" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L77-77" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -380,10 +581,10 @@
       <tr>
         <td class="member-name">
 
-          <code onmouseout="hideTip(event, '49', 49)" onmouseover="showTip(event, '49', 49)">
+          <code onmouseout="hideTip(event, '73', 73)" onmouseover="showTip(event, '73', 73)">
             xmlXxe
           </code>
-          <div class="tip" id="49">
+          <div class="tip" id="73">
             <strong>Signature:</strong> seq&lt;string&gt;<br />
                                     <span>
             <strong>Attributes:</strong><br />
@@ -392,7 +593,7 @@
           </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L59-59" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L81-81" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -400,6 +601,31 @@
 
 
               <p>CompiledName: <code>XmlXxe</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+
+          <code onmouseout="hideTip(event, '74', 74)" onmouseover="showTip(event, '74', 74)">
+            xss
+          </code>
+          <div class="tip" id="74">
+            <strong>Signature:</strong> seq&lt;string&gt;<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;CompiledName(&quot;Xss&quot;)&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Fuzz.fs#L69-69" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Gets a series of XSS injection payloads.</p>
+
+
+              <p>CompiledName: <code>Xss</code></p>
         </td>
       </tr>
     </tbody>

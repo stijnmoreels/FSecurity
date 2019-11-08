@@ -38,15 +38,6 @@ let injection_tests =
           sut x |> Option.exists (fun y -> y.Contains x)
                 |> (=!) exp
 
-    testProperty "SQL input injection" <| fun () ->
-      FSec.sqlInject
-      |> Gen.zip (Gen.elements
-          [ Vulnerable, SQL.vulnerable
-            Prevented, SQL.prevented ])
-      |> Arb.fromGen
-      |> Prop.forAll <| fun ((exp, sut), x) ->
-          exp =! sut x
-
     testPropertyWithConfig ({ FsCheckConfig.defaultConfig with maxTest = 1 }) "XML bomb injection timeout" <| fun () ->
       FSec.xmlBomb
       |> Arb.fromGen

@@ -1,6 +1,6 @@
-# FSec
+# FSecurity
 
-FSec is a tool for automatically running security tests for .NET programs. The tool provides some basic security testing functionality to discover vulnerabilities.
+FSecurity is a tool for automatically running security tests for .NET programs. The tool provides some basic security testing functionality to discover vulnerabilities.
 
 ## NuGet
 

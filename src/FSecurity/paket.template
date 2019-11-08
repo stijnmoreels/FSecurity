@@ -11,7 +11,7 @@ authors Stijn Moreels
 owners Stijn Moreels
 tags fsharp,security,testing,tool,automation,tests,ci,owasp
 projectUrl https://github.com/stijnmoreels/FSec
-iconUrl https://raw.githubusercontent.com/stijnmoreels/FScenario/master/docs/img/logo.png
+iconUrl https://raw.githubusercontent.com/stijnmoreels/FSecurity/master/docs/img/logo.png
 licenseUrl https://github.com/stijnmoreels/FSec/blob/master/LICENSE.txt
 releaseNotes
     - API security testing

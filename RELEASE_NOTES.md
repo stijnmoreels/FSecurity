@@ -2,7 +2,7 @@
 
 Initial release testing
 
-#### 2.0.0
+#### 2.0.1
 
 - API security testing
   - Fuzzing with a several fuzzing resource lists directly available

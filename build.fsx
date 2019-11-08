@@ -85,7 +85,7 @@ Target.create "Paket" <| fun _ ->
             Summary = [ project.Summary ]
             ProjectUrl = Some project.GitHubUrl
             LicenseUrl = Some (project.GitHubUrl + "/blob/master/LICENSE.txt")
-            IconUrl = Some "https://raw.githubusercontent.com/stijnmoreels/FScenario/master/docs/img/logo.png"
+            IconUrl = Some "https://raw.githubusercontent.com/stijnmoreels/FSecurity/master/docs/img/logo.png"
             Copyright = Some "Copyright 2019"
             Tags = [ "fsharp"; "security"; "testing"; "tool"; "automation"; "tests"; "ci"; "owasp" ]
             Files = 

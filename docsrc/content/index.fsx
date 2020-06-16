@@ -36,9 +36,9 @@ The library is available under Public Domain license, which allows modification 
 redistribution for both commercial and non-commercial purposes. For more information see the 
 [License file][license] in the GitHub repository. 
 
-  [content]: https://github.com/stijnmoreels/FSec/tree/master/docs/content
-  [gh]: https://github.com/stijnmoreels/FSec
-  [issues]: https://github.com/stijnmoreels/FSec/issues
-  [readme]: https://github.com/stijnmoreels/FSec/blob/master/README.md
-  [license]: https://github.com/stijnmoreels/FSec/blob/master/LICENSE.txt
+  [content]: https://github.com/stijnmoreels/FSecurity/tree/master/docs/content
+  [gh]: https://github.com/stijnmoreels/FSecurity
+  [issues]: https://github.com/stijnmoreels/FSecurity/issues
+  [readme]: https://github.com/stijnmoreels/FSecurity/blob/master/README.md
+  [license]: https://github.com/stijnmoreels/FSecurity/blob/master/LICENSE.txt
 *)

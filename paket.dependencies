@@ -1,17 +1,11 @@
-version 5.216.0
+version 5.226.0
 source https://www.nuget.org/api/v2
 
-nuget FSharp.Core = 4.5.2
-nuget Argu
+nuget FSharp.Core = 4.7.0
 
-nuget FsCheck.Xunit
 nuget Expecto.TestResults
 nuget Expecto.FsCheck
 nuget SharpZipLib
-nuget Unquote
-nuget xunit
-nuget xunit.runner.console
-nuget xunit.runner.visualstudio
 
 // [ FAKE GROUP ]
 group Build

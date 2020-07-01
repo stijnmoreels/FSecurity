@@ -6,7 +6,6 @@ open Expecto
 
 [<EntryPoint>]
 let main argv =
-    Tests.runTestsInAssembly 
-        { defaultConfig with parallel = false } 
-        argv
-    0
+  Tests.runTestsInAssembly 
+    { defaultConfig with parallel = false } 
+    argv

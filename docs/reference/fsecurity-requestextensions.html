@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>RequestExtensions - FSecurity</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+    <meta name="author" content="Stijn Moreels"/>
+
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet"/>
+
+    <link type="text/css" rel="stylesheet" href="/FSecurity/content/style.css" />
+    <script type="text/javascript" src="/FSecurity/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="https://github.com/stijnmoreels/FSecurity">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="/FSecurity/index.html">FSecurity</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+<h1>RequestExtensions</h1>
+<p>
+
+    <span>Namespace: FSecurity</span><br />
+            <span>
+            Attributes: <br />
+[&lt;Extension&gt;]<br />
+            
+        </span>
+</p>
+<div class="xmldoc">
+<p>Adds extensions for a C#-friendly context.</p>
+
+</div>
+  <h3>Constructors</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Constructor</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '231', 231)" onmouseover="showTip(event, '231', 231)">
+            new()
+          </code>
+          <div class="tip" id="231">
+            <strong>Signature:</strong> unit -&gt; RequestExtensions<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L195-195" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>.ctor</code></p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Static members</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Static member</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '232', 232)" onmouseover="showTip(event, '232', 232)">
+            RequestExtensions.WithBody(...)
+          </code>
+          <div class="tip" id="232">
+            <strong>Signature:</strong> (req:Request * content:string * contentType:string) -&gt; Request<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L230-230" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Sets the request body with a content type.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '233', 233)" onmouseover="showTip(event, '233', 233)">
+            RequestExtensions.WithBodyReplaceBetween(...)
+          </code>
+          <div class="tip" id="233">
+            <strong>Signature:</strong> (req:Request * varIndicator:string * value:string) -&gt; Request<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L237-237" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Replaces all text between a specified indicator (ex. '#to-be-replaced#') with a value.
+Remark that this uses a regular expressions so valid regex charaters should be escaped.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '234', 234)" onmouseover="showTip(event, '234', 234)">
+            RequestExtensions.WithBodyReplaceRegex(...)
+          </code>
+          <div class="tip" id="234">
+            <strong>Signature:</strong> (req:Request * pattern:string * value:string) -&gt; Request<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L233-233" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Replace all matching occurrences in the request content with a value.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '235', 235)" onmouseover="showTip(event, '235', 235)">
+            RequestExtensions.WithClientCertificate(...)
+          </code>
+          <div class="tip" id="235">
+            <strong>Signature:</strong> (req:Request * certificate:X509Certificate) -&gt; Request<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L224-224" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Sets the HTTPS client certificate to the request.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '236', 236)" onmouseover="showTip(event, '236', 236)">
+            RequestExtensions.WithContentType(...)
+          </code>
+          <div class="tip" id="236">
+            <strong>Signature:</strong> (req:Request * contentType:string) -&gt; Request<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L240-240" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Replaces the content type of the request body.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '237', 237)" onmouseover="showTip(event, '237', 237)">
+            RequestExtensions.WithHeader(...)
+          </code>
+          <div class="tip" id="237">
+            <strong>Signature:</strong> (req:Request * name:string * value:string) -&gt; Request<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L221-221" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Adds a single HTTP header to the request.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '238', 238)" onmouseover="showTip(event, '238', 238)">
+            RequestExtensions.WithHeaders(...)
+          </code>
+          <div class="tip" id="238">
+            <strong>Signature:</strong> (req:Request * headers:(string * string) array) -&gt; Request<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L216-216" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Adds HTTP headers to the request.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '239', 239)" onmouseover="showTip(event, '239', 239)">
+            RequestExtensions.WithMaximumConcurrent(...)
+          </code>
+          <div class="tip" id="239">
+            <strong>Signature:</strong> (req:Request * amount:int) -&gt; Request<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L243-243" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Sets the maximum amount of request that can be send concurrently to the target API endpoint.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '240', 240)" onmouseover="showTip(event, '240', 240)">
+            RequestExtensions.WithMethod(...)
+          </code>
+          <div class="tip" id="240">
+            <strong>Signature:</strong> (req:Request * method:HttpMethod) -&gt; Request<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L227-227" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Sets the HTTP method for the request.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '241', 241)" onmouseover="showTip(event, '241', 241)">
+            RequestExtensions.WithParameter(...)
+          </code>
+          <div class="tip" id="241">
+            <strong>Signature:</strong> (req:Request * name:string * value:string) -&gt; Request<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L212-212" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Adds a single query string parameter to the request.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '242', 242)" onmouseover="showTip(event, '242', 242)">
+            RequestExtensions.WithParameters(...)
+          </code>
+          <div class="tip" id="242">
+            <strong>Signature:</strong> (req:Request * parameters:(string * string) array) -&gt; Request<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L207-207" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Adds query string parameters to the request.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '243', 243)" onmouseover="showTip(event, '243', 243)">
+            RequestExtensions.WithRoute(req, path)
+          </code>
+          <div class="tip" id="243">
+            <strong>Signature:</strong> (req:Request * path:string) -&gt; Request<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L203-203" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Adds a single route path to the request.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '244', 244)" onmouseover="showTip(event, '244', 244)">
+            RequestExtensions.WithRoutes(req, paths)
+          </code>
+          <div class="tip" id="244">
+            <strong>Signature:</strong> (req:Request * paths:string array) -&gt; Request<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L198-198" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Adds routing paths to the request.</p>
+
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <img src="/FSecurity/img/logo.png" alt="F# Project" style="width:150px;margin:10px" />  
+          <ul class="nav nav-list" id="menu" style="margin-top: 20px;">
+            <li class="nav-header">FSecurity</li>
+            <li><a href="/FSecurity/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="http://nuget.org/packages/FSecurity">Get Library via NuGet</a></li>
+            <li><a href="https://github.com/stijnmoreels/FSecurity">Source Code on GitHub</a></li>
+            <li><a href="/FSecurity/license.html">License</a></li>
+            <li><a href="/FSecurity/release-notes.html">Release Notes</a></li>
+            
+            <li class="nav-header">Getting started</li>
+            <li><a href="/FSecurity/tutorial.html">Introduction</a></li>
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="/FSecurity/reference/index.html">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="https://github.com/stijnmoreels/FSecurity"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"/></a>
+  </body>
+  </html>

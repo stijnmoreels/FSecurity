@@ -4,22 +4,25 @@
 #I "../../bin"
 
 (**
-FSec
+FSecurity
 ======================
 
-**FSec** is a testing library to simplifying Security Tests for .NET programs.
-The `FSec` module exposes all kinds of different `Gen<'a>` implementations (See: [FsCheck](https://fscheck.github.io/FsCheck/index.html) for more infor about generators) 
-that the developer can use to discover possible security issues with the application.
+**FSecurity** is a testing library to simplifying Security Tests for .NET programs.
+Splitted in three different packages, the security library provides additional functionality for specific area's.
 
-Examples of exposed generators are:
+ * `FSecurity`: is the base library and contain fuzzing logic to generate random inputs directly as `string` values.
+ * `FSecurity.Api`: is the library that contains specific scanning functionality, fuzzing HTTP requests, and the ability to collect vulnerabilities.
+ * `FSecurity.FsCheck`: is the library that contains `Gen<'a>` generators (See: [FsCheck](https://fscheck.github.io/FsCheck/index.html).
 
- * `FSec.xssInject` returns a generator that for all different kinds of XSS payloads
- * `FSec.xpathInject` returns a generator for all different kinds of XPath injection
- * `FSec.xmlBomb` returns a generator that makes all different kinds of XML payload that uses the XRE (External Reference Entity) functionality to exploit missue of XML parsers.
+    Examples of exposed generators are:
+    * `FSec.xssInject` returns a generator that for all different kinds of XSS payloads
+    * `FSec.xpathInject` returns a generator for all different kinds of XPath injection
+    * `FSec.xmlBomb` returns a generator that makes all different kinds of XML payload that uses the XRE (External Reference Entity) functionality to exploit missue of XML parsers.
 
 Samples & documentation
 -----------------------
 
+ * [API testing](reference/api.html) explains how application security testing can be done against API services.
  * [API Reference](reference/index.html) contains automatically generated documentation for all types, modules
    and functions in the library. This includes additional brief samples on using most of the
    functions.

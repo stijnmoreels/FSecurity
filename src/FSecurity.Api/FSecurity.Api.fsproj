@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <DocumentationFile>FSecurity.Api.XML</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="paket.references" />
+    <Compile Include="Api.fs" />
+  </ItemGroup>
+
+  <ItemGroup />
+
+  <ItemGroup>
+    <ProjectReference Include="..\FSecurity\FSecurity.fsproj" />
+  </ItemGroup>
+
+</Project>

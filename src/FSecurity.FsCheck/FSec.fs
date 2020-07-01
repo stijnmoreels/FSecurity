@@ -1,22 +1,12 @@
 namespace FSecurity
 
 open System
-open System.Net.Http
-open System.Security.Cryptography.X509Certificates
-open System.Text.RegularExpressions
-
-/// Representation of a size indication (MB, GB, ...)
-type Metric = MB | GB
+open System.IO
+open System.Collections.Generic
+open FsCheck
 
 /// Module that holds the security testing functionality.
 module FSec = 
-  open System.IO
-  open System.Collections.Generic
-  open FsCheck
-  open ICSharpCode.SharpZipLib.Zip
-  open System.Net  
-  open System.Net.Http
-
   /// Gets a generated list of strings which only contain charaters from the alphabet.
   [<CompiledName("Alphabet")>]
   let alphabet = Gen.elements Fuzz.alphabet
@@ -45,15 +35,18 @@ module FSec =
   [<CompiledName("CsvInject")>]
   let csvInject = Gen.constant "=cmd|' /C calc'!A0"
 
+  /// <summary>
   /// XPath input generator that provides malformed XPath inputs that can be used to discover XPath vulnerabilities.
   /// XPath is a "simple" language to locate information in an XML document. 
   /// Similar to SQL Injection, XPath Injection attacks occur when an application uses user-supplied information 
   /// to construct an XPath query for XML data. By sending intentionally malformed information into the application, 
   /// an attacker can find out how the XML data is structured, or access data that he may not normally have access to.
   /// (more info: https://www.owasp.org/index.php/XPATH_Injection)
-  ///
-  /// _Severity_: Critical <br/>
-  /// _Vulnerability Indicators_: incorrect/invalid syntax, syntax error, runtime errors, XPathException, System.Xml.XPath 
+  /// </summary>
+  /// <remarks>
+  ///   Severity: Critical
+  ///   Vulnerability Indicators: incorrect/invalid syntax, syntax error, runtime errors, XPathException, System.Xml.XPath 
+  /// </remarks>
   [<CompiledName("XPathInject")>]
   let xpathInject =
     Gen.elements 
@@ -62,12 +55,15 @@ module FSec =
         "' or '1' = '1"
         "'a or 1=1 or 'a'='a" ]
 
+  /// <summary>
   /// XSS (Cross Site Scripting) input generator that provides malformed inputs that can be used to discover XSS vulnerabilities.
   /// Cross-Site Scripting (XSS) attacks are a type of injection, in which malicious scripts are injected into otherwise benign 
   /// and trusted web sites. (more info: https://www.owasp.org/index.php/Cross-site_Scripting_(XSS))
-  ///
-  /// _Severity_: Critical <br/>
-  /// _Vulnerability Indicators_: payload exists in response
+  /// </summary>
+  /// <remarks>
+  ///   Severity: Critical
+  ///   Vulnerability Indicators: payload exists in response
+  /// </remarks>
   [<CompiledName("XssInject")>]
   let xssInject =
     Gen.elements 
@@ -75,30 +71,37 @@ module FSec =
         "<img src=x onerror=alert(1)>"
         "1\"><script>alert(document.cookie)</script>" ]
 
+  /// <summary>
   /// SQL input generator that provides malformed inputs that can be used to discover SQL vulnerabilities.
   /// A SQL injection attack consists of insertion or "injection" of a SQL query via the input data from the client to the application. 
   /// A successful SQL injection exploit can read sensitive data from the database, modify database data, 
   /// execute administration operations on the database etc. (more info: https://www.owasp.org/index.php/SQL_Injection)
-  ///<br/>
-  /// _Severity_: Critical <br/>
-  /// _Vulnerability Indicators_: incorrect/invalid syntax, syntax error, runtime errors, invalid SQL statement, conversion failed, SQLite exception, cannot open database, System.Data.SqlException, ...
+  /// </summary>
+  /// <remarks>
+  ///   Severity: Critical
+  ///   Vulnerability Indicators: incorrect/invalid syntax, syntax error, runtime errors, invalid SQL statement, conversion failed, SQLite exception, cannot open database, System.Data.SqlException, ...
+  /// </remarks>
   [<CompiledName("SqlInject")>]
   let sqlInject = Fuzz.sql |> Gen.elements
 
+  /// <summary>
   /// LDAP input generator that provides LDAP injection strings. 
   /// When receiving an "unusable" response from the SUT, it may be vulnerable for LDAP injection.
   /// An "unusable" response could be a random user record, list of users, ...
   /// LDAP is a lightweight system to manage credentials and authenticating users. 
   /// When a application is vulnerable to LDAP injection, a malicious user may can query
   /// sensitive data from other or even modify/delete it entirely.
-  ///
-  /// _Severity_: Critical <br/>
-  /// _Vulnerability Indicators_: unusable responses
+  /// </summary>
+  /// <remarks>
+  ///   Severity: Critical
+  ///   Vulnerability Indicators: unusable responses
+  /// </remarks>
   [<CompiledName("LdapInject")>]
   let ldapInject =
     Gen.elements
       [ "*"; "*)(|(cn=*"; "*)(|(cn=*)"; "*)(|(cn=*))" ]
 
+  /// <summary>
   /// LDAP input generator with a specified 'normal input' that provides LDAP injection strings.
   /// The 'normal input' should be something legitimate.
   /// When receiving an "unusable" response from the SUT, it may be vulnerable for LDAP injection.
@@ -106,9 +109,11 @@ module FSec =
   /// LDAP is a lightweight system to manage credentials and authenticating users. 
   /// When a application is vulnerable to LDAP injection, a malicious user may can query
   /// sensitive data from other or even modify/delete it entirely.
-  ///
-  /// _Severity_: Critical <br/>
-  /// _Vulnerability Indicators_: unusable responses
+  /// </summary>
+  /// <remarks>
+  ///   Severity: Critical
+  ///   Vulnerability Indicators: unusable responses
+  /// </remarks>
   [<CompiledName("LdapWithNormalInject")>]
   let ldapWithNormalInject x =
     Gen.oneof 
@@ -141,11 +146,12 @@ module FSec =
   let private guid () = Guid.NewGuid().ToString()
   let private (</>) x y = Path.Combine (x, y)
 
+  /// <summary>
   /// Creates a file for a given size stored at a given directory.
-  /// ## Parameters
-  /// - `dir` - Location of where the file should be stored
-  /// - `x` - Value to define the file size (in MB or GB)
-  /// - `m` - Metric to define the Unit of the file size
+  /// </summary>
+  /// <param name="dir">Location of where the file should be stored.</param>
+  /// <param name="x">Value to define the file size (in MB or GB).</param>
+  /// <param name="m">Metric to define the Unit of the file size.</param>
   [<CompiledName("FileOfSize")>]
   let fileOfSize x (m : Metric) (dir : DirectoryInfo) =
     let size = match m with MB -> 1048576L | GB -> 1073741824L
@@ -154,39 +160,6 @@ module FSec =
     fs.Seek (int64 x * size, SeekOrigin.Begin) |> ignore
     fs.WriteByte 0uy
     FileInfo path
-
-  /// Creates a zip file bomb having a depth and width representing the different levels the zip bomb should have.
-  /// ## Parameters
-  /// - `depth` - Represent the depth of the zip bomb: how many levels should the zip bomb have?
-  /// - `width` - Represent the width of the zip bomb: how many files should there be on each depth-level?
-  /// - `start` - Represent the start file of the zip bomb. This file is copied over and over to create the zip bomb.
-  [<CompiledName("ZipBombDepthWidth")>]
-  let zipBombDepthWidth depth width (start : FileInfo) =
-    let mkFileName ext = guid() + ext
-    let zipFiles xs =
-      let fileName = start.Directory.FullName </> mkFileName ".zip"
-      use zip = new ZipOutputStream (File.Create fileName)
-      for fi in xs do
-        using (File.Open (fi, FileMode.Open)) (fun src ->
-        zip.PutNextEntry (Path.GetFileName fi |> ZipEntry)
-        src.CopyTo zip
-        zip.CloseEntry ())
-        File.Delete fi
-      fileName
-
-    let copyFileN n src =
-      let xs = List.init n (fun _ -> mkFileName ".zip")
-      for des in xs do File.Copy (src, des)
-      File.Delete src; xs
-
-    let rec mkBomb depth width bomb =
-      if depth = 0 then bomb else
-      copyFileN width bomb
-      |> zipFiles
-      |> mkBomb (depth - 1) width
-
-    zipFiles [start.FullName]
-    |> mkBomb depth width
 
   /// Illegal file name generator to validate the file uploading mechanism.
   /// Generate file names with semicolons, reserved names, percent sign, ampersand, ...
@@ -231,22 +204,24 @@ module FSec =
       [ dotsSepBy forwardSlash
         dotsSepBy backwardSlash ]
       
+  /// <summary>
   /// Fixed file(s) path generator for a Path Traversal attack.
   /// By using a dot '.' slash '/' '\' commbination (both encoded and un-endcoded),
   /// the input attacker will try to access files/directories outside the expected folder.
-  /// ## Parameters
-  /// - `files` - List of file names that gets appended after the path traversal generation.
+  /// </summary>
+  /// <param name="files">List of file names that gets appended after the path traversal generation.</param>
   [<CompiledName("PathFixedFileTraversal")>]
   let pathFixedFileTraversal files =
     Gen.elements files
     |> Gen.zip pathDirTraversal
     |> Gen.map (fun (dir, file) -> dir + file)
 
+  /// <summary>
   /// Random file(s) path generator for a Path Traversal attack.
   /// By using a dot '.' slash '/' '\' commbination (both encoded and un-endcoded),
   /// the input attacker will try to access files/directories outside the expected folder.
-  /// ## Parameters
-  /// - `ext` - File extension to use to append to the generated path traversal.
+  /// </summary>
+  /// <param name="ext">File extension to use to append to the generated path traversal.</param>
   [<CompiledName("PathFileTraversal")>]
   let pathFileTraversal ext =
     gen { return Guid.NewGuid().ToString() + ext }
@@ -276,12 +251,15 @@ module FSec =
   [<CompiledName("XmlXxe")>]
   let xmlXxe = Fuzz.xmlXxe |> Gen.elements
 
+  /// <summary>
   /// XML Bomb input generator: An XML bomb is a message composed and sent with the intent of overloading an XML parser (typically HTTP server). 
   /// It is block of XML that is both well-formed and valid according to the rules of an XML schema. 
   /// It is a type of XML Denial of Service (DoS) attack. (more info: https://en.wikipedia.org/wiki/Billion_laughs)
-  ///
-  /// _Severity_: Critical
-  /// _Vulnerability Indicators_: timeout
+  /// </summary>
+  /// <remarks>
+  ///   Severity: Critical
+  ///   Vulnerability Indicators: timeout
+  /// </remarks>
   [<CompiledName("XmlBomb")>]
   let xmlBomb =
     let xml =  
@@ -299,10 +277,11 @@ module FSec =
     |> Gen.map (fun l ->
         sprintf "%s%s]><root>&ha%i;</root>" xml (xs l) l)
 
+  /// <summary>
   /// Malicious XML generator: generates a XML structure with a specified depth and tag length to detect failures in naive XML parsing implementations.
-  /// ## Parameters
-  /// - `depth` - Defines the depth of the XML document
-  /// - `tagLen` - Defines the length of the tag names
+  /// </summary>
+  /// <param name="depth">Defines the depth of the XML document.</param>
+  /// <param name="tagLen">Defines the length of the tag names.</param>
   [<CompiledName("XmlMaliciousDepthTagLen")>]
   let xmlMaliciousDepthTagLen depth tagLen =
     let randomAttrOfLength l =
@@ -335,10 +314,11 @@ module FSec =
   
   open System.Xml
 
+  /// <summary>
   /// Alters the specified `XmlDocument` with a XPath identified value generator map for each matched XPath expression.
-  /// ## Parameters
-  /// - `doc` - XML document to inject the generated values.
-  /// - `gvalues` - XPath/Generator map to identify each node to inject with a generated value.
+  /// </summary>
+  /// <param name="doc">XML document to inject the generated values.</param>
+  /// <param name="gvalues">XPath/Generator map to identify each node to inject with a generated value.</param>
   [<CompiledName("XmlMaliciousInject")>]
   let xmlMaliciousInject (doc : XmlDocument) gvalues =
     Map.fold (fun (gmal : Gen<_>) k gvalue ->
@@ -367,18 +347,20 @@ module FSec =
   [<CompiledName("Naughty")>]
   let naugthy = Fuzz.naughty |> Gen.elements
 
+  /// <summary>
   /// Generates an url with hidden specified query parameters: `admin=true`, `debug=true`.
-  /// ## Parameters
-  /// - `baseUrl` - The base URL to add the generated query parameters
+  /// </summary>
+  /// <param name="baseUrl">The base URL to add the generated query parameters.</param>
   [<CompiledName("UrlHiddenAdmin")>]
   let urlHiddenAdmin baseUrl =
     Gen.elements [ "admin=true"; "debug=true" ]
     |> Gen.map (sprintf """%s?%s""" baseUrl)
 
+  /// <summary>
   /// Generates an url with a specified number of query parameters each with its own generator.
-  /// ## Parameters
-  /// - `baseUrl` - The base URL to add the generated query parameters
-  /// - `args` - Map containing a query parameter names and their generator for its value
+  /// </summary>
+  /// <param name="baseUrl">The base URL to add the generated query parameters.</param>
+  /// <param name="args">Map containing a query parameter names and their generator for its value.</param>
   [<CompiledName("UrlTampered")>]
   let urlTampered baseUrl args =
     args
@@ -391,10 +373,11 @@ module FSec =
         Seq.reduce (sprintf """%s&%s""")
         >> sprintf """%s?%s""" baseUrl)
 
+  /// <summary>
   /// Generates an url with injected JavaScript for the given query parameters.
-  /// ## Parameters
-  /// - `baseUrl` - The base URL to add the injection
-  /// - `args` - List containing all the query parameter names
+  /// </summary>
+  /// <param name="baseUrl">The base URL to add the injection.</param>
+  /// <param name="args">List containing all the query parameter names.</param>
   [<CompiledName("UrlInject")>]
   let urlInject baseUrl args =
     args
@@ -402,10 +385,11 @@ module FSec =
     |> Map.ofList
     |> urlTampered baseUrl
 
+  /// <summary>
   /// Generates an url with an additional "bogus" query parameters added to the specified base url.
-  /// ## Parameters
-  /// - `baseUrl` - The base URL to add the generated query parsameters
-  /// - `args` - Map containing a query parameter names and their generator for its value
+  /// </summary>
+  /// <param name="baseUrl">The base URL to add the generated query parsameters.</param>
+  /// <param name="args">Map containing a query parameter names and their generator for its value.</param>
   [<CompiledName("UrlBogus")>]
   let urlBogus baseUrl args =
     let appendMap = Map.fold (fun acc k v ->
@@ -425,10 +409,11 @@ module FSec =
              |> appendMap args)
     bogus >>= urlTampered baseUrl
 
+  /// <summary>
   /// Generates an url with an additional "bogus" query parameters added to the specified base url.
-  /// ## Parameters
-  /// - `baseUrl` - The base URL to add the generated query parsameters
-  /// - `args` - Map containing a query parameter names and their generator for its value
+  /// </summary>
+  /// <param name="baseUrl">The base URL to add the generated query parsameters.</param>
+  /// <param name="args">Map containing a query parameter names and their generator for its value.</param>
   [<CompiledName("UrlBogus")>]
   let urlBogusDict baseUrl (args : IDictionary<string, Gen<_>>) =
     (args :> seq<_>)
@@ -439,26 +424,6 @@ module FSec =
   /// Generates a HTTP method.
   [<CompiledName("HttpMethod")>]
   let httpMethod = Gen.elements Fuzz.httpMethods
-
-  /// Sends out a several HTTP requests in parallel to a specified url and request options,
-  /// to verify if the targetted endpoint is vulnerable for DOS attacks.
-  /// ## Parameters
-  /// - `url` - The targetted endpoint to where the HTTP request should be send to
-  /// - `setRequest` - A required function to set the HTTP request options. TIP: partial POST requests are especially a good way to check for DOS vulnerabilities.
-  /// - `n` - The amount of HTTP requests to send out in parallel.
-  [<CompiledName("HttpDos")>]
-  let httpDos url setRequest n =
-    let send = async {
-      let req = HttpWebRequest.CreateHttp (url : Uri)
-      let req = setRequest req : HttpWebRequest
-      try let! _ = req.AsyncGetResponse ()
-          ()
-      with _ -> () }
-
-    List.replicate n send
-    |> Async.Parallel
-    |> Async.Ignore
-    |> Async.Start
 
   /// Gets a wide sample of malicious input for windows targets
   [<CompiledName("Windows")>]

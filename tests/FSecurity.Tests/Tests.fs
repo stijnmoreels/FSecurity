@@ -2,19 +2,20 @@
 
 open System
 open System.IO
+open System.Net
 open System.Text.RegularExpressions
 open System.Threading
+open System.Text
 open System.Xml
 open System.Xml.Schema
 
 open FsCheck
-open ICSharpCode.SharpZipLib.Zip
 open Swensen.Unquote
 open Expecto
 
+open FScenario
 open FSecurity
-open System.Text
-open System.Net
+
 
 [<Tests>]
 let injection_tests =
@@ -139,17 +140,6 @@ let file_tests =
         |> Arb.fromGen
         |> Prop.forAll <|
             Regex.isMatch (regexTraversal + "(.+).txt$")
-
-      testPropertyWithConfig ({FsCheckConfig.defaultConfig with maxTest = 1 }) "create zip bomb" <| fun () ->
-        Environment.CurrentDirectory
-        |> DirectoryInfo
-        |> FSec.fileOfSize 1 MB
-        |> FSec.zipBombDepthWidth 1 2
-        |> fun path ->
-            use zip = new ZipFile (path)
-            [ for z in zip -> z :?> ZipEntry ]
-            |> List.forall (fun e -> e.Name.EndsWith ".zip") 
-            .&. (zip.Count =! 2L)
     ]
 
 [<Tests>]
@@ -168,38 +158,27 @@ let fuzz_tests =
         Expect.contains xs "??" "fuzzed encoding should not always succeed in converting"
         let xs = Fuzz.encoding "some input"
         Expect.allEqual xs "some input" "fuzzed encoding should succeed for all charaters"
+      testCase "generate sized fuzzing input" <| fun () ->
+        let input = Fuzz.sized 1 MB Fuzz.alphabet
+        let bytes = Encoding.UTF8.GetBytes input
+        Expect.equal (int64 bytes.Length) (Metric.unit Metric.MB) "should be equal"
     ]
 
-[<PTests>]
+[<Tests>]
 let api_tests =
   testList "api tests" [
     testCaseAsync "run scan" <| async {
-      let req =
-        Req.endpoint PUT "http://localhost:4000/api"
-      
-      let req =
-        req |> Req.routes [ "monitor"; "relatedmessages" ]
-      
-      let resp4XX payload (res : Response) = async {
-        if res.StatusCode = HttpStatusCode.BadRequest
-           || res.StatusCode = HttpStatusCode.NotFound
-           || res.StatusCode = HttpStatusCode.NoContent then return None
-        else let v = Vuln.medium "Possible problem JSON -> XML deserialization" res payload
-             return Some v }
+      use __ = Http.route "http://localhost:4000" (fun ctx -> true) (Http.respondStatusCode 413)
 
-      let have payload res =
-        if Res.allow [ HttpStatusCode.BadRequest; HttpStatusCode.NotFound; HttpStatusCode.NoContent ] res
-        then None
-        else Some <| Vuln.medium "Possible problem" res payload
+      let req = req PUT "http://localhost:4000" {
+        body "send me!" "text/plain" }
 
-      let! vulnerabilities = 
-        Api.inject Fuzz.alphanum_special
-        |> Api.into (Req.parameter "id")
-        |> Api.into (Req.parameter "direction")
-        |> Api.shouldAsync resp4XX
-        |> Api.scan req
-      
-      let err = String.Join (Environment.NewLine, vulnerabilities)
-      Expect.isEmpty vulnerabilities err 
-      () }
+      let! vulnerabilities = scan req {
+        inject Fuzz.alphanum_special
+        into (Req.parameter "id")
+        into (Req.parameter "direction")
+        should (Res.statuscode 413) }
+
+      let err = Vuln.format vulnerabilities
+      Expect.isNonEmpty vulnerabilities err }
   ]

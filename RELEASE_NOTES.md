@@ -8,3 +8,7 @@ Initial release testing
   - Fuzzing with a several fuzzing resource lists directly available
   - HTTP request building + injection places for the fuzzing inputs
   - Verification composition to discover security vulnerabilities
+
+#### 2.1.0-beta
+
+- Spliting core, API and FsCheck functionality into different packages

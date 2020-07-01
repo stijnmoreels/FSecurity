@@ -1,0 +1,759 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>FSecurity.Api</name></assembly>
+<members>
+<member name="M:FSecurity.VulnerabilityFactory.CreateFromResponseContentAsync(System.Net.Http.HttpResponseMessage,System.String,FSecurity.Severity,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Creates a vulnerability by reading the response content.
+ A summary from the request is created.
+</summary>
+</member>
+<member name="T:FSecurity.VulnerabilityFactory">
+<summary>
+ Model to create vulnerability types.
+</summary>
+</member>
+<member name="M:FSecurity.VulnerabilityExtensions.WithResponseContentAsync(FSecurity.Vulnerability,System.Net.Http.HttpResponseMessage)">
+<summary>
+ Adds the response content to the vulnerability.
+</summary>
+</member>
+<member name="T:FSecurity.VulnerabilityExtensions">
+<summary>
+ Provides additional extensions on the vulnerability type.
+</summary>
+</member>
+<member name="M:FSecurity.HttpClientExtensions.SendAsync(System.Net.Http.HttpClient,FSecurity.Request)">
+<summary>
+ Sends a HTTP request as a asynchronous operation.
+</summary>
+</member>
+<member name="T:FSecurity.HttpClientExtensions">
+<summary>
+ Adds extensions for the request model to work smootly with the .NET HttpClient.
+</summary>
+</member>
+<member name="M:FSecurity.ResponseExtensions.IsStatus5XX(System.Net.Http.HttpResponseMessage)">
+<summary>
+ Determines if the response is in the range of 5XX status codes.
+</summary>
+</member>
+<member name="M:FSecurity.ResponseExtensions.IsStatus4XX(System.Net.Http.HttpResponseMessage)">
+<summary>
+ Determines if the response is in the range of 4XX status codes.
+</summary>
+</member>
+<member name="M:FSecurity.ResponseExtensions.HasHeaderValues(System.Net.Http.HttpResponseMessage,System.String,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Determines if a response headers exists in the response.
+</summary>
+</member>
+<member name="M:FSecurity.ResponseExtensions.HasHeaderValue(System.Net.Http.HttpResponseMessage,System.String,System.String)">
+<summary>
+ Determines if a response headers exists in the response.
+</summary>
+</member>
+<member name="M:FSecurity.ResponseExtensions.HasHeader(System.Net.Http.HttpResponseMessage,System.String)">
+<summary>
+ Determines if a response headers exists in the response.
+</summary>
+</member>
+<member name="M:FSecurity.ResponseExtensions.ContainInBody(System.Net.Http.HttpResponseMessage,System.String)">
+<summary>
+ Determines if a response content contains an expected string,
+ and creates a vulnerability for it when it does.
+</summary>
+</member>
+<member name="M:FSecurity.ResponseExtensions.AllowStatusCodes(System.Net.Http.HttpResponseMessage,System.Net.HttpStatusCode[])">
+<summary>
+ Determines if a response has one of the allowed status codes.
+</summary>
+</member>
+<member name="T:FSecurity.ResponseExtensions">
+<summary>
+ Extensions on the response type for a dev-friendly C#-context.
+</summary>
+</member>
+<member name="P:FSecurity.Api.PassThru">
+<summary>
+ Discards the payloads so the request itself is used to send.
+ This also means nothing can be injected.
+</summary>
+</member>
+<member name="M:FSecurity.Api.ShouldAsync(FSecurity.Scan,System.Func{System.String[],System.Net.Http.HttpResponseMessage,System.Threading.Tasks.Task{System.Boolean}},FSecurity.Vulnerability)">
+<summary>
+ Adds an asynchronous validation function that verifies a security issue.
+</summary>
+</member>
+<member name="M:FSecurity.Api.ShouldAsync(FSecurity.Scan,System.Func{System.String[],System.Net.Http.HttpResponseMessage,System.Threading.Tasks.Task{System.ValueTuple{System.Boolean,FSecurity.Vulnerability}}})">
+<summary>
+ Adds an asynchronous validation function that verifies a security issue.
+</summary>
+</member>
+<member name="M:FSecurity.Api.ShouldAsnc(FSecurity.Scan,System.Func{System.Net.Http.HttpResponseMessage,System.Threading.Tasks.Task})">
+<summary>
+ Adds an asynchronous validation function that verifies a security issue.
+</summary>
+</member>
+<member name="M:FSecurity.Api.ShouldAllAsync``1(FSecurity.Scan,System.Func{System.String[],System.Net.Http.HttpResponseMessage,``0})">
+<summary>
+ Adds an asynchronous validation function that verifies several security issues.
+</summary>
+</member>
+<member name="M:FSecurity.Api.ShouldAll(FSecurity.Scan,System.Func{System.String[],System.Net.Http.HttpResponseMessage,FSecurity.Vulnerability[]})">
+<summary>
+ Adds a validation function that verifies several security issues.
+</summary>
+</member>
+<member name="M:FSecurity.Api.Should(FSecurity.Scan,System.Action{System.Net.Http.HttpResponseMessage})">
+<summary>
+ Adds a validation function that asserts for a security issue.
+</summary>
+</member>
+<member name="M:FSecurity.Api.Should(FSecurity.Scan,System.Func{System.Net.Http.HttpResponseMessage,System.Boolean},FSecurity.Vulnerability)">
+<summary>
+ Adds a validation function that verifies a security issue.
+</summary>
+</member>
+<member name="M:FSecurity.Api.Should(FSecurity.Scan,System.Func{System.Net.Http.HttpResponseMessage,System.ValueTuple{System.Boolean,FSecurity.Vulnerability}})">
+<summary>
+ Adds a validation function that verifies a security issue.
+</summary>
+</member>
+<member name="M:FSecurity.Api.Should(FSecurity.Scan,System.Func{System.String[],System.Net.Http.HttpResponseMessage,System.Boolean},FSecurity.Vulnerability)">
+<summary>
+ Adds a validation function that verifies a security issue.
+</summary>
+</member>
+<member name="M:FSecurity.Api.Should(FSecurity.Scan,System.Func{System.String[],System.Net.Http.HttpResponseMessage,System.ValueTuple{System.Boolean,FSecurity.Vulnerability}})">
+<summary>
+ Adds a validation function that verifies a security issue.
+</summary>
+</member>
+<member name="M:FSecurity.Api.ScanRequestAsync(FSecurity.Scan,System.Net.Http.HttpRequestMessage,System.Security.Cryptography.X509Certificates.X509Certificate)">
+<summary>
+ Runs a test scan for a given HTTP request, aggregates all found vulnerabilities for the test scan by validating the HTTP responses with the previously provided validation functions.
+</summary>
+</member>
+<member name="M:FSecurity.Api.ScanAsync(FSecurity.Scan,FSecurity.Request)">
+<summary>
+ Runs a test scan for a given HTTP request by injecting a maximum amount of payloads into a series of HTTP requests
+ using the previously specified injector functions for the request, 
+ and aggregates all found vulnerabilities for the test scan by validating the HTTP responses with the previously provided validation functions.
+</summary>
+</member>
+<member name="M:FSecurity.Api.Into(FSecurity.Scan,System.Func{System.String,FSecurity.Request,FSecurity.Request})">
+<summary>
+ Adds an injector function to the test scan to inject payloads into a HTTP request.
+</summary>
+</member>
+<member name="M:FSecurity.Api.InjectMax(System.Int32,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Sets the payloads together with how much payloads should be used for this test scan.
+</summary>
+</member>
+<member name="M:FSecurity.Api.Inject(System.String)">
+<summary>
+ Sets the payload for this test scan.
+</summary>
+</member>
+<member name="M:FSecurity.Api.Inject(System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Sets the payloads for this test scan.
+</summary>
+</member>
+<member name="T:FSecurity.Api">
+<summary>
+ Adds extensions to the API scan type for a C#-friendly context.
+</summary>
+</member>
+<member name="M:FSecurity.ApiBuilder.ShouldAsync(FSecurity.Scan,Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Collections.FSharpList{System.String},Microsoft.FSharp.Core.FSharpFunc{System.Net.Http.HttpResponseMessage,Microsoft.FSharp.Control.FSharpAsync{Microsoft.FSharp.Core.FSharpOption{FSecurity.Vulnerability}}}})">
+<summary>
+ Adds an asynchronous validation function that verifies a security issue.
+</summary>
+</member>
+<member name="M:FSecurity.ApiBuilder.ShouldAssertAsync(FSecurity.Scan,Microsoft.FSharp.Core.FSharpFunc{System.Net.Http.HttpResponseMessage,Microsoft.FSharp.Control.FSharpAsync{Microsoft.FSharp.Core.Unit}})">
+<summary>
+ Adds an asynchronous validation function that verifies for a security issue.
+</summary>
+</member>
+<member name="M:FSecurity.ApiBuilder.ShouldAssert(FSecurity.Scan,Microsoft.FSharp.Core.FSharpFunc{System.Net.Http.HttpResponseMessage,Microsoft.FSharp.Core.Unit})">
+<summary>
+ Adds a validation function that asserts for a security issue.
+</summary>
+</member>
+<member name="M:FSecurity.ApiBuilder.ShouldAllAsync(FSecurity.Scan,Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Collections.FSharpList{System.String},Microsoft.FSharp.Core.FSharpFunc{System.Net.Http.HttpResponseMessage,Microsoft.FSharp.Control.FSharpAsync{FSecurity.Vulnerability[]}}})">
+<summary>
+ Adds an asynchronous validation function that verifies several security issues.
+</summary>
+</member>
+<member name="M:FSecurity.ApiBuilder.ShouldAll(FSecurity.Scan,Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Collections.FSharpList{System.String},Microsoft.FSharp.Core.FSharpFunc{System.Net.Http.HttpResponseMessage,FSecurity.Vulnerability[]}})">
+<summary>
+ Adds a validation function that verifies several security issues.
+</summary>
+</member>
+<member name="M:FSecurity.ApiBuilder.Should(FSecurity.Scan,Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Collections.FSharpList{System.String},Microsoft.FSharp.Core.FSharpFunc{System.Net.Http.HttpResponseMessage,Microsoft.FSharp.Core.FSharpOption{FSecurity.Vulnerability}}})">
+<summary>
+ Adds a validation function that verifies a security issue.
+</summary>
+</member>
+<member name="M:FSecurity.ApiBuilder.Into(FSecurity.Scan,Microsoft.FSharp.Core.FSharpFunc{System.String,Microsoft.FSharp.Core.FSharpFunc{FSecurity.Request,FSecurity.Request}})">
+<summary>
+ Adds an injector function to the test scan to inject payloads into a HTTP request.
+</summary>
+</member>
+<member name="M:FSecurity.ApiBuilder.InjectOne(FSecurity.Scan,System.String)">
+<summary>
+ Sets the payload for this test scan.
+</summary>
+</member>
+<member name="M:FSecurity.ApiBuilder.InjectMax(FSecurity.Scan,System.Collections.Generic.IEnumerable{System.String},System.Int32)">
+<summary>
+ Sets the payloads together with how much payloads should be used for this test scan.
+</summary>
+</member>
+<member name="M:FSecurity.ApiBuilder.Inject(FSecurity.Scan,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Sets the payloads for this this test scan.
+</summary>
+</member>
+<member name="T:FSecurity.ApiBuilder">
+<summary>
+ Builder to create a API test scan; running the scan when the builder runs.
+</summary>
+</member>
+<member name="M:FSecurity.HttpResponseMessageExtensions.FormatAsString(System.Net.Http.HttpResponseMessage)">
+<summary>
+ Format the HTTP response message to a user-friendly string.
+</summary>
+</member>
+<member name="T:FSecurity.HttpResponseMessageExtensions">
+<summary>
+ Extensions on the HTTP response message.
+</summary>
+</member>
+<member name="M:FSecurity.RequestExtensions.WithRoutes(FSecurity.Request,System.String[])">
+<summary>
+ Adds routing paths to the request.
+</summary>
+</member>
+<member name="M:FSecurity.RequestExtensions.WithRoute(FSecurity.Request,System.String)">
+<summary>
+ Adds a single route path to the request.
+</summary>
+</member>
+<member name="M:FSecurity.RequestExtensions.WithParameters(FSecurity.Request,System.Tuple{System.String,System.String}[])">
+<summary>
+ Adds query string parameters to the request.
+</summary>
+</member>
+<member name="M:FSecurity.RequestExtensions.WithParameter(FSecurity.Request,System.String,System.String)">
+<summary>
+ Adds a single query string parameter to the request.
+</summary>
+</member>
+<member name="M:FSecurity.RequestExtensions.WithMethod(FSecurity.Request,System.Net.Http.HttpMethod)">
+<summary>
+ Sets the HTTP method for the request.
+</summary>
+</member>
+<member name="M:FSecurity.RequestExtensions.WithMaximumConcurrent(FSecurity.Request,System.Int32)">
+<summary>
+ Sets the maximum amount of request that can be send concurrently to the target API endpoint.
+</summary>
+</member>
+<member name="M:FSecurity.RequestExtensions.WithHeaders(FSecurity.Request,System.Tuple{System.String,System.String}[])">
+<summary>
+ Adds HTTP headers to the request.
+</summary>
+</member>
+<member name="M:FSecurity.RequestExtensions.WithHeader(FSecurity.Request,System.String,System.String)">
+<summary>
+ Adds a single HTTP header to the request.
+</summary>
+</member>
+<member name="M:FSecurity.RequestExtensions.WithContentType(FSecurity.Request,System.String)">
+<summary>
+ Replaces the content type of the request body.
+</summary>
+</member>
+<member name="M:FSecurity.RequestExtensions.WithClientCertificate(FSecurity.Request,System.Security.Cryptography.X509Certificates.X509Certificate)">
+<summary>
+ Sets the HTTPS client certificate to the request.
+</summary>
+</member>
+<member name="M:FSecurity.RequestExtensions.WithBodyReplaceRegex(FSecurity.Request,System.String,System.String)">
+<summary>
+ Replace all matching occurrences in the request content with a value.
+</summary>
+</member>
+<member name="M:FSecurity.RequestExtensions.WithBodyReplaceBetween(FSecurity.Request,System.String,System.String)">
+<summary>
+ Replaces all text between a specified indicator (ex. &apos;#to-be-replaced#&apos;) with a value.
+ Remark that this uses a regular expressions so valid regex charaters should be escaped.
+</summary>
+</member>
+<member name="M:FSecurity.RequestExtensions.WithBody(FSecurity.Request,System.String,System.String)">
+<summary>
+ Sets the request body with a content type.
+</summary>
+</member>
+<member name="T:FSecurity.RequestExtensions">
+<summary>
+ Adds extensions for a C#-friendly context.
+</summary>
+</member>
+<member name="M:FSecurity.RequestBuilder.Routes(FSecurity.Request,Microsoft.FSharp.Collections.FSharpList{System.String})">
+<summary>
+ Adds routing paths to the request.
+</summary>
+</member>
+<member name="M:FSecurity.RequestBuilder.Route(FSecurity.Request,System.String)">
+<summary>
+ Adds a single route path to the request.
+</summary>
+</member>
+<member name="M:FSecurity.RequestBuilder.Parameters(FSecurity.Request,Microsoft.FSharp.Collections.FSharpList{System.Tuple{System.String,System.String}})">
+<summary>
+ Adds query string parameters to the request.
+</summary>
+</member>
+<member name="M:FSecurity.RequestBuilder.Parameter(FSecurity.Request,System.String,System.String)">
+<summary>
+ Adds a single query string parameter to the request.
+</summary>
+</member>
+<member name="M:FSecurity.RequestBuilder.MaxConcurrent(FSecurity.Request,System.Int32)">
+<summary>
+ Sets the maximum amount of request that can be send concurrently to the target API endpoint.
+</summary>
+</member>
+<member name="M:FSecurity.RequestBuilder.Headers(FSecurity.Request,Microsoft.FSharp.Collections.FSharpList{System.Tuple{System.String,System.String}})">
+<summary>
+ Adds HTTP headers to the request.
+</summary>
+</member>
+<member name="M:FSecurity.RequestBuilder.Header(FSecurity.Request,System.String,System.String)">
+<summary>
+ Adds a single HTTP header to the request.
+</summary>
+</member>
+<member name="M:FSecurity.RequestBuilder.ContentType(System.String,FSecurity.Request)">
+<summary>
+ Replaces the content type of the request body.
+</summary>
+</member>
+<member name="M:FSecurity.RequestBuilder.Certificate(FSecurity.Request,System.Security.Cryptography.X509Certificates.X509Certificate)">
+<summary>
+ Sets the HTTPS client certificate to the request.
+</summary>
+</member>
+<member name="M:FSecurity.RequestBuilder.BodyRegex(FSecurity.Request,System.String,System.String)">
+<summary>
+ Replace all matching occurrences in the request content with a value.
+</summary>
+</member>
+<member name="M:FSecurity.RequestBuilder.BodyBetween(FSecurity.Request,System.String,System.String)">
+<summary>
+ Replaces all text between a specified indicator (ex. &apos;#to-be-replaced#&apos;) with a value.
+ Remark that this uses a regular expressions so valid regex charaters should be escaped.
+</summary>
+</member>
+<member name="M:FSecurity.RequestBuilder.Body(FSecurity.Request,System.String,System.String)">
+<summary>
+ Sets the request body with a content type.
+</summary>
+</member>
+<member name="T:FSecurity.RequestBuilder">
+<summary>
+ Represents a builder for creating a HTTP request template.
+</summary>
+</member>
+<member name="P:FSecurity.Scan.Validation">
+<summary>
+ Gets a series of validation functions to determine wheter a response for a set of payloads is considered vulnerable for a security issue.
+</summary>
+</member>
+<member name="P:FSecurity.Scan.Payloads">
+<summary>
+ Gets a series of payloads to inject into the request; together with a maximum value indicator of how many payloads to use in a test scan.
+</summary>
+</member>
+<member name="P:FSecurity.Scan.AttackSurface">
+<summary>
+ Gets a series of injector functions that together forms the attack surface of the HTTP request.
+</summary>
+</member>
+<member name="T:FSecurity.Scan">
+<summary>
+ Represents a API scan.
+</summary>
+</member>
+<member name="T:FSecurity.Payload">
+<summary>
+ Type abbrivation for a payload.
+</summary>
+</member>
+<member name="T:FSecurity.Response">
+<summary>
+ Represents a HTTP response.
+</summary>
+</member>
+<member name="P:FSecurity.Request.ClientCertificate">
+<summary>
+ Gets the possible HTTPS client certificate of the request.
+</summary>
+</member>
+<member name="P:FSecurity.Request.MaxConcurrentRequests">
+<summary>
+ Indicate how many request should be send maximum concurrently.
+</summary>
+</member>
+<member name="P:FSecurity.Request.Body">
+<summary>
+ Gets the possible request body.
+</summary>
+</member>
+<member name="P:FSecurity.Request.Headers">
+<summary>
+ Gets the HTTP headers of the request.
+</summary>
+</member>
+<member name="P:FSecurity.Request.Method">
+<summary>
+ Gets the HTTP method of the request.
+</summary>
+</member>
+<member name="P:FSecurity.Request.Params">
+<summary>
+ Gets the query string parameters to add to the request.
+</summary>
+</member>
+<member name="P:FSecurity.Request.Routes">
+<summary>
+ Gets the routes to add after the base URL of the request.
+</summary>
+</member>
+<member name="P:FSecurity.Request.BaseUrl">
+<summary>
+ Gets the url from which a HTTP request will be created.
+</summary>
+</member>
+<member name="M:FSecurity.Request.op_Implicit(FSecurity.Request)">
+<summary>
+ Creates a HTTP request message from this request model
+</summary>
+</member>
+<member name="M:FSecurity.Request.ToHttpRequestMessage">
+<summary>
+ Creates a HTTP request message from this request model
+</summary>
+</member>
+<member name="M:FSecurity.Request.Endpoint(System.Net.Http.HttpMethod,System.String)">
+<summary>
+ Creates a HTTP request with a method and base URL.
+</summary>
+</member>
+<member name="T:FSecurity.Request">
+<summary>
+ Represents a HTTP request.
+</summary>
+</member>
+<member name="P:FSecurity.Body.Replacements">
+<summary>
+ Gets the replacement functions to inject payloads into the request content.
+</summary>
+</member>
+<member name="P:FSecurity.Body.ContentType">
+<summary>
+ Gets the type of the request content.
+</summary>
+</member>
+<member name="P:FSecurity.Body.Content">
+<summary>
+ Gets the raw content of the request.
+</summary>
+</member>
+<member name="T:FSecurity.Body">
+<summary>
+ Represents a HTTP request body.
+</summary>
+</member>
+<member name="M:FSecurity.VulnerabilityAutoOpen.Vulnerability.fromRespContent.Static(System.Net.Http.HttpResponseMessage,System.String,FSecurity.Severity,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Creates a vulnerability by reading the response content.
+ A summary from the request is created.
+</summary>
+</member>
+<member name="T:FSecurity.VulnerabilityAutoOpen">
+<summary>
+ Functionality on the vulnerability type which is directly available.
+</summary>
+</member>
+<member name="M:FSecurity.ResModule.header(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Net.Http.HttpResponseMessage)">
+<summary>
+ Determines if the response has response header.
+</summary>
+</member>
+<member name="M:FSecurity.ResModule.status(System.Net.HttpStatusCode,System.Collections.Generic.IEnumerable{System.String},System.Net.Http.HttpResponseMessage)">
+<summary>
+ Determines if the respose status code is expected.
+</summary>
+</member>
+<member name="M:FSecurity.ResModule.statuscode(System.Int32,System.Collections.Generic.IEnumerable{System.String},System.Net.Http.HttpResponseMessage)">
+<summary>
+ Determines if the response status code is expected.
+</summary>
+</member>
+<member name="M:FSecurity.ResModule.status5XX(System.Collections.Generic.IEnumerable{System.String},System.Net.Http.HttpResponseMessage)">
+<summary>
+ Determines if the response is in the range of 5XX status codes.
+</summary>
+</member>
+<member name="M:FSecurity.ResModule.status4XX(System.Collections.Generic.IEnumerable{System.String},System.Net.Http.HttpResponseMessage)">
+<summary>
+ Determines if the response is in the range of 4XX status codes.
+</summary>
+</member>
+<member name="M:FSecurity.ResModule.isStatus5XX(System.Net.Http.HttpResponseMessage)">
+<summary>
+ Determines if the response is in the range of 5XX status codes.
+</summary>
+</member>
+<member name="M:FSecurity.ResModule.isStatus4XX(System.Net.Http.HttpResponseMessage)">
+<summary>
+ Determines if the response is in the range of 4XX status codes.
+</summary>
+</member>
+<member name="M:FSecurity.ResModule.isStatus(System.Net.HttpStatusCode,System.Net.Http.HttpResponseMessage)">
+<summary>
+ Determines if the response&apos;s status code is expected.
+</summary>
+</member>
+<member name="M:FSecurity.ResModule.headers(System.Net.Http.HttpResponseMessage)">
+<summary>
+ Gets the response headers in a Map&lt;_, _&gt; type.
+</summary>
+</member>
+<member name="M:FSecurity.ResModule.hasHeaderValue(System.String,System.String,System.Net.Http.HttpResponseMessage)">
+<summary>
+ Determines if a response header exists in the response.
+</summary>
+</member>
+<member name="M:FSecurity.ResModule.hasHeaderValues(System.String,System.Collections.Generic.IEnumerable{System.String},System.Net.Http.HttpResponseMessage)">
+<summary>
+ Determines if a response header exists in the response.
+</summary>
+</member>
+<member name="M:FSecurity.ResModule.hasHeader(System.String,System.Net.Http.HttpResponseMessage)">
+<summary>
+ Determines if a response header exists in the response.
+</summary>
+</member>
+<member name="M:FSecurity.ResModule.allow(System.Collections.Generic.IEnumerable{System.Net.HttpStatusCode},System.Net.Http.HttpResponseMessage)">
+<summary>
+ Determines if a response has one of the allowed status codes.
+</summary>
+</member>
+<member name="M:FSecurity.ResModule.contain(System.String,System.Net.Http.HttpResponseMessage)">
+<summary>
+ Determines if a response content contains an expected string,
+ and creates a vulnerability for it when it does.
+</summary>
+</member>
+<member name="T:FSecurity.ResModule">
+<summary>
+ Operations on the response type.
+</summary>
+</member>
+<member name="M:FSecurity.ApiBuilderValues.scanRequest``1(FSecurity.Request,Microsoft.FSharp.Core.FSharpOption{``0})">
+<summary>
+ Runs a test scan for a given HTTP request, aggregates all found vulnerabilities for the test scan by validating the HTTP responses with the previously provided validation functions.
+</summary>
+</member>
+<member name="M:FSecurity.ApiBuilderValues.scan(FSecurity.Request)">
+<summary>
+ Runs a test scan for a given HTTP request by injecting a maximum amount of payloads into a series of HTTP requests
+ using the previously specified injector functions for the request, 
+ and aggregates all found vulnerabilities for the test scan by validating the HTTP responses with the previously provided validation functions.
+</summary>
+</member>
+<member name="T:FSecurity.ApiBuilderValues">
+<summary>
+ Builder starter values.
+</summary>
+</member>
+<member name="M:FSecurity.ApiModule.scan(FSecurity.Request,FSecurity.Scan)">
+<summary>
+ Runs a test scan for a given HTTP request by injecting a maximum amount of payloads into a series of HTTP requests
+ using the previously specified injector functions for the request, 
+ and aggregates all found vulnerabilities for the test scan by validating the HTTP responses with the previously provided validation functions.
+</summary>
+</member>
+<member name="M:FSecurity.ApiModule.scanRequest``1(System.Net.Http.HttpRequestMessage,Microsoft.FSharp.Core.FSharpOption{``0},FSecurity.Scan)">
+<summary>
+ Runs a test scan for a given HTTP request, aggregates all found vulnerabilities for the test scan by validating the HTTP responses with the previously provided validation functions.
+</summary>
+</member>
+<member name="M:FSecurity.ApiModule.into(Microsoft.FSharp.Core.FSharpFunc{System.String,Microsoft.FSharp.Core.FSharpFunc{FSecurity.Request,FSecurity.Request}},FSecurity.Scan)">
+<summary>
+ Adds an injector function to the test scan to inject payloads into a HTTP request.
+</summary>
+</member>
+<member name="P:FSecurity.ApiModule.passThru">
+<summary>
+ Discards the payloads so the request itself is used to send.
+ This also means nothing can be injected.
+</summary>
+</member>
+<member name="M:FSecurity.ApiModule.injectOne(System.String)">
+<summary>
+ Sets the payload for this test scan.
+</summary>
+</member>
+<member name="M:FSecurity.ApiModule.inject(System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Sets the payloads for this test scan.
+</summary>
+</member>
+<member name="M:FSecurity.ApiModule.injectMax(System.Int32,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Sets the payloads together with how much payloads should be used for this test scan.
+</summary>
+</member>
+<member name="M:FSecurity.ApiModule.shouldAssert(Microsoft.FSharp.Core.FSharpFunc{System.Net.Http.HttpResponseMessage,Microsoft.FSharp.Core.Unit},FSecurity.Scan)">
+<summary>
+ Adds a validation function that asserts for a security issue.
+</summary>
+</member>
+<member name="M:FSecurity.ApiModule.should(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Collections.FSharpList{System.String},Microsoft.FSharp.Core.FSharpFunc{System.Net.Http.HttpResponseMessage,Microsoft.FSharp.Core.FSharpOption{FSecurity.Vulnerability}}},FSecurity.Scan)">
+<summary>
+ Adds a validation function that verifies a security issue.
+</summary>
+</member>
+<member name="M:FSecurity.ApiModule.shouldAssertAsync(Microsoft.FSharp.Core.FSharpFunc{System.Net.Http.HttpResponseMessage,Microsoft.FSharp.Control.FSharpAsync{Microsoft.FSharp.Core.Unit}},FSecurity.Scan)">
+<summary>
+ Adds an asynchronous validation function that verifies for a security issue.
+</summary>
+</member>
+<member name="M:FSecurity.ApiModule.shouldAsync(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Collections.FSharpList{System.String},Microsoft.FSharp.Core.FSharpFunc{System.Net.Http.HttpResponseMessage,Microsoft.FSharp.Control.FSharpAsync{Microsoft.FSharp.Core.FSharpOption{FSecurity.Vulnerability}}}},FSecurity.Scan)">
+<summary>
+ Adds an asynchronous validation function that verifies a security issue.
+</summary>
+</member>
+<member name="M:FSecurity.ApiModule.shouldAll(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Collections.FSharpList{System.String},Microsoft.FSharp.Core.FSharpFunc{System.Net.Http.HttpResponseMessage,FSecurity.Vulnerability[]}},FSecurity.Scan)">
+<summary>
+ Adds a validation function that verifies several security issues.
+</summary>
+</member>
+<member name="M:FSecurity.ApiModule.shouldAllAsync(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Collections.FSharpList{System.String},Microsoft.FSharp.Core.FSharpFunc{System.Net.Http.HttpResponseMessage,Microsoft.FSharp.Control.FSharpAsync{FSecurity.Vulnerability[]}}},FSecurity.Scan)">
+<summary>
+ Adds an asynchronous validation function that verifies several security issues.
+</summary>
+</member>
+<member name="T:FSecurity.ApiModule">
+<summary>
+ Operations to scan an API endpoint.
+</summary>
+</member>
+<member name="M:FSecurity.Async.ParallelWithThrottle``1(System.Int32,System.Collections.Generic.IEnumerable{Microsoft.FSharp.Control.FSharpAsync{``0}})">
+<summary>
+ Creates an asynchronous computation that executes all the given asynchronous computations, initially queueing each as work items and using a fork/join pattern.
+ The paralelism is throttled, so that at most `throttle` computations run at one time.
+</summary>
+</member>
+<member name="M:FSecurity.Async.ParallelCatchWithThrottle``1(System.Int32,System.Collections.Generic.IEnumerable{Microsoft.FSharp.Control.FSharpAsync{``0}})">
+<summary>
+ Creates an asynchronous computation that executes all the given asynchronous computations, initially queueing each as work items and using a fork/join pattern.
+ This function doesn&apos;t throw exceptions, but instead returns an array of Choices.
+ The paralelism is throttled, so that at most `throttle` computations run at one time.
+</summary>
+</member>
+<member name="M:FSecurity.Async.ParallelWithThrottleCustom``2(Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.FSharpChoice{``0,System.Exception},``1},System.Int32,System.Collections.Generic.IEnumerable{Microsoft.FSharp.Control.FSharpAsync{``0}})">
+<summary>
+ common code for ParallelCatchWithThrottle and ParallelWithThrottle
+</summary>
+</member>
+<member name="M:FSecurity.RequestBuilderValues.req(System.Net.Http.HttpMethod,System.String)">
+<summary>
+ Starter value for the request template builder.
+</summary>
+</member>
+<member name="M:FSecurity.ReqModule.maxConcurrent(System.Int32,FSecurity.Request)">
+<summary>
+ Sets the maximum amount of request that can be send concurrently to the target API endpoint.
+</summary>
+</member>
+<member name="M:FSecurity.ReqModule.contentType(System.String,FSecurity.Request)">
+<summary>
+ Replaces the content type of the request body.
+</summary>
+</member>
+<member name="M:FSecurity.ReqModule.body_between(System.String,System.String,FSecurity.Request)">
+<summary>
+ Replaces all text between a specified indicator (ex. &apos;#to-be-replaced#&apos;) with a value.
+ Remark that this uses a regular expressions so valid regex charaters should be escaped.
+</summary>
+</member>
+<member name="M:FSecurity.ReqModule.body_regex(System.String,System.String,FSecurity.Request)">
+<summary>
+ Replace all matching occurrences in the request content with a value.
+</summary>
+</member>
+<member name="M:FSecurity.ReqModule.body(System.String,System.String,FSecurity.Request)">
+<summary>
+ Sets the request body with a content type.
+</summary>
+</member>
+<member name="M:FSecurity.ReqModule.method(System.Net.Http.HttpMethod,FSecurity.Request)">
+<summary>
+ Sets the HTTP method for the request.
+</summary>
+</member>
+<member name="M:FSecurity.ReqModule.certificate(System.Security.Cryptography.X509Certificates.X509Certificate,FSecurity.Request)">
+<summary>
+ Sets the HTTPS client certificate to the request.
+</summary>
+</member>
+<member name="M:FSecurity.ReqModule.header(System.String,System.String,FSecurity.Request)">
+<summary>
+ Adds a single HTTP header to the request.
+</summary>
+</member>
+<member name="M:FSecurity.ReqModule.headers(Microsoft.FSharp.Collections.FSharpList{System.Tuple{System.String,System.String}},FSecurity.Request)">
+<summary>
+ Adds HTTP headers to the request.
+</summary>
+</member>
+<member name="M:FSecurity.ReqModule.parameter(System.String,System.String,FSecurity.Request)">
+<summary>
+ Adds a single query string parameter to the request.
+</summary>
+</member>
+<member name="M:FSecurity.ReqModule.parameters(Microsoft.FSharp.Collections.FSharpList{System.Tuple{System.String,System.String}},FSecurity.Request)">
+<summary>
+ Adds query string parameters to the request.
+</summary>
+</member>
+<member name="M:FSecurity.ReqModule.route(System.String,FSecurity.Request)">
+<summary>
+ Adds a single route path to the request.
+</summary>
+</member>
+<member name="M:FSecurity.ReqModule.routes(Microsoft.FSharp.Collections.FSharpList{System.String},FSecurity.Request)">
+<summary>
+ Adds routing paths to the request.
+</summary>
+</member>
+<member name="M:FSecurity.ReqModule.endpoint(System.Net.Http.HttpMethod,System.String)">
+<summary>
+ Creates a HTTP request with a method and base URL.
+</summary>
+</member>
+<member name="T:FSecurity.ReqModule">
+<summary>
+ Operations for the request type.
+</summary>
+</member>
+</members>
+</doc>

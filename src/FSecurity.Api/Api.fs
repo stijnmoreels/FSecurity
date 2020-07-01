@@ -12,156 +12,7 @@ open System.Threading
 open System.Runtime.CompilerServices
 open System.Threading.Tasks
 open System.Runtime.InteropServices
-
-/// Indicate the severity of a security vulnerability.
-type Severity = Info | Medium | High
-
-[<Extension>]
-type HttpResponseMessageExtensions () =
-  [<Extension>]
-  static member readAsStringAsync (content : HttpContent) = content.ReadAsStringAsync() |> Async.AwaitTask
-  [<Extension>]
-  static member internal FormatAsString (res : HttpResponseMessage) = 
-    sprintf "%A %A -> %A" res.RequestMessage.Method res.RequestMessage.RequestUri res.StatusCode 
-
-/// Represents a security vulnerability.
-type Vulnerability =
-  { /// Gets a short description of the vulnerability.
-    Summary : string
-    /// Gets a more thorough explination of the vulnerability.
-    Description : string
-    /// Gets the content of the response for which a vulnerability is signaled.
-    ResponseContent : string
-    /// Gets the payloads for which the vulnerability was triggered.
-    Payloads : string seq
-    /// Gets the severity of the vulnerability.
-    Severity : Severity } with
-  /// Creates a vulnerability with all possible info.
-  static member Create (desc, summary, response, severity, payloads) =
-    { Description = desc; Summary = summary; ResponseContent = response; Severity = severity; Payloads = payloads }
-  /// Creates a vulnerability with only a description.
-  static member Create (desc) = Vulnerability.Create (desc, "", "", Medium, [])
-  /// Creates a vulnerability but discards the response content.
-  /// A summary from the request is created.
-  [<CompiledName("CreateWithoutResponseContent")>]
-  static member withoutRespContent (res : HttpResponseMessage) desc severity payloads =
-    { Description = desc
-      Summary = res.FormatAsString ()
-      ResponseContent = String.Empty
-      Severity = severity
-      Payloads = payloads }
-  /// Creates a vulnerability by reading the response content.
-  /// A summary from the request is created.
-  static member fromRespContent (res : HttpResponseMessage) desc severity payloads = async {
-    let! content = res.Content.ReadAsStringAsync() |> Async.AwaitTask
-    return { Description = desc
-             Summary = res.FormatAsString ()
-             ResponseContent = content
-             Severity = severity
-             Payloads = payloads } }
-  /// Adds the response content to the vulnerability.
-  member this.WithResponseContentAsync (res : HttpResponseMessage) =
-    async { let! content = res.Content.ReadAsStringAsync() |> Async.AwaitTask
-            return { this with ResponseContent = content } } |> Async.StartAsTask
-  /// Creates a vulnerability by reading the response content.
-  /// A summary from the request is created.
-  static member CreateFromResponseContentAsync response description severity payloads =
-    Vulnerability.fromRespContent response description severity payloads |> Async.StartAsTask
-  /// Creates a vulnerability with a Info severity.
-  static member Info (desc, response, [<Optional>] payloads) =
-    let payloads = Option.ofObj payloads |> Option.defaultValue Seq.empty
-    Vulnerability.withoutRespContent response desc Info payloads
-  /// Creates a vulnerability with a Medium severity.
-  static member Medium (desc, response, [<Optional>] payloads) =
-    let payloads = Option.ofObj payloads |> Option.defaultValue Seq.empty
-    Vulnerability.withoutRespContent response desc Medium payloads
-  /// Creates a vulnerability with a High severity.
-  static member High (desc, response, [<Optional>] payloads) =
-    Vulnerability.withoutRespContent response desc High payloads
-  /// Creates a vulnerability (Medium) with a short XSS description.
-  static member Xss (response, [<Optional>] payloads) =
-    Vulnerability.Medium ("Possible XSS vulnerability", response, payloads)
-  /// Creates a vulnerability (High) with a short SQL description.
-  static member Sql (response, [<Optional>] payloads) =
-    Vulnerability.High ("Possible SQL vulnerability", response, payloads)
-  /// Creates a vulnerability (Info) with a short rate-limit description.
-  static member Dos (response, [<Optional>] payloads) =
-    Vulnerability.Medium ("Possible DOS vulnerability", response, payloads)
-  /// Creates a vulnerability (High) with a short privilege escalation description.
-  static member PrivilegeEscalation (response, [<Optional>] payloads) =
-    Vulnerability.High ("Possible Privilege Escalation vulnerability", response, payloads)
-  /// Creates a vulnerability (Medium) with a short insecure direct object reference description.
-  static member InsecureDirectObjectReference (response, [<Optional>] payloads) =
-    Vulnerability.Medium ("Possible Insecure Direct Object Reference vulnerability", response, payloads)
-  /// Creates a vulnerability (Medium) with a short open redirection description.
-  static member OpenRedirect (response, [<Optional>] payloads) =
-    Vulnerability.Medium ("Possible Open Redirection vulnerability", response, payloads)
-  /// Creates a vulnerability (Medium) with a short Cross-site request forgery description.
-  static member CrossSiteRequestForgery (response, [<Optional>] payloads) =
-    Vulnerability.Medium ("Possible Cross-site request forgery vulnerability", response, payloads)
-  /// Creates a vulnerability (Info) with a info leakakge description.
-  static member InfoLeakakge (response, [<Optional>] payloads) =
-    Vulnerability.Info ("Possible leakage of information", response, payloads)
-
-type Vuln = Vulnerability
-
-/// Operations on the vulnerability type.
-module Vuln =
-  /// Creates a vulnerability with only a description.
-  let create desc = Vuln.Create desc
-  /// Sets the summary of the vulnerability.
-  let summary txt vuln = { vuln with Summary = txt }
-  /// Sets the response content of the vulnerability.
-  let response txt vuln = { vuln with ResponseContent = txt }
-  /// Sets the payloads that triggered this vulnerability.
-  let payloads ps vuln = { vuln with Payloads = ps }
-  /// Sets the severity of this vulnerability.
-  let severity s vuln = { vuln with Severity = s }
-  /// Creates a vulnerability with a Info severity.
-  let info desc response payloads = Vuln.Info (desc, response, payloads)
-  /// Creates a vulnerability with a Medium severity.
-  let medium desc response payloads = Vuln.Medium (desc, response, payloads)
-  /// Creates a vulnerability with a High severity.
-  let high desc response payloads = Vuln.High (desc, response, payloads)
-  /// Creates a vulnerability (Medium) with a short XSS description.
-  let xss response payloads = Vuln.Xss (response, payloads)
-  /// Creates a vulnerability (High) with a short SQL description.
-  let sql response payloads = Vuln.Sql (response, payloads)
-  /// Creates a vulnerability (Info) with a short rate-limit description.
-  let dos response payloads = Vuln.Dos (response, payloads)
-  /// Creates a vulnerability (High) with a short privilege escalation description.
-  let privilEscal response payloads = Vuln.PrivilegeEscalation (response, payloads)
-  /// Creates a vulnerability (Medium) with a short insecure direct object reference description.
-  let idor response payloads = Vuln.InsecureDirectObjectReference (response, payloads)
-  /// Creates a vulnerability (Medium) with a short open redirection description.
-  let openRedirect response payloads = Vuln.OpenRedirect (response, payloads)
-  /// Creates a vulnerability (Medium) with a short Cross-site request forgery description.
-  let csrf response payloads = Vuln.CrossSiteRequestForgery (response, payloads)
-  /// Creates a vulnerability (Info) with a info leakakge description.
-  let leakage response payloads = Vuln.InfoLeakakge (response, payloads)
-
-/// Extensions on the vulnerability type for a dev-friendly C#-context.
-[<Extension>]
-type VulnerabilityExtensions () =
-  /// Sets the summary of the vulnerability.
-  [<Extension>]
-  static member WithSummary (vuln, txt) = 
-    if isNull txt then nullArg "txt"
-    Vuln.summary txt vuln
-  /// Sets the response content of the vulnerability.
-  [<Extension>]
-  static member WithResponseContent (vuln, txt) = 
-    if isNull txt then nullArg "txt"
-    Vuln.response txt vuln
-  /// Sets the payloads that triggered this vulnerability.
-  [<Extension>]
-  static member WithPayloads (vuln, payloads) = 
-    if isNull payloads then nullArg "payloads"
-    Vuln.payloads payloads vuln
-  /// Sets the severity of this vulnerability.
-  [<Extension>]
-  static member WithSeverity (vuln, severity) = Vuln.severity severity vuln
-
+  
 [<AutoOpen>]
 module HttpMethods =
   let GET = HttpMethod.Get
@@ -275,7 +126,7 @@ module Req =
   /// Sets the request body with a content type.
   let body content contentType req = 
     { req with Body = Some { Content = content; ContentType = contentType; Replacements = [] } }
-  
+
   /// Replace all matching occurrences in the request content with a value.
   let body_regex pattern (value : string) req : Request =
     { req with Body = Option.map (fun b -> { b with Replacements = (fun content -> Regex.Replace(content, pattern, value)) :: b.Replacements }) req.Body }
@@ -289,24 +140,82 @@ module Req =
   let contentType value req : Request =
     { req with Body = Option.map (fun b -> { b with ContentType = value }) req.Body }
     
+  /// Sets the maximum amount of request that can be send concurrently to the target API endpoint.
+  let maxConcurrent amount req =
+    { req with MaxConcurrentRequests = amount }
+
+/// Represents a builder for creating a HTTP request template.
+type RequestBuilder internal (verb, url) =
+  member __.Yield (_) = Req.endpoint verb url
+  /// Adds a single query string parameter to the request.
+  [<CustomOperation("parameter")>]
+  member __.Parameter (state, name, value) = Req.parameter name value state
+  /// Adds query string parameters to the request.
+  [<CustomOperation("parameters")>]
+  member __.Parameters (state, parameters) = Req.parameters parameters state
+  /// Adds a single HTTP header to the request.
+  [<CustomOperation("header")>]
+  member __.Header (state, name, value) = Req.header name value state
+  /// Adds HTTP headers to the request.
+  [<CustomOperation("headers")>]
+  member __.Headers (state, headers) = Req.headers headers state
+  /// Adds a single route path to the request.
+  [<CustomOperation("route")>]
+  member __.Route (state, path) = Req.route path state
+  /// Adds routing paths to the request.
+  [<CustomOperation("routes")>]
+  member __.Routes (state, paths) = Req.routes paths state
+  /// Sets the HTTPS client certificate to the request.
+  [<CustomOperation("certificate")>]
+  member __.Certificate (state, certificate) = Req.certificate certificate state
+  /// Sets the request body with a content type.
+  [<CustomOperation("body")>]
+  member __.Body (state, content, contentType) = Req.body content contentType state
+  /// Replace all matching occurrences in the request content with a value.
+  [<CustomOperation("body_regex")>]
+  member __.BodyRegex (state, pattern, value) = Req.body_regex pattern value state
+  /// Replaces all text between a specified indicator (ex. '#to-be-replaced#') with a value.
+  /// Remark that this uses a regular expressions so valid regex charaters should be escaped.
+  [<CustomOperation("body_between")>]
+  member __.BodyBetween (state, varIndicator, value) = Req.body_between varIndicator value state
+  /// Replaces the content type of the request body.
+  [<CustomOperation("contentType")>]
+  member __.ContentType (value, state) = Req.contentType value state
+  /// Sets the maximum amount of request that can be send concurrently to the target API endpoint.
+  [<CustomOperation("maxConcurrent")>]
+  member __.MaxConcurrent (state, amount) = Req.maxConcurrent amount state
+
+[<AutoOpen>]
+module RequestBuilderValues =
+  /// Starter value for the request template builder.
+  let req verb url = RequestBuilder (verb, url)
+
 /// Adds extensions for a C#-friendly context.
 [<Extension>]
 type RequestExtensions () =
   /// Adds routing paths to the request.
   [<Extension>]
-  static member WithRoutes (req, [<ParamArray>] paths : string array) = Req.routes (List.ofArray paths) req
+  static member WithRoutes (req, [<ParamArray>] paths : string array) = 
+    if isNull paths then nullArg "paths"
+    Req.routes (List.ofArray paths) req
   /// Adds a single route path to the request.
   [<Extension>]
-  static member WithRoute (req, path) = Req.route path req
+  static member WithRoute (req, path) = 
+    Req.route path req
   /// Adds query string parameters to the request.
   [<Extension>]
-  static member WithParameters (req, [<ParamArray>] parameters : (string * string) array) = Req.parameters (List.ofArray parameters) req
+  static member WithParameters (req, [<ParamArray>] parameters : (string * string) array) = 
+    if isNull parameters then nullArg "parameters"
+    Req.parameters (List.ofArray parameters) req
   /// Adds a single query string parameter to the request.
   [<Extension>]
-  static member WithParameter (req, name, value) = Req.parameter name value req
+  static member WithParameter (req, name, value) = 
+    Req.parameter name value req
   /// Adds HTTP headers to the request.
   [<Extension>]
-  static member WithHeaders (req, [<ParamArray>] headers : (string * string) array) = Req.headers (List.ofArray headers) req
+  static member WithHeaders (req, [<ParamArray>] headers : (string * string) array) = 
+    if isNull headers then nullArg "headers"
+    Req.headers (List.ofArray headers) req
   /// Adds a single HTTP header to the request.
   [<Extension>]
   static member WithHeader (req, name, value) = Req.header name value req
@@ -329,6 +238,9 @@ type RequestExtensions () =
   /// Replaces the content type of the request body.
   [<Extension>]
   static member WithContentType (req, contentType) = Req.contentType contentType req
+  /// Sets the maximum amount of request that can be send concurrently to the target API endpoint.
+  [<Extension>]
+  static member WithMaximumConcurrent (req, amount) = Req.maxConcurrent amount req
 
 // ----------------------------------------------------------------------------
 // F# async extensions
@@ -361,6 +273,14 @@ module Async =
        | Choice1Of2 ok -> ok
        | Choice2Of2 ex -> ExceptionDispatchInfo.Capture(ex).Throw(); failwith "unreachable"
     ParallelWithThrottleCustom extractOrThrow throttle computations
+
+/// Extensions on the HTTP response message.
+[<Extension>]
+type HttpResponseMessageExtensions () =
+  /// Format the HTTP response message to a user-friendly string.
+  [<Extension>]
+  static member internal FormatAsString (res : HttpResponseMessage) = 
+    sprintf "%A %A -> %A" res.RequestMessage.Method res.RequestMessage.RequestUri res.StatusCode 
 
 /// Operations to scan an API endpoint.
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
@@ -395,9 +315,10 @@ module Api =
     should (fun _ r -> try verifier r; None with ex -> Some <| Vuln.create (sprintf "%s: %s" ex.Message ex.StackTrace)) scan
 
   let private checkHttpLeakageHeaders payloads (Response r) =
+    let summary = r.FormatAsString()
     Fuzz.httpLeakageHeaders
     |> Seq.filter r.Headers.Contains
-    |> Seq.map (fun h -> Vulnerability.withoutRespContent r (sprintf "Possible leakage of sensitive information from header '%s'" h) Info payloads)
+    |> Seq.map (fun h -> Vulnerability.withoutRespContent summary (sprintf "Possible leakage of sensitive information from header '%s'" h) Info payloads)
     |> Array.ofSeq
 
   /// Sets the payloads together with how much payloads should be used for this test scan.
@@ -409,6 +330,9 @@ module Api =
 
   /// Sets the payloads for this test scan.
   let inject payloads = injectMax 100 payloads
+
+  /// Sets the payload for this test scan.
+  let injectOne payload = inject [ payload ]
 
   /// Discards the payloads so the request itself is used to send.
   /// This also means nothing can be injected.
@@ -490,6 +414,51 @@ module Api =
     then single req.ClientCertificate createRequest scan
     else genMultiple req createRequest scan
 
+/// Builder to create a API test scan; running the scan when the builder runs.
+type ApiBuilder internal (scan, req : Request) =
+  member __.Yield (_) = Api.passThru
+  member __.Run (state) = scan req state
+  /// Sets the payloads for this this test scan.
+  [<CustomOperation("inject")>]
+  member __.Inject (state, payloads) : Scan = { state with Payloads = payloads, snd state.Payloads  }
+  /// Sets the payload for this test scan.
+  [<CustomOperation("injectOne")>]
+  member __.InjectOne (state, payload) : Scan = { state with Payloads = seq { yield payload }, snd state.Payloads }
+  /// Sets the payloads together with how much payloads should be used for this test scan.
+  [<CustomOperation("injectMax")>]
+  member __.InjectMax (state, payloads, max) : Scan = { state with Payloads = payloads, max }
+  /// Adds an injector function to the test scan to inject payloads into a HTTP request.
+  [<CustomOperation("into")>]
+  member __.Into (state, injector) = Api.into injector state
+  /// Adds a validation function that verifies a security issue.
+  [<CustomOperation("should")>]
+  member __.Should (state, verifier) = Api.should verifier state
+  /// Adds a validation function that asserts for a security issue.
+  [<CustomOperation("shouldAssert")>]
+  member __.ShouldAssert (state, verifier) = Api.shouldAssert verifier state
+  /// Adds a validation function that verifies several security issues.
+  [<CustomOperation("shouldAll")>]
+  member __.ShouldAll (state, verifier) = Api.shouldAll verifier state
+  /// Adds an asynchronous validation function that verifies a security issue.
+  [<CustomOperation("shouldAsync")>]
+  member __.ShouldAsync (state, verifier) = Api.shouldAsync verifier state
+  /// Adds an asynchronous validation function that verifies for a security issue.
+  [<CustomOperation("shouldAssertAsync")>]
+  member __.ShouldAssertAsync (state, verifier) = Api.shouldAssertAsync verifier state
+  /// Adds an asynchronous validation function that verifies several security issues.
+  [<CustomOperation("shouldAllAsync")>]
+  member __.ShouldAllAsync (state, verifier) = Api.shouldAllAsync verifier state
+
+/// Builder starter values.
+[<AutoOpen>]
+module ApiBuilderValues =
+  /// Runs a test scan for a given HTTP request by injecting a maximum amount of payloads into a series of HTTP requests
+  /// using the previously specified injector functions for the request, 
+  /// and aggregates all found vulnerabilities for the test scan by validating the HTTP responses with the previously provided validation functions.
+  let scan req = ApiBuilder (Api.scan, req)
+  /// Runs a test scan for a given HTTP request, aggregates all found vulnerabilities for the test scan by validating the HTTP responses with the previously provided validation functions.
+  let scanRequest req clientCertificate = ApiBuilder ((fun r s -> Api.scanRequest (r.ToHttpRequestMessage()) clientCertificate s), req)
+
 /// Adds extensions to the API scan type for a C#-friendly context.
 [<Extension>]
 type Api () =
@@ -497,6 +466,8 @@ type Api () =
   static member InjectMax (max, payloads) = Api.injectMax max payloads
   /// Sets the payloads for this test scan.
   static member Inject payloads = Api.inject payloads
+  /// Sets the payload for this test scan.
+  static member Inject payload = Api.injectOne payload
   /// Discards the payloads so the request itself is used to send.
   /// This also means nothing can be injected.
   static member PassThru = Api.passThru
@@ -581,11 +552,12 @@ type Api () =
     Api.scanRequest req clientCertificate scan |> Async.StartAsTask
 
 /// Operations on the response type.
+[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Res =
   /// Determines if a response content contains an expected string,
   /// and creates a vulnerability for it when it does.
   let contain expected (response : HttpResponseMessage) = async {
-    let! content = response.Content.readAsStringAsync()
+    let! content = response.Content.ReadAsStringAsync() |> Async.AwaitTask
     return content.Contains (expected) }
   /// Determines if a response has one of the allowed status codes.
   let allow statusCodes (response : HttpResponseMessage) = Seq.contains response.StatusCode statusCodes
@@ -601,6 +573,37 @@ module Res =
   /// Gets the response headers in a Map<_, _> type.
   let headers (response : HttpResponseMessage) : Map<string, string seq> = 
     Seq.map (|KeyValue|) response.Headers |> Map.ofSeq
+  let private isStatusMSB code (Response r) =
+    let actual = int r.StatusCode
+    actual / 100 = code
+  /// Determines if the response's status code is expected.
+  let isStatus code (Response r) = r.StatusCode = code
+  /// Determines if the response is in the range of 4XX status codes.
+  let isStatus4XX r = isStatusMSB 4 r
+  /// Determines if the response is in the range of 5XX status codes.
+  let isStatus5XX r = isStatusMSB 5 r
+  let private statusMSB code payloads (Response r) =
+    if isStatusMSB code r then None
+    else Some <| Vuln.medium (sprintf "should respond with %iXX status code but was %i" code (int r.StatusCode)) (r.FormatAsString()) payloads
+  /// Determines if the response is in the range of 4XX status codes.
+  let status4XX payloads r = statusMSB 4 payloads r
+  /// Determines if the response is in the range of 5XX status codes.
+  let status5XX payloads r = statusMSB 5 payloads r
+  /// Determines if the response status code is expected.
+  let statuscode code ps (Response r) =
+    let actual = int r.StatusCode
+    if actual = code then None
+    else Some <| Vuln.medium (sprintf "should respond with %i but was %i" code actual) (r.FormatAsString()) ps
+  /// Determines if the respose status code is expected.
+  let status (code : Net.HttpStatusCode) ps r = statuscode (int code) ps r
+  /// Determines if the response has response header.
+  let header name value ps (Response r) =
+    match r.Headers.TryGetValues name with
+    | true, vs -> String.Join (String.Empty, vs) = value
+    | false, _ -> false
+    |> fun check ->
+      if check then None 
+      else Some <| Vuln.medium (sprintf "should have header %s = %s" name value) (r.FormatAsString()) ps
 
 /// Extensions on the response type for a dev-friendly C#-context.
 [<Extension>]
@@ -616,6 +619,12 @@ type ResponseExtensions () =
   static member AllowStatusCodes (response, [<ParamArray>] statusCodes : _ array) =
     if isNull statusCodes then nullArg "statusCodes"
     Res.allow statusCodes response
+  /// Determines if the response is in the range of 4XX status codes.
+  [<Extension>]
+  static member IsStatus4XX (response) = Res.isStatus4XX response
+  /// Determines if the response is in the range of 5XX status codes.
+  [<Extension>]
+  static member IsStatus5XX (response) = Res.isStatus5XX response
   /// Determines if a response headers exists in the response.
   [<Extension>]
   static member HasHeader (response, headerName) =
@@ -639,4 +648,35 @@ type HttpClientExtensions () =
   [<Extension>]
   static member SendAsync (this : HttpClient, req : Request) =
     use req = req.ToHttpRequestMessage ()
-    this.SendAsync req
+    this.SendAsync req 
+
+/// Functionality on the vulnerability type which is directly available.
+[<AutoOpen>]
+module VulnerabilityAutoOpen =
+  /// Additional extensions on the vulnerability type.
+  type Vulnerability with
+    /// Creates a vulnerability by reading the response content.
+    /// A summary from the request is created.
+    static member fromRespContent (res : HttpResponseMessage) desc severity payloads = async {
+      let! content = res.Content.ReadAsStringAsync() |> Async.AwaitTask
+      return { Description = desc
+               Summary = res.FormatAsString ()
+               ResponseContent = content
+               Severity = severity
+               Payloads = payloads } }
+  
+/// Provides additional extensions on the vulnerability type.
+[<Extension>]
+type VulnerabilityExtensions () =
+  /// Adds the response content to the vulnerability.
+  [<Extension>]
+  static member WithResponseContentAsync (vulnerability : Vulnerability) (res : HttpResponseMessage) =
+    async { let! content = res.Content.ReadAsStringAsync() |> Async.AwaitTask
+            return { vulnerability with ResponseContent = content } } |> Async.StartAsTask
+  
+/// Model to create vulnerability types.
+type VulnerabilityFactory =
+  /// Creates a vulnerability by reading the response content.
+  /// A summary from the request is created.
+  static member CreateFromResponseContentAsync response description severity payloads =
+    Vulnerability.fromRespContent response description severity payloads |> Async.StartAsTask

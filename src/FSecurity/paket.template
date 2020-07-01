@@ -1,26 +1,19 @@
 type file
 id FSecurity
-version 2.0.0
+version 2.1.0-beta
 title FSecurity
 summary FSecuriy is a tool for automatically running security tests for .NET programs
 description
     FSec is a tool for automatically running security tests for .NET programs. 
     The tool provides some basic security testing functionality to discover vulnerabilities.
-copyright Copyright 2019
+copyright Copyright 2020
 authors Stijn Moreels
 owners Stijn Moreels
-tags fsharp,security,testing,tool,automation,tests,ci,owasp
-projectUrl https://github.com/stijnmoreels/FSec
+tags fsharp,security,testing,tool,automation,tests,ci,owasp,api,web
+projectUrl https://github.com/stijnmoreels/FSecurity
 iconUrl https://raw.githubusercontent.com/stijnmoreels/FSecurity/master/docs/img/logo.png
-licenseUrl https://github.com/stijnmoreels/FSec/blob/master/LICENSE.txt
-releaseNotes
-    - API security testing
-    - Fuzzing with a several fuzzing resource lists directly available
-    - HTTP request building + injection places for the fuzzing inputs
-    - Verification composition to discover security vulnerabilities
+licenseUrl https://github.com/stijnmoreels/FSecurity/blob/master/LICENSE.txt
+releaseNotes - Spliting core, API and FsCheck functionality into different packages
 files
     bin/Release/netstandard2.0/*.dll ==> lib/netstandard2.0
     bin/Release/netstandard2.0/*.xml ==> lib/netstandard2.0
-dependencies
-    FsCheck >= 2.14
-    SharpZipLib >= 1.2

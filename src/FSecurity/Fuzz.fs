@@ -5,8 +5,14 @@ open System.Collections.Generic
 open System.Runtime.CompilerServices
 open System.Net.Http
 open System.Text
+open System.IO
 
 type internal FuzzType internal () = class end
+
+/// Representation of a size indication (MB, GB, ...)
+type Metric = MB | GB with 
+  static member unit metric =
+    match metric with MB -> 1048576L | GB -> 1073741824L
 
 /// Module that holds the available fuzzing collections.
 module Fuzz =
@@ -140,6 +146,22 @@ module Fuzz =
   [<CompiledName("Encoding")>]
   let encoding str = encodingFrom Encoding.UTF8 str
 
+  let private rnd = Random(Guid.NewGuid().GetHashCode())
+  let private random xs = Seq.item (rnd.Next (0, Seq.length xs)) xs
+
+  /// Fuzz by making a sized fuzzed input value from a list of possible fuzzed values.
+  /// Ex. `Fuzz.sized 3 Metric.MB Fuzz.alphabet`
+  [<CompiledName("Sized")>]
+  let sized value metric values =
+    let size = Metric.unit metric
+    use str = new MemoryStream ()
+    let des = int64 value * size
+    while str.Position < des do
+      let x = random values
+      let b = Encoding.UTF8.GetBytes (x : string)
+      str.Write (b, 0, b.Length)
+    str.ToArray () |> Encoding.UTF8.GetString
+
 /// Extra operations on the sequence type.
 module Seq =
   /// Injects a series of inputs into a series of setter functions with a creator function to create the target instance.
@@ -153,11 +175,12 @@ type InjectExtensions =
   /// Injects a series of inputs into a series of setter functions with a creator function to create the target instance.
   [<Extension>]
   static member InjectInto 
-      ( fuzz : IEnumerable<'T>, 
-        creator : Func<'TResult>, 
-        [<ParamArray>] targets : Func<'TResult, 'T, 'TResult> [] ) =
+      ( fuzz : IEnumerable<'TInjector>, 
+        creator : Func<'T>, 
+        [<ParamArray>] targets : Func<'TInjector, 'T, 'TResult> [] ) =
     if isNull fuzz then nullArg "fuzz"
     if isNull creator then nullArg "creator"
     if isNull targets then nullArg "targets"
     if Seq.exists isNull targets then invalidArg "targets" "One or more target functions is 'null'"
-    Seq.inject (Seq.map (fun (f : Func<_, _, _>) -> fun t x -> f.Invoke (t, x)) targets) creator.Invoke fuzz
+    let targets = Seq.map (fun (f : Func<_, _, _>) -> fun t x -> f.Invoke (t, x)) targets
+    Seq.inject targets creator.Invoke fuzz

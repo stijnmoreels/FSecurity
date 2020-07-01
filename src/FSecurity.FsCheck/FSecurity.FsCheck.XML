@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>FSecurity.FsCheck</name></assembly>
+<members>
+<member name="T:FSecurity.AlphanumExtra">
+<summary>
+ Represents an alphanumerical value and special charaters.
+</summary>
+</member>
+<member name="T:FSecurity.Alphanum">
+<summary>
+ Represents an alphanumerical value.
+</summary>
+</member>
+<member name="T:FSecurity.Alphabetical">
+<summary>
+ Represents an string with only charaters in the alphabet.
+</summary>
+</member>
+<member name="T:FSecurity.ContentType">
+<summary>
+ Represents a content-type.
+</summary>
+</member>
+<member name="T:FSecurity.SqlFuzz">
+<summary>
+ Represents a malicious input for a SQL target.
+</summary>
+</member>
+<member name="T:FSecurity.UnixFuzz">
+<summary>
+ Represents a malicious input of an Unix target.
+</summary>
+</member>
+<member name="T:FSecurity.WindowsFuzz">
+<summary>
+ Represents a malicious input of a Windows target.
+</summary>
+</member>
+<member name="T:FSecurity.Naughty">
+<summary>
+ Represents a naugthy string containging all sorts of unexpected charaters.
+</summary>
+</member>
+<member name="T:FSecurity.JsonFuzz">
+<summary>
+ Represents a JSON value with fuzzed malicious inputs.
+</summary>
+</member>
+<member name="T:FSecurity.XmlXxeFuzz">
+<summary>
+ Represents a fuzzed version of an external entity processing XML injection malicious input.
+</summary>
+</member>
+<member name="T:FSecurity.XmlDocFuzz">
+<summary>
+ Represetents a fuzzed XML document with malicious inputs.
+</summary>
+</member>
+<member name="T:FSecurity.XmlElemAttrFuzz">
+<summary>
+ Represents a fuzzed XML element or attribute value with malicious input.
+</summary>
+</member>
+<member name="P:FSecurity.FSec.Unix">
+<summary>
+ Gets a wide sample of malicious input for unix-like targets
+</summary>
+</member>
+<member name="P:FSecurity.FSec.Windows">
+<summary>
+ Gets a wide sample of malicious input for windows targets
+</summary>
+</member>
+<member name="P:FSecurity.FSec.HttpMethod">
+<summary>
+ Generates a HTTP method.
+</summary>
+</member>
+<member name="M:FSecurity.FSec.UrlBogus``1(System.String,System.Collections.Generic.IDictionary{System.String,FsCheck.Gen{``0}})">
+ <summary>
+ Generates an url with an additional "bogus" query parameters added to the specified base url.
+ </summary>
+ <param name="baseUrl">The base URL to add the generated query parsameters.</param>
+ <param name="args">Map containing a query parameter names and their generator for its value.</param>
+</member>
+<member name="M:FSecurity.FSec.UrlBogus``1(System.String,Microsoft.FSharp.Collections.FSharpMap{System.String,FsCheck.Gen{``0}})">
+ <summary>
+ Generates an url with an additional "bogus" query parameters added to the specified base url.
+ </summary>
+ <param name="baseUrl">The base URL to add the generated query parsameters.</param>
+ <param name="args">Map containing a query parameter names and their generator for its value.</param>
+</member>
+<member name="M:FSecurity.FSec.UrlInject(System.String,Microsoft.FSharp.Collections.FSharpList{System.String})">
+ <summary>
+ Generates an url with injected JavaScript for the given query parameters.
+ </summary>
+ <param name="baseUrl">The base URL to add the injection.</param>
+ <param name="args">List containing all the query parameter names.</param>
+</member>
+<member name="M:FSecurity.FSec.UrlTampered``1(System.String,Microsoft.FSharp.Collections.FSharpMap{System.String,FsCheck.Gen{``0}})">
+ <summary>
+ Generates an url with a specified number of query parameters each with its own generator.
+ </summary>
+ <param name="baseUrl">The base URL to add the generated query parameters.</param>
+ <param name="args">Map containing a query parameter names and their generator for its value.</param>
+</member>
+<member name="M:FSecurity.FSec.UrlHiddenAdmin(System.String)">
+ <summary>
+ Generates an url with hidden specified query parameters: `admin=true`, `debug=true`.
+ </summary>
+ <param name="baseUrl">The base URL to add the generated query parameters.</param>
+</member>
+<member name="P:FSecurity.FSec.Naughty">
+<summary>
+ Generates a string that contains all sorts of big naughty strings. (See `Fuzz.naughty`).
+</summary>
+</member>
+<member name="P:FSecurity.FSec.Json">
+<summary>
+ Generates a fuzzed JSON value with malicious inputs.
+</summary>
+</member>
+<member name="M:FSecurity.FSec.XmlMaliciousInject``1(System.Xml.XmlDocument,Microsoft.FSharp.Collections.FSharpMap{System.String,FsCheck.Gen{``0}})">
+ <summary>
+ Alters the specified `XmlDocument` with a XPath identified value generator map for each matched XPath expression.
+ </summary>
+ <param name="doc">XML document to inject the generated values.</param>
+ <param name="gvalues">XPath/Generator map to identify each node to inject with a generated value.</param>
+</member>
+<member name="P:FSecurity.FSec.XmlMalicious">
+<summary>
+ Malicious XML generator: generates a XML structure with a depth of 1-100, a tag length of 100-1000 and a attribute count of 100-100.
+ With this generator you can detect failures in naive XML parsers.
+</summary>
+</member>
+<member name="M:FSecurity.FSec.XmlMaliciousDepthTagLen(System.Int32,System.Int32)">
+ <summary>
+ Malicious XML generator: generates a XML structure with a specified depth and tag length to detect failures in naive XML parsing implementations.
+ </summary>
+ <param name="depth">Defines the depth of the XML document.</param>
+ <param name="tagLen">Defines the length of the tag names.</param>
+</member>
+<member name="P:FSecurity.FSec.XmlBomb">
+ <summary>
+ XML Bomb input generator: An XML bomb is a message composed and sent with the intent of overloading an XML parser (typically HTTP server). 
+ It is block of XML that is both well-formed and valid according to the rules of an XML schema. 
+ It is a type of XML Denial of Service (DoS) attack. (more info: https://en.wikipedia.org/wiki/Billion_laughs)
+ </summary>
+ <remarks>
+   Severity: Critical
+   Vulnerability Indicators: timeout
+ </remarks>
+</member>
+<member name="P:FSecurity.FSec.XmlXxe">
+<summary>
+ Fuzz external entity processing (XXE) inputs for XML injection.
+</summary>
+</member>
+<member name="P:FSecurity.FSec.XmlElementAndAttribute">
+<summary>
+ Fuzz XML elements and attributes with malicious input.
+</summary>
+</member>
+<member name="P:FSecurity.FSec.XmlFuzz">
+<summary>
+ Fuzz an entire XML document with malicious input.
+</summary>
+</member>
+<member name="P:FSecurity.FSec.EicarVirus">
+<summary>
+ Eicar virus represented as a stream containing the virus content.
+ For more info about the Eicar virus: http://www.eicar.org/86-0-Intended-use.html
+</summary>
+</member>
+<member name="P:FSecurity.FSec.Eicar">
+<summary>
+ Eicar virus represented as a string containing the virus content.
+ For more info about the Eicar virus: http://www.eicar.org/86-0-Intended-use.html
+</summary>
+</member>
+<member name="M:FSecurity.FSec.PathFileTraversal(System.String)">
+ <summary>
+ Random file(s) path generator for a Path Traversal attack.
+ By using a dot '.' slash '/' '\' commbination (both encoded and un-endcoded),
+ the input attacker will try to access files/directories outside the expected folder.
+ </summary>
+ <param name="ext">File extension to use to append to the generated path traversal.</param>
+</member>
+<member name="M:FSecurity.FSec.PathFixedFileTraversal(System.Collections.Generic.IEnumerable{System.String})">
+ <summary>
+ Fixed file(s) path generator for a Path Traversal attack.
+ By using a dot '.' slash '/' '\' commbination (both encoded and un-endcoded),
+ the input attacker will try to access files/directories outside the expected folder.
+ </summary>
+ <param name="files">List of file names that gets appended after the path traversal generation.</param>
+</member>
+<member name="P:FSecurity.FSec.PathDirTraversal">
+<summary>
+ Directory path generator for a Path Traversal attack.
+ By using a dot &apos;.&apos; slash &apos;/&apos; &apos;\&apos; commbination (both encoded and un-endcoded),
+ the input attacker will try to access files/directories outside the expected folder.
+</summary>
+</member>
+<member name="P:FSecurity.FSec.FileIllegalNames">
+<summary>
+ Illegal file name generator to validate the file uploading mechanism.
+ Generate file names with semicolons, reserved names, percent sign, ampersand, ...
+</summary>
+</member>
+<member name="M:FSecurity.FSec.FileOfSize(System.Int32,FSecurity.Metric,System.IO.DirectoryInfo)">
+ <summary>
+ Creates a file for a given size stored at a given directory.
+ </summary>
+ <param name="dir">Location of where the file should be stored.</param>
+ <param name="x">Value to define the file size (in MB or GB).</param>
+ <param name="m">Metric to define the Unit of the file size.</param>
+</member>
+<member name="P:FSecurity.FSec.DicAttack">
+<summary>
+ John the Ripper dictionary generator
+ Generates weak passwords used for a dictionary attack.
+</summary>
+</member>
+<member name="P:FSecurity.FSec.DicAttackSeq">
+<summary>
+ John the Ripper dictionary generator
+ Generates weak passwords used for a dictionary attack.
+</summary>
+</member>
+<member name="P:FSecurity.FSec.LogInject">
+<summary>
+ Log input generator to test log injection vulnerability. Inputs that are most-likely be logged can be vulnerable for injection.
+ This generator will give you injection strings that will try to inject layout with xterm, XSS injection and add additional lines in a xterm environment
+ with the text &apos;User admin logged in&apos;.
+</summary>
+</member>
+<member name="M:FSecurity.FSec.LdapWithNormalInject(System.String)">
+ <summary>
+ LDAP input generator with a specified 'normal input' that provides LDAP injection strings.
+ The 'normal input' should be something legitimate.
+ When receiving an "unusable" response from the SUT, it may be vulnerable for LDAP injection.
+ An "unusable" response could be a random user record, list of users, ...
+ LDAP is a lightweight system to manage credentials and authenticating users. 
+ When a application is vulnerable to LDAP injection, a malicious user may can query
+ sensitive data from other or even modify/delete it entirely.
+ </summary>
+ <remarks>
+   Severity: Critical
+   Vulnerability Indicators: unusable responses
+ </remarks>
+</member>
+<member name="P:FSecurity.FSec.LdapInject">
+ <summary>
+ LDAP input generator that provides LDAP injection strings. 
+ When receiving an "unusable" response from the SUT, it may be vulnerable for LDAP injection.
+ An "unusable" response could be a random user record, list of users, ...
+ LDAP is a lightweight system to manage credentials and authenticating users. 
+ When a application is vulnerable to LDAP injection, a malicious user may can query
+ sensitive data from other or even modify/delete it entirely.
+ </summary>
+ <remarks>
+   Severity: Critical
+   Vulnerability Indicators: unusable responses
+ </remarks>
+</member>
+<member name="P:FSecurity.FSec.SqlInject">
+ <summary>
+ SQL input generator that provides malformed inputs that can be used to discover SQL vulnerabilities.
+ A SQL injection attack consists of insertion or "injection" of a SQL query via the input data from the client to the application. 
+ A successful SQL injection exploit can read sensitive data from the database, modify database data, 
+ execute administration operations on the database etc. (more info: https://www.owasp.org/index.php/SQL_Injection)
+ </summary>
+ <remarks>
+   Severity: Critical
+   Vulnerability Indicators: incorrect/invalid syntax, syntax error, runtime errors, invalid SQL statement, conversion failed, SQLite exception, cannot open database, System.Data.SqlException, ...
+ </remarks>
+</member>
+<member name="P:FSecurity.FSec.XssInject">
+ <summary>
+ XSS (Cross Site Scripting) input generator that provides malformed inputs that can be used to discover XSS vulnerabilities.
+ Cross-Site Scripting (XSS) attacks are a type of injection, in which malicious scripts are injected into otherwise benign 
+ and trusted web sites. (more info: https://www.owasp.org/index.php/Cross-site_Scripting_(XSS))
+ </summary>
+ <remarks>
+   Severity: Critical
+   Vulnerability Indicators: payload exists in response
+ </remarks>
+</member>
+<member name="P:FSecurity.FSec.XPathInject">
+ <summary>
+ XPath input generator that provides malformed XPath inputs that can be used to discover XPath vulnerabilities.
+ XPath is a "simple" language to locate information in an XML document. 
+ Similar to SQL Injection, XPath Injection attacks occur when an application uses user-supplied information 
+ to construct an XPath query for XML data. By sending intentionally malformed information into the application, 
+ an attacker can find out how the XML data is structured, or access data that he may not normally have access to.
+ (more info: https://www.owasp.org/index.php/XPATH_Injection)
+ </summary>
+ <remarks>
+   Severity: Critical
+   Vulnerability Indicators: incorrect/invalid syntax, syntax error, runtime errors, XPathException, System.Xml.XPath 
+ </remarks>
+</member>
+<member name="P:FSecurity.FSec.CsvInject">
+<summary>
+ Injection string for CSV files
+</summary>
+</member>
+<member name="M:FSecurity.FSec.Case(System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Gets a generated set of fuzzed versions of a given set of input strings.
+</summary>
+</member>
+<member name="M:FSecurity.FSec.case(System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Gets a generated set of fuzzed versions of a given set of input strings.
+</summary>
+</member>
+<member name="P:FSecurity.FSec.ContentType">
+<summary>
+ Gets a generated set of content-type values.
+</summary>
+</member>
+<member name="P:FSecurity.FSec.AlphanumSpecial">
+<summary>
+ Gets a generated list of alphanumerical values and special charaters.
+</summary>
+</member>
+<member name="P:FSecurity.FSec.Alphanum">
+<summary>
+ Gets a generated list of alphanumerical values.
+</summary>
+</member>
+<member name="P:FSecurity.FSec.Alphabet">
+<summary>
+ Gets a generated list of strings which only contain charaters from the alphabet.
+</summary>
+</member>
+<member name="T:FSecurity.FSec">
+<summary>
+ Module that holds the security testing functionality.
+</summary>
+</member>
+</members>
+</doc>

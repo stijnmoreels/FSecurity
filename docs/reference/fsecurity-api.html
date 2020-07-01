@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Api - FSecurity</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content=""/>
+    <meta name="author" content="Stijn Moreels"/>
+
+    <script src="https://code.jquery.com/jquery-1.8.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.8.23/jquery-ui.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet"/>
+
+    <link type="text/css" rel="stylesheet" href="/FSecurity/content/style.css" />
+    <script type="text/javascript" src="/FSecurity/content/tips.js"></script>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container">
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="http://fsharp.org">fsharp.org</a></li>
+          <li><a href="https://github.com/stijnmoreels/FSecurity">github page</a></li>
+        </ul>
+        <h3 class="muted"><a href="/FSecurity/index.html">FSecurity</a></h3>
+      </div>
+      <hr />
+      <div class="row">
+        <div class="span9" id="main">
+          
+
+<h1>Api</h1>
+<p>
+
+    <span>Namespace: FSecurity</span><br />
+            <span>
+            Attributes: <br />
+[&lt;Extension&gt;]<br />
+            
+        </span>
+</p>
+<div class="xmldoc">
+<p>Adds extensions to the API scan type for a C#-friendly context.</p>
+
+</div>
+  <h3>Constructors</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Constructor</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '169', 169)" onmouseover="showTip(event, '169', 169)">
+            new()
+          </code>
+          <div class="tip" id="169">
+            <strong>Signature:</strong> unit -&gt; Api<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L464-464" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
+              <p>CompiledName: <code>.ctor</code></p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h3>Static members</h3>
+  <table class="table table-bordered member-list">
+    <thead>
+      <tr><td>Static member</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '170', 170)" onmouseover="showTip(event, '170', 170)">
+            Api.Inject(payload)
+          </code>
+          <div class="tip" id="170">
+            <strong>Signature:</strong> payload:Payload -&gt; Scan<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L470-470" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Sets the payload for this test scan.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '171', 171)" onmouseover="showTip(event, '171', 171)">
+            Api.Inject(payloads)
+          </code>
+          <div class="tip" id="171">
+            <strong>Signature:</strong> payloads:seq&lt;Payload&gt; -&gt; Scan<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L468-468" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Sets the payloads for this test scan.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '172', 172)" onmouseover="showTip(event, '172', 172)">
+            Api.InjectMax(max, payloads)
+          </code>
+          <div class="tip" id="172">
+            <strong>Signature:</strong> (max:int * payloads:seq&lt;Payload&gt;) -&gt; Scan<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L466-466" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Sets the payloads together with how much payloads should be used for this test scan.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '173', 173)" onmouseover="showTip(event, '173', 173)">
+            Api.Into(scan, injector)
+          </code>
+          <div class="tip" id="173">
+            <strong>Signature:</strong> (scan:Scan * injector:Func&lt;Payload,Request,Request&gt;) -&gt; Scan<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L476-476" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Adds an injector function to the test scan to inject payloads into a HTTP request.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '174', 174)" onmouseover="showTip(event, '174', 174)">
+            Api.PassThru
+          </code>
+          <div class="tip" id="174">
+            <strong>Signature:</strong> Scan<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L473-473" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Discards the payloads so the request itself is used to send.
+This also means nothing can be injected.</p>
+
+
+              <p>CompiledName: <code>get_PassThru</code></p>
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '175', 175)" onmouseover="showTip(event, '175', 175)">
+            Api.ScanAsync(scan, req)
+          </code>
+          <div class="tip" id="175">
+            <strong>Signature:</strong> (scan:Scan * req:Request) -&gt; Task&lt;seq&lt;Vulnerability&gt;&gt;<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L547-547" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Runs a test scan for a given HTTP request by injecting a maximum amount of payloads into a series of HTTP requests
+using the previously specified injector functions for the request,
+and aggregates all found vulnerabilities for the test scan by validating the HTTP responses with the previously provided validation functions.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '176', 176)" onmouseover="showTip(event, '176', 176)">
+            Api.ScanRequestAsync(...)
+          </code>
+          <div class="tip" id="176">
+            <strong>Signature:</strong> (scan:Scan * req:HttpRequestMessage * clientCertificate:X509Certificate) -&gt; Task&lt;seq&lt;Vulnerability&gt;&gt;<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L550-550" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Runs a test scan for a given HTTP request, aggregates all found vulnerabilities for the test scan by validating the HTTP responses with the previously provided validation functions.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '177', 177)" onmouseover="showTip(event, '177', 177)">
+            Api.Should(scan, verifier)
+          </code>
+          <div class="tip" id="177">
+            <strong>Signature:</strong> (scan:Scan * verifier:Action&lt;HttpResponseMessage&gt;) -&gt; Scan<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L540-540" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Adds a validation function that asserts for a security issue.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '178', 178)" onmouseover="showTip(event, '178', 178)">
+            Api.Should(...)
+          </code>
+          <div class="tip" id="178">
+            <strong>Signature:</strong> (scan:Scan * verifier:Func&lt;HttpResponseMessage,bool&gt; * vulnerability:Vulnerability) -&gt; Scan<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L533-533" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Adds a validation function that verifies a security issue.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '179', 179)" onmouseover="showTip(event, '179', 179)">
+            Api.Should(scan, verifier)
+          </code>
+          <div class="tip" id="179">
+            <strong>Signature:</strong> (scan:Scan * verifier:Func&lt;HttpResponseMessage,(bool * Vulnerability)&gt;) -&gt; Scan<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L526-526" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Adds a validation function that verifies a security issue.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '180', 180)" onmouseover="showTip(event, '180', 180)">
+            Api.Should(...)
+          </code>
+          <div class="tip" id="180">
+            <strong>Signature:</strong> (scan:Scan * verifier:Func&lt;Payload [],HttpResponseMessage,bool&gt; * vulnerability:Vulnerability) -&gt; Scan<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L519-519" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Adds a validation function that verifies a security issue.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '181', 181)" onmouseover="showTip(event, '181', 181)">
+            Api.Should(scan, verifier)
+          </code>
+          <div class="tip" id="181">
+            <strong>Signature:</strong> (scan:Scan * verifier:Func&lt;Payload [],HttpResponseMessage,(bool * Vulnerability)&gt;) -&gt; Scan<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L512-512" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Adds a validation function that verifies a security issue.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '182', 182)" onmouseover="showTip(event, '182', 182)">
+            Api.ShouldAll(scan, verifier)
+          </code>
+          <div class="tip" id="182">
+            <strong>Signature:</strong> (scan:Scan * verifier:Func&lt;Payload [],Response,Vulnerability array&gt;) -&gt; Scan<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L486-486" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Adds a validation function that verifies several security issues.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '183', 183)" onmouseover="showTip(event, '183', 183)">
+            Api.ShouldAllAsync(scan, verifier)
+          </code>
+          <div class="tip" id="183">
+            <strong>Signature:</strong> (scan:Scan * verifier:Func&lt;Payload [],HttpResponseMessage,&#39;?8023&gt;) -&gt; Scan<br />
+                          <strong>Type parameters:</strong> '?8023                        <span>
+            <strong>Attributes:</strong><br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L481-481" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Adds an asynchronous validation function that verifies several security issues.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '184', 184)" onmouseover="showTip(event, '184', 184)">
+            Api.ShouldAsnc(scan, verifier)
+          </code>
+          <div class="tip" id="184">
+            <strong>Signature:</strong> (scan:Scan * verifier:Func&lt;HttpResponseMessage,Task&gt;) -&gt; Scan<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L499-499" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Adds an asynchronous validation function that verifies a security issue.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '185', 185)" onmouseover="showTip(event, '185', 185)">
+            Api.ShouldAsync(...)
+          </code>
+          <div class="tip" id="185">
+            <strong>Signature:</strong> (scan:Scan * verifier:Func&lt;Payload [],HttpResponseMessage,Task&lt;bool&gt;&gt; * vulnerability:Vulnerability) -&gt; Scan<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L505-505" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Adds an asynchronous validation function that verifies a security issue.</p>
+
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '186', 186)" onmouseover="showTip(event, '186', 186)">
+            Api.ShouldAsync(scan, verifier)
+          </code>
+          <div class="tip" id="186">
+            <strong>Signature:</strong> (scan:Scan * verifier:Func&lt;Payload [],HttpResponseMessage,Task&lt;bool * Vulnerability&gt;&gt;) -&gt; Scan<br />
+                                    <span>
+            <strong>Attributes:</strong><br />
+[&lt;Extension&gt;]<br />
+          </span>
+          </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L491-491" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Adds an asynchronous validation function that verifies a security issue.</p>
+
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+        </div>
+        <div class="span3">
+          <img src="/FSecurity/img/logo.png" alt="F# Project" style="width:150px;margin:10px" />  
+          <ul class="nav nav-list" id="menu" style="margin-top: 20px;">
+            <li class="nav-header">FSecurity</li>
+            <li><a href="/FSecurity/index.html">Home page</a></li>
+            <li class="divider"></li>
+            <li><a href="http://nuget.org/packages/FSecurity">Get Library via NuGet</a></li>
+            <li><a href="https://github.com/stijnmoreels/FSecurity">Source Code on GitHub</a></li>
+            <li><a href="/FSecurity/license.html">License</a></li>
+            <li><a href="/FSecurity/release-notes.html">Release Notes</a></li>
+            
+            <li class="nav-header">Getting started</li>
+            <li><a href="/FSecurity/tutorial.html">Introduction</a></li>
+
+            <li class="nav-header">Documentation</li>
+            <li><a href="/FSecurity/reference/index.html">API Reference</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <a href="https://github.com/stijnmoreels/FSecurity"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"/></a>
+  </body>
+  </html>

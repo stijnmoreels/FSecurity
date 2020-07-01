@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <DocumentationFile>FSecurity.FsCheck.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="paket.references" />
+    <Compile Include="FSec.fs" />
+    <Compile Include="Types.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FSecurity\FSecurity.fsproj" />
+  </ItemGroup>
+  <Import Project="..\..\.paket\Paket.Restore.targets" />
+</Project>

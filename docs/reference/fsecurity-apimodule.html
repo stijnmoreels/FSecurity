@@ -24,7 +24,7 @@
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
           <li><a href="http://fsharp.org">fsharp.org</a></li>
-          <li><a href="https://github.com/stijnmoreels/FSec">github page</a></li>
+          <li><a href="https://github.com/stijnmoreels/FSecurity">github page</a></li>
         </ul>
         <h3 class="muted"><a href="/FSecurity/index.html">FSecurity</a></h3>
       </div>
@@ -32,8 +32,6 @@
       <div class="row">
         <div class="span9" id="main">
           
-
-
 
 <h1>Api</h1>
 <p>
@@ -59,16 +57,15 @@
     <tbody>
       <tr>
         <td class="member-name">
-
-          <code onmouseout="hideTip(event, '1', 1)" onmouseover="showTip(event, '1', 1)">
+          <code onmouseout="hideTip(event, '43', 43)" onmouseover="showTip(event, '43', 43)">
             inject(payloads)
           </code>
-          <div class="tip" id="1">
+          <div class="tip" id="43">
             <strong>Signature:</strong> payloads:seq&lt;Payload&gt; -&gt; Scan<br />
                                   </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L411-411" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L332-332" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -79,16 +76,15 @@
       </tr>
       <tr>
         <td class="member-name">
-
-          <code onmouseout="hideTip(event, '2', 2)" onmouseover="showTip(event, '2', 2)">
+          <code onmouseout="hideTip(event, '44', 44)" onmouseover="showTip(event, '44', 44)">
             injectMax max payloads
           </code>
-          <div class="tip" id="2">
+          <div class="tip" id="44">
             <strong>Signature:</strong> max:int -&gt; payloads:seq&lt;Payload&gt; -&gt; Scan<br />
                                   </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L404-404" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L325-325" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -99,16 +95,34 @@
       </tr>
       <tr>
         <td class="member-name">
+          <code onmouseout="hideTip(event, '45', 45)" onmouseover="showTip(event, '45', 45)">
+            injectOne(payload)
+          </code>
+          <div class="tip" id="45">
+            <strong>Signature:</strong> payload:Payload -&gt; Scan<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L335-335" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          <p>Sets the payload for this test scan.</p>
 
-          <code onmouseout="hideTip(event, '3', 3)" onmouseover="showTip(event, '3', 3)">
+
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '46', 46)" onmouseover="showTip(event, '46', 46)">
             into injector scan
           </code>
-          <div class="tip" id="3">
+          <div class="tip" id="46">
             <strong>Signature:</strong> injector:(Payload -&gt; Request -&gt; Request) -&gt; scan:Scan -&gt; Scan<br />
                                   </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L418-418" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L342-342" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -119,16 +133,15 @@
       </tr>
       <tr>
         <td class="member-name">
-
-          <code onmouseout="hideTip(event, '4', 4)" onmouseover="showTip(event, '4', 4)">
+          <code onmouseout="hideTip(event, '47', 47)" onmouseover="showTip(event, '47', 47)">
             passThru
           </code>
-          <div class="tip" id="4">
+          <div class="tip" id="47">
             <strong>Signature:</strong> Scan<br />
                                   </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L415-415" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L339-339" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -140,16 +153,15 @@ This also means nothing can be injected.</p>
       </tr>
       <tr>
         <td class="member-name">
-
-          <code onmouseout="hideTip(event, '5', 5)" onmouseover="showTip(event, '5', 5)">
+          <code onmouseout="hideTip(event, '48', 48)" onmouseover="showTip(event, '48', 48)">
             scan req scan
           </code>
-          <div class="tip" id="5">
+          <div class="tip" id="48">
             <strong>Signature:</strong> req:Request -&gt; scan:Scan -&gt; Async&lt;seq&lt;Vulnerability&gt;&gt;<br />
                                   </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L487-487" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L411-411" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -162,16 +174,15 @@ and aggregates all found vulnerabilities for the test scan by validating the HTT
       </tr>
       <tr>
         <td class="member-name">
-
-          <code onmouseout="hideTip(event, '6', 6)" onmouseover="showTip(event, '6', 6)">
+          <code onmouseout="hideTip(event, '49', 49)" onmouseover="showTip(event, '49', 49)">
             scanRequest(...)
           </code>
-          <div class="tip" id="6">
-            <strong>Signature:</strong> request:(type) -&gt; clientCertificate:&#39;?8496 option -&gt; scan:Scan -&gt; Async&lt;seq&lt;Vulnerability&gt;&gt;<br />
-                          <strong>Type parameters:</strong> '?8496                      </div>
+          <div class="tip" id="49">
+            <strong>Signature:</strong> request:HttpRequestMessage -&gt; clientCertificate:&#39;?8119 option -&gt; scan:Scan -&gt; Async&lt;seq&lt;Vulnerability&gt;&gt;<br />
+                          <strong>Type parameters:</strong> '?8119                      </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L481-481" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L405-405" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -182,16 +193,15 @@ and aggregates all found vulnerabilities for the test scan by validating the HTT
       </tr>
       <tr>
         <td class="member-name">
-
-          <code onmouseout="hideTip(event, '7', 7)" onmouseover="showTip(event, '7', 7)">
+          <code onmouseout="hideTip(event, '50', 50)" onmouseover="showTip(event, '50', 50)">
             should verifier scan
           </code>
-          <div class="tip" id="7">
+          <div class="tip" id="50">
             <strong>Signature:</strong> verifier:(Payload list -&gt; Response -&gt; Vulnerability option) -&gt; scan:Scan -&gt; Scan<br />
                                   </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L390-390" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L310-310" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -202,16 +212,15 @@ and aggregates all found vulnerabilities for the test scan by validating the HTT
       </tr>
       <tr>
         <td class="member-name">
-
-          <code onmouseout="hideTip(event, '8', 8)" onmouseover="showTip(event, '8', 8)">
+          <code onmouseout="hideTip(event, '51', 51)" onmouseover="showTip(event, '51', 51)">
             shouldAll verifier scan
           </code>
-          <div class="tip" id="8">
+          <div class="tip" id="51">
             <strong>Signature:</strong> verifier:(Payload list -&gt; Response -&gt; Vulnerability array) -&gt; scan:Scan -&gt; Scan<br />
                                   </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L373-373" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L293-293" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -222,16 +231,15 @@ and aggregates all found vulnerabilities for the test scan by validating the HTT
       </tr>
       <tr>
         <td class="member-name">
-
-          <code onmouseout="hideTip(event, '9', 9)" onmouseover="showTip(event, '9', 9)">
+          <code onmouseout="hideTip(event, '52', 52)" onmouseover="showTip(event, '52', 52)">
             shouldAllAsync verifier scan
           </code>
-          <div class="tip" id="9">
+          <div class="tip" id="52">
             <strong>Signature:</strong> verifier:(Payload list -&gt; Response -&gt; Async&lt;Vulnerability array&gt;) -&gt; scan:Scan -&gt; Scan<br />
                                   </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L369-369" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L289-289" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -242,16 +250,15 @@ and aggregates all found vulnerabilities for the test scan by validating the HTT
       </tr>
       <tr>
         <td class="member-name">
-
-          <code onmouseout="hideTip(event, '10', 10)" onmouseover="showTip(event, '10', 10)">
+          <code onmouseout="hideTip(event, '53', 53)" onmouseover="showTip(event, '53', 53)">
             shouldAssert verifier scan
           </code>
-          <div class="tip" id="10">
+          <div class="tip" id="53">
             <strong>Signature:</strong> verifier:(Response -&gt; unit) -&gt; scan:Scan -&gt; Scan<br />
                                   </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L394-394" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L314-314" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -262,16 +269,15 @@ and aggregates all found vulnerabilities for the test scan by validating the HTT
       </tr>
       <tr>
         <td class="member-name">
-
-          <code onmouseout="hideTip(event, '11', 11)" onmouseover="showTip(event, '11', 11)">
+          <code onmouseout="hideTip(event, '54', 54)" onmouseover="showTip(event, '54', 54)">
             shouldAssertAsync verifier scan
           </code>
-          <div class="tip" id="11">
+          <div class="tip" id="54">
             <strong>Signature:</strong> verifier:(Response -&gt; Async&lt;unit&gt;) -&gt; scan:Scan -&gt; Scan<br />
                                   </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L383-383" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L303-303" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -282,16 +288,15 @@ and aggregates all found vulnerabilities for the test scan by validating the HTT
       </tr>
       <tr>
         <td class="member-name">
-
-          <code onmouseout="hideTip(event, '12', 12)" onmouseover="showTip(event, '12', 12)">
+          <code onmouseout="hideTip(event, '55', 55)" onmouseover="showTip(event, '55', 55)">
             shouldAsync verifier scan
           </code>
-          <div class="tip" id="12">
+          <div class="tip" id="55">
             <strong>Signature:</strong> verifier:(Payload list -&gt; Response -&gt; Async&lt;Vulnerability option&gt;) -&gt; scan:Scan -&gt; Scan<br />
                                   </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L377-377" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L297-297" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
@@ -310,8 +315,8 @@ and aggregates all found vulnerabilities for the test scan by validating the HTT
             <li class="nav-header">FSecurity</li>
             <li><a href="/FSecurity/index.html">Home page</a></li>
             <li class="divider"></li>
-            <li><a href="http://nuget.org/packages/FSec">Get Library via NuGet</a></li>
-            <li><a href="https://github.com/stijnmoreels/FSec">Source Code on GitHub</a></li>
+            <li><a href="http://nuget.org/packages/FSecurity">Get Library via NuGet</a></li>
+            <li><a href="https://github.com/stijnmoreels/FSecurity">Source Code on GitHub</a></li>
             <li><a href="/FSecurity/license.html">License</a></li>
             <li><a href="/FSecurity/release-notes.html">Release Notes</a></li>
             
@@ -324,6 +329,6 @@ and aggregates all found vulnerabilities for the test scan by validating the HTT
         </div>
       </div>
     </div>
-    <a href="https://github.com/stijnmoreels/FSec"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"/></a>
+    <a href="https://github.com/stijnmoreels/FSecurity"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"/></a>
   </body>
   </html>

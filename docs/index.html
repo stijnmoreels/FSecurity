@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>FSec
+    <title>FSecurity
 </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="FSecuriy is a tool for automatically running security tests for .NET programs"/>
@@ -25,23 +25,28 @@
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
           <li><a href="http://fsharp.org">fsharp.org</a></li>
-          <li><a href="https://github.com/stijnmoreels/FSec">github page</a></li>
+          <li><a href="https://github.com/stijnmoreels/FSecurity">github page</a></li>
         </ul>
         <h3 class="muted"><a href="/FSecurity/index.html">FSecurity</a></h3>
       </div>
       <hr />
       <div class="row">
         <div class="span9" id="main">
-          
-<h1><a name="FSec" class="anchor" href="#FSec">FSec</a></h1>
-<p><strong>FSec</strong> is a testing library to simplifying Security Tests for .NET programs.
-The <code>FSec</code> module exposes all kinds of different <code>Gen&lt;'a&gt;</code> implementations (See: <a href="https://fscheck.github.io/FsCheck/index.html">FsCheck</a> for more infor about generators)
-that the developer can use to discover possible security issues with the application.</p>
+          <h1><a name="FSecurity" class="anchor" href="#FSecurity">FSecurity</a></h1>
+<p><strong>FSecurity</strong> is a testing library to simplifying Security Tests for .NET programs.
+Splitted in three different packages, the security library provides additional functionality for specific area's.</p>
+<ul>
+<li><p><code>FSecurity</code>: is the base library and contain fuzzing logic to generate random inputs directly as <code>string</code> values.</p></li>
+<li><p><code>FSecurity.Api</code>: is the library that contains specific scanning functionality, fuzzing HTTP requests, and the ability to collect vulnerabilities.</p></li>
+<li>
+<p><code>FSecurity.FsCheck</code>: is the library that contains <code>Gen&lt;'a&gt;</code> generators (See: <a href="https://fscheck.github.io/FsCheck/index.html">FsCheck</a>.</p>
 <p>Examples of exposed generators are:</p>
 <ul>
-<li><code>FSec.xssInject</code> returns a generator that for all different kinds of XSS payloads</li>
-<li><code>FSec.xpathInject</code> returns a generator for all different kinds of XPath injection</li>
-<li><code>FSec.xmlBomb</code> returns a generator that makes all different kinds of XML payload that uses the XRE (External Reference Entity) functionality to exploit missue of XML parsers.</li>
+<li><p><code>FSec.xssInject</code> returns a generator that for all different kinds of XSS payloads</p></li>
+<li><p><code>FSec.xpathInject</code> returns a generator for all different kinds of XPath injection</p></li>
+<li><p><code>FSec.xmlBomb</code> returns a generator that makes all different kinds of XML payload that uses the XRE (External Reference Entity) functionality to exploit missue of XML parsers.</p></li>
+</ul>
+</li>
 </ul>
 <h2><a name="Samples-amp-documentation" class="anchor" href="#Samples-amp-documentation">Samples &amp; documentation</a></h2>
 <ul>
@@ -68,8 +73,8 @@ redistribution for both commercial and non-commercial purposes. For more informa
             <li class="nav-header">FSecurity</li>
             <li><a href="/FSecurity/index.html">Home page</a></li>
             <li class="divider"></li>
-            <li><a href="http://nuget.org/packages/FSec">Get Library via NuGet</a></li>
-            <li><a href="https://github.com/stijnmoreels/FSec">Source Code on GitHub</a></li>
+            <li><a href="http://nuget.org/packages/FSecurity">Get Library via NuGet</a></li>
+            <li><a href="https://github.com/stijnmoreels/FSecurity">Source Code on GitHub</a></li>
             <li><a href="/FSecurity/license.html">License</a></li>
             <li><a href="/FSecurity/release-notes.html">Release Notes</a></li>
             
@@ -82,6 +87,6 @@ redistribution for both commercial and non-commercial purposes. For more informa
         </div>
       </div>
     </div>
-    <a href="https://github.com/stijnmoreels/FSec"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"/></a>
+    <a href="https://github.com/stijnmoreels/FSecurity"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"/></a>
   </body>
   </html>

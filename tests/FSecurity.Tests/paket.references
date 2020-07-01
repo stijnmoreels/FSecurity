@@ -1,8 +1,0 @@
-FSharp.Core
-FsCheck.Xunit
-FsCheck
-xunit
-nuget xunit.runner.visualstudio
-Expecto.TestResults
-Expecto.FsCheck
-Unquote

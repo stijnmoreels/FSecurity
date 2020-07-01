@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8"/>
-    <title>Res - FSecurity</title>
+    <title>HttpMethods - FSecurity</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content=""/>
     <meta name="author" content="Stijn Moreels"/>
@@ -24,7 +24,7 @@
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
           <li><a href="http://fsharp.org">fsharp.org</a></li>
-          <li><a href="https://github.com/stijnmoreels/FSec">github page</a></li>
+          <li><a href="https://github.com/stijnmoreels/FSecurity">github page</a></li>
         </ul>
         <h3 class="muted"><a href="/FSecurity/index.html">FSecurity</a></h3>
       </div>
@@ -33,15 +33,16 @@
         <div class="span9" id="main">
           
 
-
-
-<h1>Res</h1>
+<h1>HttpMethods</h1>
 <p>
   <span>Namespace: FSecurity</span><br />
-  </p>
+        <span>
+          Attributes:<br />
+[&lt;AutoOpen&gt;]<br />
+          
+      </span>
+</p>
 <div class="xmldoc">
-<p>Operations on the response type.</p>
-
 </div>
 
 <!-- Render nested types and modules, if there are any -->
@@ -54,123 +55,121 @@
     <tbody>
       <tr>
         <td class="member-name">
-
-          <code onmouseout="hideTip(event, '88', 88)" onmouseover="showTip(event, '88', 88)">
-            allow statusCodes response
+          <code onmouseout="hideTip(event, '60', 60)" onmouseover="showTip(event, '60', 60)">
+            DELETE
           </code>
-          <div class="tip" id="88">
-            <strong>Signature:</strong> statusCodes:seq&lt;(type)&gt; -&gt; response:(type) -&gt; bool<br />
+          <div class="tip" id="60">
+            <strong>Signature:</strong> HttpMethod<br />
                                   </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L591-591" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L21-21" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Determines if a response has one of the allowed status codes.</p>
-
-
+          
         </td>
       </tr>
       <tr>
         <td class="member-name">
-
-          <code onmouseout="hideTip(event, '89', 89)" onmouseover="showTip(event, '89', 89)">
-            contain expected response
+          <code onmouseout="hideTip(event, '61', 61)" onmouseover="showTip(event, '61', 61)">
+            GET
           </code>
-          <div class="tip" id="89">
-            <strong>Signature:</strong> expected:string -&gt; response:(type) -&gt; Async&lt;bool&gt;<br />
+          <div class="tip" id="61">
+            <strong>Signature:</strong> HttpMethod<br />
                                   </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L587-587" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L18-18" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Determines if a response content contains an expected string,
-and creates a vulnerability for it when it does.</p>
-
-
+          
         </td>
       </tr>
       <tr>
         <td class="member-name">
-
-          <code onmouseout="hideTip(event, '90', 90)" onmouseover="showTip(event, '90', 90)">
-            hasHeader headerName response
+          <code onmouseout="hideTip(event, '62', 62)" onmouseover="showTip(event, '62', 62)">
+            HEAD
           </code>
-          <div class="tip" id="90">
-            <strong>Signature:</strong> headerName:string -&gt; response:(type) -&gt; bool<br />
+          <div class="tip" id="62">
+            <strong>Signature:</strong> HttpMethod<br />
                                   </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L593-593" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L22-22" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Determines if a response header exists in the response.</p>
-
-
+          
         </td>
       </tr>
       <tr>
         <td class="member-name">
-
-          <code onmouseout="hideTip(event, '91', 91)" onmouseover="showTip(event, '91', 91)">
-            hasHeaderValue(...)
+          <code onmouseout="hideTip(event, '63', 63)" onmouseover="showTip(event, '63', 63)">
+            OPTIONS
           </code>
-          <div class="tip" id="91">
-            <strong>Signature:</strong> headerName:string -&gt; headerValue:string -&gt; response:(type) -&gt; bool<br />
+          <div class="tip" id="63">
+            <strong>Signature:</strong> HttpMethod<br />
                                   </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L599-599" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L23-23" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Determines if a response header exists in the response.</p>
-
-
+          
         </td>
       </tr>
       <tr>
         <td class="member-name">
-
-          <code onmouseout="hideTip(event, '92', 92)" onmouseover="showTip(event, '92', 92)">
-            hasHeaderValues(...)
+          <code onmouseout="hideTip(event, '64', 64)" onmouseover="showTip(event, '64', 64)">
+            POST
           </code>
-          <div class="tip" id="92">
-            <strong>Signature:</strong> headerName:string -&gt; headerValues:seq&lt;string&gt; -&gt; response:(type) -&gt; bool<br />
+          <div class="tip" id="64">
+            <strong>Signature:</strong> HttpMethod<br />
                                   </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L595-595" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L19-19" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Determines if a response header exists in the response.</p>
-
-
+          
         </td>
       </tr>
       <tr>
         <td class="member-name">
-
-          <code onmouseout="hideTip(event, '93', 93)" onmouseover="showTip(event, '93', 93)">
-            headers(response)
+          <code onmouseout="hideTip(event, '65', 65)" onmouseover="showTip(event, '65', 65)">
+            PUT
           </code>
-          <div class="tip" id="93">
-            <strong>Signature:</strong> response:(type) -&gt; Map&lt;string,seq&lt;string&gt;&gt;<br />
+          <div class="tip" id="65">
+            <strong>Signature:</strong> HttpMethod<br />
                                   </div>
         </td>
         <td class="xmldoc">
-                      <a href="https://github.com/stijnmoreels/FSec/tree/master/src/FSecurity/Api.fs#L602-602" class="github-link">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L20-20" class="github-link">
               <img src="../content/img/github.png" class="normal" />
               <img src="../content/img/github-blue.png" class="hover" />
             </a>
-          <p>Gets the response headers in a Map<_, _> type.</p>
-
-
+          
+        </td>
+      </tr>
+      <tr>
+        <td class="member-name">
+          <code onmouseout="hideTip(event, '66', 66)" onmouseover="showTip(event, '66', 66)">
+            TRACE
+          </code>
+          <div class="tip" id="66">
+            <strong>Signature:</strong> HttpMethod<br />
+                                  </div>
+        </td>
+        <td class="xmldoc">
+                      <a href="https://github.com/stijnmoreels/FSecurity/tree/master/src/FSecurity.Api/Api.fs#L24-24" class="github-link">
+              <img src="../content/img/github.png" class="normal" />
+              <img src="../content/img/github-blue.png" class="hover" />
+            </a>
+          
         </td>
       </tr>
     </tbody>
@@ -183,8 +182,8 @@ and creates a vulnerability for it when it does.</p>
             <li class="nav-header">FSecurity</li>
             <li><a href="/FSecurity/index.html">Home page</a></li>
             <li class="divider"></li>
-            <li><a href="http://nuget.org/packages/FSec">Get Library via NuGet</a></li>
-            <li><a href="https://github.com/stijnmoreels/FSec">Source Code on GitHub</a></li>
+            <li><a href="http://nuget.org/packages/FSecurity">Get Library via NuGet</a></li>
+            <li><a href="https://github.com/stijnmoreels/FSecurity">Source Code on GitHub</a></li>
             <li><a href="/FSecurity/license.html">License</a></li>
             <li><a href="/FSecurity/release-notes.html">Release Notes</a></li>
             
@@ -197,6 +196,6 @@ and creates a vulnerability for it when it does.</p>
         </div>
       </div>
     </div>
-    <a href="https://github.com/stijnmoreels/FSec"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"/></a>
+    <a href="https://github.com/stijnmoreels/FSecurity"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"/></a>
   </body>
   </html>

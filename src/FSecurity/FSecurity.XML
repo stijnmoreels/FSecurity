@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doc>
+<assembly><name>FSecurity</name></assembly>
+<members>
+<member name="M:FSecurity.VulnerabilityExtensions.WithSummary(FSecurity.Vulnerability,System.String)">
+<summary>
+ Sets the summary of the vulnerability.
+</summary>
+</member>
+<member name="M:FSecurity.VulnerabilityExtensions.WithSeverity(FSecurity.Vulnerability,FSecurity.Severity)">
+<summary>
+ Sets the severity of this vulnerability.
+</summary>
+</member>
+<member name="M:FSecurity.VulnerabilityExtensions.WithResponseContent(FSecurity.Vulnerability,System.String)">
+<summary>
+ Sets the response content of the vulnerability.
+</summary>
+</member>
+<member name="M:FSecurity.VulnerabilityExtensions.WithPayloads(FSecurity.Vulnerability,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Sets the payloads that triggered this vulnerability.
+</summary>
+</member>
+<member name="T:FSecurity.VulnerabilityExtensions">
+<summary>
+ Extensions on the vulnerability type for a dev-friendly C#-context.
+</summary>
+</member>
+<member name="P:FSecurity.Vulnerability.Severity">
+<summary>
+ Gets the severity of the vulnerability.
+</summary>
+</member>
+<member name="P:FSecurity.Vulnerability.Payloads">
+<summary>
+ Gets the payloads for which the vulnerability was triggered.
+</summary>
+</member>
+<member name="P:FSecurity.Vulnerability.ResponseContent">
+<summary>
+ Gets the content of the response for which a vulnerability is signaled.
+</summary>
+</member>
+<member name="P:FSecurity.Vulnerability.Description">
+<summary>
+ Gets a more thorough explination of the vulnerability.
+</summary>
+</member>
+<member name="P:FSecurity.Vulnerability.Summary">
+<summary>
+ Gets a short description of the vulnerability.
+</summary>
+</member>
+<member name="M:FSecurity.Vulnerability.CreateWithoutResponseContent(System.String,System.String,FSecurity.Severity,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Creates a vulnerability but discards the response content.
+ A summary from the request is created.
+</summary>
+</member>
+<member name="M:FSecurity.Vulnerability.Xss(System.String,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Creates a vulnerability (Medium) with a short XSS description.
+</summary>
+</member>
+<member name="M:FSecurity.Vulnerability.Sql(System.String,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Creates a vulnerability (High) with a short SQL description.
+</summary>
+</member>
+<member name="M:FSecurity.Vulnerability.PrivilegeEscalation(System.String,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Creates a vulnerability (High) with a short privilege escalation description.
+</summary>
+</member>
+<member name="M:FSecurity.Vulnerability.OpenRedirect(System.String,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Creates a vulnerability (Medium) with a short open redirection description.
+</summary>
+</member>
+<member name="M:FSecurity.Vulnerability.Medium(System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Creates a vulnerability with a Medium severity.
+</summary>
+</member>
+<member name="M:FSecurity.Vulnerability.InsecureDirectObjectReference(System.String,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Creates a vulnerability (Medium) with a short insecure direct object reference description.
+</summary>
+</member>
+<member name="M:FSecurity.Vulnerability.InfoLeakakge(System.String,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Creates a vulnerability (Info) with a info leakakge description.
+</summary>
+</member>
+<member name="M:FSecurity.Vulnerability.Info(System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Creates a vulnerability with a Info severity.
+</summary>
+</member>
+<member name="M:FSecurity.Vulnerability.High(System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Creates a vulnerability with a High severity.
+</summary>
+</member>
+<member name="M:FSecurity.Vulnerability.Dos(System.String,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Creates a vulnerability (Info) with a short rate-limit description.
+</summary>
+</member>
+<member name="M:FSecurity.Vulnerability.CrossSiteRequestForgery(System.String,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Creates a vulnerability (Medium) with a short Cross-site request forgery description.
+</summary>
+</member>
+<member name="M:FSecurity.Vulnerability.Create(System.String)">
+<summary>
+ Creates a vulnerability with only a description.
+</summary>
+</member>
+<member name="M:FSecurity.Vulnerability.Create(System.String,System.String,System.String,FSecurity.Severity,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Creates a vulnerability with all possible info.
+</summary>
+</member>
+<member name="T:FSecurity.Vulnerability">
+<summary>
+ Represents a security vulnerability.
+</summary>
+</member>
+<member name="T:FSecurity.Severity">
+<summary>
+ Indicate the severity of a security vulnerability.
+</summary>
+</member>
+<member name="M:FSecurity.InjectExtensions.InjectInto``3(System.Collections.Generic.IEnumerable{``0},System.Func{``1},System.Func{``0,``1,``2}[])">
+<summary>
+ Injects a series of inputs into a series of setter functions with a creator function to create the target instance.
+</summary>
+</member>
+<member name="T:FSecurity.Metric">
+<summary>
+ Representation of a size indication (MB, GB, ...)
+</summary>
+</member>
+<member name="M:FSecurity.VulnModule.format``1(``0)">
+<summary>
+ Format the vulnerabilities in a multi-line string.
+</summary>
+</member>
+<member name="M:FSecurity.VulnModule.leakage(System.String,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Creates a vulnerability (Info) with a info leakakge description.
+</summary>
+</member>
+<member name="M:FSecurity.VulnModule.csrf(System.String,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Creates a vulnerability (Medium) with a short Cross-site request forgery description.
+</summary>
+</member>
+<member name="M:FSecurity.VulnModule.openRedirect(System.String,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Creates a vulnerability (Medium) with a short open redirection description.
+</summary>
+</member>
+<member name="M:FSecurity.VulnModule.idor(System.String,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Creates a vulnerability (Medium) with a short insecure direct object reference description.
+</summary>
+</member>
+<member name="M:FSecurity.VulnModule.privilEscal(System.String,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Creates a vulnerability (High) with a short privilege escalation description.
+</summary>
+</member>
+<member name="M:FSecurity.VulnModule.dos(System.String,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Creates a vulnerability (Info) with a short rate-limit description.
+</summary>
+</member>
+<member name="M:FSecurity.VulnModule.sql(System.String,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Creates a vulnerability (High) with a short SQL description.
+</summary>
+</member>
+<member name="M:FSecurity.VulnModule.xss(System.String,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Creates a vulnerability (Medium) with a short XSS description.
+</summary>
+</member>
+<member name="M:FSecurity.VulnModule.high(System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Creates a vulnerability with a High severity.
+</summary>
+</member>
+<member name="M:FSecurity.VulnModule.medium(System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Creates a vulnerability with a Medium severity.
+</summary>
+</member>
+<member name="M:FSecurity.VulnModule.info(System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Creates a vulnerability with a Info severity.
+</summary>
+</member>
+<member name="M:FSecurity.VulnModule.severity(FSecurity.Severity,FSecurity.Vulnerability)">
+<summary>
+ Sets the severity of this vulnerability.
+</summary>
+</member>
+<member name="M:FSecurity.VulnModule.payloads(System.Collections.Generic.IEnumerable{System.String},FSecurity.Vulnerability)">
+<summary>
+ Sets the payloads that triggered this vulnerability.
+</summary>
+</member>
+<member name="M:FSecurity.VulnModule.response(System.String,FSecurity.Vulnerability)">
+<summary>
+ Sets the response content of the vulnerability.
+</summary>
+</member>
+<member name="M:FSecurity.VulnModule.summary(System.String,FSecurity.Vulnerability)">
+<summary>
+ Sets the summary of the vulnerability.
+</summary>
+</member>
+<member name="M:FSecurity.VulnModule.create(System.String)">
+<summary>
+ Creates a vulnerability with only a description.
+</summary>
+</member>
+<member name="T:FSecurity.VulnModule">
+<summary>
+ Operations on the vulnerability type.
+</summary>
+</member>
+<member name="M:FSecurity.Seq.inject``3(System.Collections.Generic.IEnumerable{Microsoft.FSharp.Core.FSharpFunc{``0,Microsoft.FSharp.Core.FSharpFunc{``1,``2}}},Microsoft.FSharp.Core.FSharpFunc{Microsoft.FSharp.Core.Unit,``1},System.Collections.Generic.IEnumerable{``0})">
+<summary>
+ Injects a series of inputs into a series of setter functions with a creator function to create the target instance.
+</summary>
+</member>
+<member name="T:FSecurity.Seq">
+<summary>
+ Extra operations on the sequence type.
+</summary>
+</member>
+<member name="M:FSecurity.Fuzz.Sized(System.Int32,FSecurity.Metric,System.Collections.Generic.IEnumerable{System.String})">
+<summary>
+ Fuzz by making a sized fuzzed input value from a list of possible fuzzed values.
+ Ex. `Fuzz.sized 3 Metric.MB Fuzz.alphabet`
+</summary>
+</member>
+<member name="M:FSecurity.Fuzz.Encoding(System.String)">
+<summary>
+ Fuzz the encoding of a given string considering the default UTF-8 as current encoding.
+</summary>
+</member>
+<member name="M:FSecurity.Fuzz.Encoding(System.Text.Encoding,System.String)">
+<summary>
+ Fuzz the encoding of the given string and its current encoding.
+</summary>
+</member>
+<member name="M:FSecurity.Fuzz.Case(System.String)">
+<summary>
+ Fuzz the case of a given string. (ex. &apos;.php&apos; becomes &apos;.PhP&apos;).
+</summary>
+</member>
+<member name="M:FSecurity.Fuzz.DirTraversal(System.String)">
+<summary>
+ Gets a directory traversal path for a given file name. (ex. &apos;file.txt&apos; becomes &apos;../../file.txt&apos;)
+ 847 attack vectors, 8 levels of recursion (Unix-like, Windows)
+</summary>
+</member>
+<member name="P:FSecurity.Fuzz.Sql">
+<summary>
+ Gets a wide sample of malicious input for SQL targets
+</summary>
+</member>
+<member name="P:FSecurity.Fuzz.Unix">
+<summary>
+ Gets a wide sample of malicious input for unix-like targets
+</summary>
+</member>
+<member name="P:FSecurity.Fuzz.Windows">
+<summary>
+ Gets a wide sample of malicious input for windows targets
+</summary>
+</member>
+<member name="P:FSecurity.Fuzz.Naughty">
+<summary>
+ Big list of naughty strings containing reserved strings, strings representing a numeric value, unicode/superscript, unicode font, zaglo text, right-to left strings, emoji, ...
+</summary>
+</member>
+<member name="P:FSecurity.Fuzz.Json">
+<summary>
+ JSON fuzzed values with malicious input.
+</summary>
+</member>
+<member name="P:FSecurity.Fuzz.XmlXxe">
+<summary>
+ External entity processing XML documents with malicious input.
+</summary>
+</member>
+<member name="P:FSecurity.Fuzz.XmlElemenAttribute">
+<summary>
+ Gets a series of fuzzed XML element and attribute malicious input values.
+</summary>
+</member>
+<member name="P:FSecurity.Fuzz.XmlDocument">
+<summary>
+ Gets a series of fuzzed XML documents with malicious input.
+</summary>
+</member>
+<member name="P:FSecurity.Fuzz.Xss">
+<summary>
+ Gets a series of XSS injection payloads.
+</summary>
+</member>
+<member name="P:FSecurity.Fuzz.JohnTheRipper">
+<summary>
+ John the Ripper dictionary collection.
+</summary>
+</member>
+<member name="P:FSecurity.Fuzz.ContentType">
+<summary>
+ Gets a series of content-type values.
+</summary>
+</member>
+<member name="P:FSecurity.Fuzz.HttpMethods">
+<summary>
+ Gets all HTTP methods.
+</summary>
+</member>
+<member name="P:FSecurity.Fuzz.HttpProtectHeaders">
+<summary>
+ Gets HTTP headers that protect against some browser injection security issues.
+</summary>
+</member>
+<member name="P:FSecurity.Fuzz.HttpLeakageHeaders">
+<summary>
+ Gets HTTP headers that expose information that can be used for fingerprinting.
+</summary>
+</member>
+<member name="P:FSecurity.Fuzz.AlphanumSpecial">
+<summary>
+ Gets the alphanumerical series of a-b, A-Z, 0-9, and all special charaters.
+</summary>
+</member>
+<member name="P:FSecurity.Fuzz.Specials">
+<summary>
+ Gets a series of special charaters (ex. &apos;!&apos;, &apos;%&apos;, ...)
+</summary>
+</member>
+<member name="P:FSecurity.Fuzz.Alphanum">
+<summary>
+ Gets the alphanumerical series of a-z, A-Z, and 0-9.
+</summary>
+</member>
+<member name="P:FSecurity.Fuzz.Alphabet">
+<summary>
+ Gets the alhpabethical charaters of a-z and A-Z.
+</summary>
+</member>
+<member name="M:FSecurity.Fuzz.Numbers(System.Int32,System.Int32)">
+<summary>
+ Gets the all the numbers from a minimum to a maximum value inclusive.
+</summary>
+</member>
+<member name="T:FSecurity.Fuzz">
+<summary>
+ Module that holds the available fuzzing collections.
+</summary>
+</member>
+</members>
+</doc>

@@ -146,9 +146,10 @@ let file_tests =
 let fuzz_tests =
     testList "fuzz tests" [
       testCase "weak passwords will be found in dictionary attack" <| fun () ->
-        [ "qwerty"; "password" ]
-        |> List.forall (fun x -> Seq.contains x Fuzz.johnTheRipper)
-        |> Expect.isTrue <| "should contain weak passwords"
+        let dicAttack = Fuzz.johnTheRipper
+        Expect.isNonEmpty dicAttack "should not be empty"
+        Expect.contains dicAttack "qwerty" "should contain 'qwerty'"
+        Expect.contains dicAttack "password" "should contain 'password'"
       testCase "change case of input strings" <| fun () ->
         let xs = Fuzz.case ".php"
         Expect.contains xs ".php" "fuzzed case should contain original input"
